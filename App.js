@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+
+import HomeScreen from "./HomeScreen";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      {/* <StatusBar hidden></StatusBar> */}
+      {/* Hide system header for all of the screens */}
+      {/* TODO few screen will have header while some will not */}
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="Home" component={HomeScreen} />
+        {/* <Stack.Screen name="GameScreen" component={GameScreen} />
+            <Stack.Screen name="EasyLevels" component={EasyLevelsScreen} />
+            <Stack.Screen name="MediumLevels" component={MediumLevelsScreen} />
+            <Stack.Screen name="LevelScreen" component={LevelScreen} />
+            <Stack.Screen name="CrosswordScreen" component={CrosswordApp} /> */}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
