@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
+    marginTop: 40,
     marginBottom: 10,
     paddingBottom: 15,
   },

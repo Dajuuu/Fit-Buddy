@@ -61,10 +61,11 @@ const GameScreen = ({ navigation }) => {
     },
   ];
 
-  const handleDifficultyPress = () => {
+  const handleDifficultyPress = (type) => {
     // Small fix for the route parameters for the EasyLevels
     // TypeError: Cannot read property 'levelCompleted' of undefined
     navigation.navigate("ExerciseDifficulty", {
+      type,
       // levelCompleted: false,
       // completedLevelName: "E0",
     });
@@ -84,7 +85,7 @@ const GameScreen = ({ navigation }) => {
             <TouchableOpacity
               key={index}
               style={[styles.difficultyBox]}
-              onPress={() => handleDifficultyPress(workout.screen)}
+              onPress={() => handleDifficultyPress(workout.type)}
             >
               <ImageBackground
                 source={workout.imageSource}

@@ -14,7 +14,9 @@ import CustomHeader from "./CustomHeader";
 
 // import CustomHeader from "./CustomHeader";
 
-const GameScreen = ({ navigation }) => {
+const SelectedWorkoutScreen = ({ navigation, route }) => {
+  const { type } = route.params;
+
   // Load fonts
   const [fontLoaded, setFontLoaded] = useState(false);
 
@@ -74,7 +76,7 @@ const GameScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Display Custom header */}
-      <CustomHeader title="Choose Difficulty" />
+      <CustomHeader title={type} />
       {/* <View style={styles.textContainer}>
         <Text style={styles.titleText}> FitBuddy</Text>
       </View> */}
@@ -169,4 +171,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default GameScreen;
+export default SelectedWorkoutScreen;
