@@ -12,7 +12,9 @@ import {
 import * as Font from "expo-font";
 
 // import CustomHeader from "./CustomHeader";
+
 const GameScreen = ({ navigation }) => {
+  // Load fonts
   const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
@@ -31,39 +33,29 @@ const GameScreen = ({ navigation }) => {
   }
 
   // Declare the difficulty levels
-  const difficultyLevels = [
+  const workoutTypes = [
     {
-      level: "Arms",
-      colorFront: "rgba(35,139,0,1)",
-      colorBack: "green",
+      type: "Arms",
       screen: "EasyLevels",
       imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
     },
     {
-      level: "Legs",
-      colorFront: "rgba(255,204,58,1)",
-      colorBack: "rgba(233,186,56,1)",
+      type: "Legs",
       screen: "MediumLevels",
       imageSource: require("fit-buddy/assets/HomeScreen/legs-workout.png"),
     },
     {
-      level: "ABS",
-      colorFront: "rgba(236,117,15,1)",
-      colorBack: "rgba(211,106,16,1)",
+      type: "ABS",
       screen: "HardLevels",
       imageSource: require("fit-buddy/assets/HomeScreen/abs-workout.jpg"),
     },
     {
-      level: "FBW",
-      colorFront: "rgba(197,8,34,1)",
-      colorBack: "rgba(136,16,32,1)",
+      type: "FBW",
       screen: "ExpertLevels",
       imageSource: require("fit-buddy/assets/HomeScreen/fbw-workout.jpg"),
     },
     {
-      level: "Yoga",
-      colorFront: "rgba(87,15,216,1)",
-      colorBack: "rgba(67,15,162,1)",
+      type: "Yoga",
       screen: "ThemedLevels",
       imageSource: require("fit-buddy/assets/HomeScreen/yoga-workout.png"),
     },
@@ -88,22 +80,19 @@ const GameScreen = ({ navigation }) => {
       <ScrollView style={{ width: "100%" }}>
         {/* Display all difficulty levels */}
         <View style={styles.workoutTypesContainer}>
-          {difficultyLevels.map((level, index) => (
+          {workoutTypes.map((workout, index) => (
             <TouchableOpacity
               key={index}
-              style={[
-                styles.difficultyBox,
-                {
-                  backgroundColor: level.colorFront,
-                  borderColor: level.colorBack,
-                },
-              ]}
-              onPress={() => handleDifficultyPress(level.screen)}
+              style={[styles.difficultyBox]}
+              onPress={() => handleDifficultyPress(workout.screen)}
             >
-              <ImageBackground source={level.imageSource} style={styles.image}>
+              <ImageBackground
+                source={workout.imageSource}
+                style={styles.image}
+              >
                 {/* Apply dark overlay to the image */}
                 <View style={styles.darkOverlay} />
-                <Text style={styles.difficultyText}>{level.level}</Text>
+                <Text style={styles.difficultyText}>{workout.type}</Text>
               </ImageBackground>
             </TouchableOpacity>
           ))}
