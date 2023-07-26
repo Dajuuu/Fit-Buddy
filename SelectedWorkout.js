@@ -38,9 +38,34 @@ const SelectedWorkoutScreen = ({ navigation, route }) => {
   // Declare the difficulty levels
   const workoutTypes = [
     {
-      type: "Arms",
+      type: "Easy 1",
       // screen: "EasyLevels",
-      imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
+      // imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
+    },
+    {
+      type: "Easy 2",
+      // screen: "EasyLevels",
+      // imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
+    },
+    {
+      type: "Medium 1",
+      // screen: "EasyLevels",
+      // imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
+    },
+    {
+      type: "Medium 2",
+      // screen: "EasyLevels",
+      // imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
+    },
+    {
+      type: "Hard 1",
+      // screen: "EasyLevels",
+      // imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
+    },
+    {
+      type: "Hard 2",
+      // screen: "EasyLevels",
+      // imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
     },
     // {
     //   type: "Legs",
@@ -73,31 +98,37 @@ const SelectedWorkoutScreen = ({ navigation, route }) => {
     });
   };
 
+  const renderGapView = (index) => {
+    if (index > 0 && index % 2 === 0) {
+      return <View style={styles.gapView} />;
+    }
+    return null;
+  };
+
   return (
     <View style={styles.container}>
       {/* Display Custom header */}
       <CustomHeader title={type} />
-      {/* <View style={styles.textContainer}>
-        <Text style={styles.titleText}> FitBuddy</Text>
-      </View> */}
       <ScrollView style={{ width: "100%" }}>
-        {/* Display all difficulty levels */}
+        {/* Display all workout types */}
         <View style={styles.workoutTypesContainer}>
           {workoutTypes.map((workout, index) => (
-            <TouchableOpacity
-              key={index}
-              style={[styles.difficultyBox]}
-              onPress={() => handleDifficultyPress(workout.screen)}
-            >
-              <ImageBackground
-                source={workout.imageSource}
-                style={styles.image}
+            <React.Fragment key={index}>
+              <TouchableOpacity
+                style={[styles.difficultyBox]}
+                onPress={() => handleDifficultyPress(workout.screen)}
               >
+                {/* <ImageBackground
+                  source={workout.imageSource}
+                  style={styles.image}
+                > */}
                 {/* Apply dark overlay to the image */}
                 <View style={styles.darkOverlay} />
                 <Text style={styles.difficultyText}>{workout.type}</Text>
-              </ImageBackground>
-            </TouchableOpacity>
+                {/* </ImageBackground> */}
+              </TouchableOpacity>
+              {renderGapView(index + 1)}
+            </React.Fragment>
           ))}
         </View>
       </ScrollView>
@@ -118,13 +149,13 @@ const styles = StyleSheet.create({
   },
   difficultyBox: {
     width: "90%",
-    height: 150,
+    height: 100,
     borderRadius: 8,
     // margin: 10,
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    marginVertical: 10,
+    marginVertical: 5,
     // borderBottomWidth: 12,
     // borderLeftWidth: 12,
   },
@@ -168,6 +199,10 @@ const styles = StyleSheet.create({
   darkOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0,0,0,0.5)", // Adjust the opacity (last value) to control darkness
+  },
+  gapView: {
+    width: "45%", // Adjust this value to set the width of the gap
+    height: 20, // Adjust this value to control the height of the gap
   },
 });
 

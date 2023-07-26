@@ -55,6 +55,17 @@ const CustomHeader = ({ title }) => {
       </TouchableOpacity>
 
       {/* Icon next to the one on the left (settings) */}
+
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>{title}</Text>
+      </View>
+      {/* Display the credits on the right */}
+      {/* <Image
+          source={require("./assets/credits.png")}
+          style={styles.creditsImage}
+        /> */}
+      {/* <Text style={styles.creditsText}>{credits}</Text> */}
+      {/* <Text style={styles.creditsText}>300000</Text> */}
       <TouchableOpacity
         style={[styles.leftButton, styles.button]}
         onPress={handleSettingsButtonPress}
@@ -63,20 +74,9 @@ const CustomHeader = ({ title }) => {
           visible={settingsVisible}
           onClose={handleCloseSettings}
         /> */}
-        <Icon name="cog" style={[styles.buttonIcon]} />
+        {/* TODO add info overlay of some sort */}
+        <Icon name="info-circle" style={[styles.buttonIcon]} />
       </TouchableOpacity>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>{title}</Text>
-      </View>
-      {/* Display the credits on the right */}
-      <View style={[styles.creditsContainer, styles.button]}>
-        {/* <Image
-          source={require("./assets/credits.png")}
-          style={styles.creditsImage}
-        /> */}
-        {/* <Text style={styles.creditsText}>{credits}</Text> */}
-        {/* <Text style={styles.creditsText}>300000</Text> */}
-      </View>
     </View>
   );
 };
