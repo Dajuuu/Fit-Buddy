@@ -19,6 +19,7 @@ const GameScreen = ({ navigation }) => {
     const loadFont = async () => {
       await Font.loadAsync({
         TitleFont: require("./assets/fonts/JosefinSans-Regular.ttf"),
+        TitleFontBold: require("./assets/fonts/JosefinSans-Bold.ttf"),
       });
       setFontLoaded(true);
     };
@@ -32,35 +33,39 @@ const GameScreen = ({ navigation }) => {
   // Declare the difficulty levels
   const difficultyLevels = [
     {
-      level: "Easy",
+      level: "Arms",
       colorFront: "rgba(35,139,0,1)",
       colorBack: "green",
       screen: "EasyLevels",
-      // imageSource: require("./assets/LevelDifficultyImages/easy.png"),
+      imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
     },
     {
-      level: "Medium",
+      level: "Legs",
       colorFront: "rgba(255,204,58,1)",
       colorBack: "rgba(233,186,56,1)",
       screen: "MediumLevels",
+      imageSource: require("fit-buddy/assets/HomeScreen/legs-workout.png"),
     },
     {
-      level: "Hard",
+      level: "ABS",
       colorFront: "rgba(236,117,15,1)",
       colorBack: "rgba(211,106,16,1)",
       screen: "HardLevels",
+      imageSource: require("fit-buddy/assets/HomeScreen/abs-workout.jpg"),
     },
     {
-      level: "Expert",
+      level: "FBW",
       colorFront: "rgba(197,8,34,1)",
       colorBack: "rgba(136,16,32,1)",
       screen: "ExpertLevels",
+      imageSource: require("fit-buddy/assets/HomeScreen/fbw-workout.jpg"),
     },
     {
-      level: "Themed",
+      level: "Yoga",
       colorFront: "rgba(87,15,216,1)",
       colorBack: "rgba(67,15,162,1)",
       screen: "ThemedLevels",
+      imageSource: require("fit-buddy/assets/HomeScreen/yoga-workout.png"),
     },
   ];
 
@@ -95,10 +100,8 @@ const GameScreen = ({ navigation }) => {
               ]}
               onPress={() => handleDifficultyPress(level.screen)}
             >
-              <ImageBackground
-                source={require("fit-buddy/assets/HomeScreen/arms-workout.png")}
-                style={styles.image}
-              >
+              <ImageBackground source={level.imageSource} style={styles.image}>
+                {/* Apply dark overlay to the image */}
                 <View style={styles.darkOverlay} />
                 <Text style={styles.difficultyText}>{level.level}</Text>
               </ImageBackground>
@@ -129,16 +132,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    marginVertical: 5,
+    marginVertical: 10,
     // borderBottomWidth: 12,
     // borderLeftWidth: 12,
   },
   difficultyText: {
+    fontFamily: "TitleFontBold",
+    // fontWeight: "bold",
     fontSize: 30,
-    fontWeight: "bold",
-    color: "black",
-    alignSelf: "flex-end",
-    right: 20,
+    left: 20,
+    color: "white",
+    alignSelf: "flex-start",
   },
   image: {
     position: "absolute",
@@ -171,7 +175,7 @@ const styles = StyleSheet.create({
   },
   darkOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.4)", // Adjust the opacity (last value) to control darkness
+    backgroundColor: "rgba(0,0,0,0.5)", // Adjust the opacity (last value) to control darkness
   },
 });
 
