@@ -10,6 +10,7 @@ import {
   ImageBackground,
 } from "react-native";
 import * as Font from "expo-font";
+import CustomHeader from "./CustomHeader";
 
 // import CustomHeader from "./CustomHeader";
 
@@ -36,29 +37,29 @@ const GameScreen = ({ navigation }) => {
   const workoutTypes = [
     {
       type: "Arms",
-      screen: "EasyLevels",
+      // screen: "EasyLevels",
       imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
     },
-    {
-      type: "Legs",
-      screen: "MediumLevels",
-      imageSource: require("fit-buddy/assets/HomeScreen/legs-workout.png"),
-    },
-    {
-      type: "ABS",
-      screen: "HardLevels",
-      imageSource: require("fit-buddy/assets/HomeScreen/abs-workout.jpg"),
-    },
-    {
-      type: "FBW",
-      screen: "ExpertLevels",
-      imageSource: require("fit-buddy/assets/HomeScreen/fbw-workout.jpg"),
-    },
-    {
-      type: "Yoga",
-      screen: "ThemedLevels",
-      imageSource: require("fit-buddy/assets/HomeScreen/yoga-workout.png"),
-    },
+    // {
+    //   type: "Legs",
+    //   screen: "MediumLevels",
+    //   imageSource: require("fit-buddy/assets/HomeScreen/legs-workout.png"),
+    // },
+    // {
+    //   type: "ABS",
+    //   screen: "HardLevels",
+    //   imageSource: require("fit-buddy/assets/HomeScreen/abs-workout.jpg"),
+    // },
+    // {
+    //   type: "FBW",
+    //   screen: "ExpertLevels",
+    //   imageSource: require("fit-buddy/assets/HomeScreen/fbw-workout.jpg"),
+    // },
+    // {
+    //   type: "Yoga",
+    //   screen: "ThemedLevels",
+    //   imageSource: require("fit-buddy/assets/HomeScreen/yoga-workout.png"),
+    // },
   ];
 
   const handleDifficultyPress = () => {
@@ -73,10 +74,10 @@ const GameScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Display Custom header */}
-      {/* <CustomHeader title="Choose Difficulty" /> */}
-      <View style={styles.textContainer}>
+      <CustomHeader title="Choose Difficulty" />
+      {/* <View style={styles.textContainer}>
         <Text style={styles.titleText}> FitBuddy</Text>
-      </View>
+      </View> */}
       <ScrollView style={{ width: "100%" }}>
         {/* Display all difficulty levels */}
         <View style={styles.workoutTypesContainer}>
