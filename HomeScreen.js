@@ -1,4 +1,5 @@
-import React from "react";
+import { StatusBar } from "expo-status-bar";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,8 +8,26 @@ import {
   ScrollView,
   Image,
 } from "react-native";
+import * as Font from "expo-font";
+
 // import CustomHeader from "./CustomHeader";
 const GameScreen = ({ navigation }) => {
+  const [fontLoaded, setFontLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadFont = async () => {
+      await Font.loadAsync({
+        TitleFont: require("./assets/fonts/JosefinSans-Regular.ttf"),
+      });
+      setFontLoaded(true);
+    };
+    loadFont();
+  }, []);
+
+  if (!fontLoaded) {
+    return null;
+  }
+
   // Declare the difficulty levels
   const difficultyLevels = [
     {
@@ -30,12 +49,12 @@ const GameScreen = ({ navigation }) => {
       colorBack: "rgba(211,106,16,1)",
       screen: "HardLevels",
     },
-    // {
-    //   level: "Expert",
-    //   colorFront: "rgba(197,8,34,1)",
-    //   colorBack: "rgba(136,16,32,1)",
-    //   screen: "ExpertLevels",
-    // },
+    {
+      level: "Expert",
+      colorFront: "rgba(197,8,34,1)",
+      colorBack: "rgba(136,16,32,1)",
+      screen: "ExpertLevels",
+    },
     {
       level: "Themed",
       colorFront: "rgba(87,15,216,1)",
@@ -57,25 +76,31 @@ const GameScreen = ({ navigation }) => {
     <View style={styles.container}>
       {/* Display Custom header */}
       {/* <CustomHeader title="Choose Difficulty" /> */}
+      <View style={styles.textContainer}>
+        <Text style={styles.titleText}> FitBuddy</Text>
+      </View>
       <ScrollView style={{ width: "100%" }}>
         {/* Display all difficulty levels */}
-        {difficultyLevels.map((level, index) => (
-          <TouchableOpacity
-            key={index}
-            style={[
-              styles.difficultyBox,
-              {
-                backgroundColor: level.colorFront,
-                borderColor: level.colorBack,
-              },
-            ]}
-            onPress={() => handleDifficultyPress(level.screen)}
-          >
-            {/* <Image source={level.imageSource} style={styles.image} /> */}
-            <Text style={styles.difficultyText}>{level.level}</Text>
-          </TouchableOpacity>
-        ))}
+        <View style={styles.workoutTypesContainer}>
+          {difficultyLevels.map((level, index) => (
+            <TouchableOpacity
+              key={index}
+              style={[
+                styles.difficultyBox,
+                {
+                  backgroundColor: level.colorFront,
+                  borderColor: level.colorBack,
+                },
+              ]}
+              onPress={() => handleDifficultyPress(level.screen)}
+            >
+              {/* <Image source={level.imageSource} style={styles.image} /> */}
+              <Text style={styles.difficultyText}>{level.level}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
       </ScrollView>
+      <StatusBar style="light" />
     </View>
   );
 };
@@ -85,7 +110,10 @@ const styles = StyleSheet.create({
     flex: 1,
     // justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f5e1ce",
+    backgroundColor: "rgba(40, 44, 46,1)",
+  },
+  workoutTypesContainer: {
+    marginTop: 10,
   },
   difficultyBox: {
     width: "90%",
@@ -114,6 +142,19 @@ const styles = StyleSheet.create({
     height: 100,
     // marginRight: 10,
     alignSelf: "flex-start",
+  },
+  textContainer: {
+    marginTop: 30,
+    padding: 20,
+    width: "100%",
+
+    // backgroundColor: "green",
+  },
+  titleText: {
+    textAlign: "center",
+    fontSize: 35,
+    fontFamily: "TitleFont",
+    color: "white",
   },
 });
 
