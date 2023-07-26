@@ -99,6 +99,7 @@ const GameScreen = ({ navigation }) => {
                 source={require("fit-buddy/assets/HomeScreen/arms-workout.png")}
                 style={styles.image}
               >
+                <View style={styles.darkOverlay} />
                 <Text style={styles.difficultyText}>{level.level}</Text>
               </ImageBackground>
             </TouchableOpacity>
@@ -147,6 +148,13 @@ const styles = StyleSheet.create({
     height: "100%",
     // marginRight: 10,
     alignSelf: "flex-start",
+    borderRadius: 20,
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10, // Adjust this value to set the desired border radius
+    overflow: "hidden", // This is important to ensure the border radius is applied correctly
   },
   textContainer: {
     marginTop: 30,
@@ -160,6 +168,10 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontFamily: "TitleFont",
     color: "white",
+  },
+  darkOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0,0,0,0.4)", // Adjust the opacity (last value) to control darkness
   },
 });
 
