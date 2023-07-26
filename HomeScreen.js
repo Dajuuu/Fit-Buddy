@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ScrollView,
   Image,
+  ImageBackground,
 } from "react-native";
 import * as Font from "expo-font";
 
@@ -94,8 +95,12 @@ const GameScreen = ({ navigation }) => {
               ]}
               onPress={() => handleDifficultyPress(level.screen)}
             >
-              {/* <Image source={level.imageSource} style={styles.image} /> */}
-              <Text style={styles.difficultyText}>{level.level}</Text>
+              <ImageBackground
+                source={require("fit-buddy/assets/HomeScreen/arms-workout.png")}
+                style={styles.image}
+              >
+                <Text style={styles.difficultyText}>{level.level}</Text>
+              </ImageBackground>
             </TouchableOpacity>
           ))}
         </View>
@@ -124,8 +129,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     marginVertical: 5,
-    borderBottomWidth: 12,
-    borderLeftWidth: 12,
+    // borderBottomWidth: 12,
+    // borderLeftWidth: 12,
   },
   difficultyText: {
     fontSize: 30,
@@ -136,10 +141,10 @@ const styles = StyleSheet.create({
   },
   image: {
     position: "absolute",
-    top: 15,
-    left: 10,
-    width: 100,
-    height: 100,
+    // top: 15,
+    // left: 10,
+    width: "100%",
+    height: "100%",
     // marginRight: 10,
     alignSelf: "flex-start",
   },
