@@ -9,6 +9,7 @@ import SelectedWorkout from "./SelectedWorkout";
 import ExerciseScreen from "./ExerciseScreen";
 import WorkoutDetailsScreen from "./WorkoutDetailsScreen";
 import RestScreen from "./RestScreen";
+import WorkoutFinished from "./WorkoutFinished";
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,7 @@ export default function App() {
           component={WorkoutDetailsScreen}
         />
         <Stack.Screen name="RestScreen" component={RestScreen} />
+        <Stack.Screen name="WorkoutFinished" component={WorkoutFinished} />
         {/* <Stack.Screen name="GameScreen" component={GameScreen} />
             <Stack.Screen name="EasyLevels" component={EasyLevelsScreen} />
             <Stack.Screen name="MediumLevels" component={MediumLevelsScreen} />

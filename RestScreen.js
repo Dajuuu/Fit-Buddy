@@ -18,6 +18,13 @@ const RestScreen = ({ route, navigation }) => {
     return () => clearInterval(interval);
   }, [isPaused, timer]);
 
+  // Automatically handleNext when the timer reaches zero
+  useEffect(() => {
+    if (timer === 0) {
+      handleNext();
+    }
+  }, [timer]);
+
   const handleNext = () => {
     if (currentIndex < exerciseList.length - 1) {
       // Get the next exercise from the exerciseList

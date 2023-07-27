@@ -23,6 +23,9 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
         exerciseList: exerciseList,
         currentIndex: currentIndex + 1,
       });
+    } else {
+      // If there are no more exercises, navigate to the WorkoutFinished screen
+      navigation.navigate("WorkoutFinished");
     }
   };
   // Function to handle the "Previous" button press
