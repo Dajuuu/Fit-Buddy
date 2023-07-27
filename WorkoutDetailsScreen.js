@@ -25,6 +25,19 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
       });
     }
   };
+  // Function to handle the "Previous" button press
+  const handlePreviousExercise = () => {
+    if (currentIndex > 0) {
+      // Get the previous exercise from the exerciseList
+      const previousExercise = exerciseList[currentIndex - 1];
+      // Navigate to the WorkoutDetailsScreen with the previous exercise and updated currentIndex
+      navigation.push("WorkoutDetailsScreen", {
+        exercise: previousExercise,
+        exerciseList: exerciseList,
+        currentIndex: currentIndex - 1,
+      });
+    }
+  };
 
   const handleGoBack = () => {
     // Navigate back to the SelectedWorkout screen
@@ -54,7 +67,17 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
       <TouchableOpacity onPress={handleNextExercise} style={styles.nextButton}>
         <Text style={styles.nextButtonText}>Next</Text>
       </TouchableOpacity>
-
+      {/* Previous button */}
+      <TouchableOpacity
+        onPress={handlePreviousExercise}
+        style={[
+          styles.nextButton,
+          { backgroundColor: "gray", opacity: currentIndex === 0 ? 0.5 : 1 }, // Apply different opacity when disabled
+        ]}
+        disabled={currentIndex === 0} // Disable the button if currentIndex is 0
+      >
+        <Text style={styles.nextButtonText}>Previous</Text>
+      </TouchableOpacity>
       <StatusBar style="light" />
     </View>
   );
