@@ -89,10 +89,25 @@ const SelectedWorkoutScreen = ({ navigation, route }) => {
     // },
   ];
 
-  const handleDifficultyPress = (workoutDifficulty, workoutType) => {
-    // Small fix for the route parameters for the EasyLevels
-    // TypeError: Cannot read property 'levelCompleted' of undefined
+  // const handleDifficultyPress = (workoutDifficulty, workoutType) => {
+  //   // Small fix for the route parameters for the EasyLevels
+  //   // TypeError: Cannot read property 'levelCompleted' of undefined
+  //   navigation.navigate("ExerciseScreen", {
+  //     workoutDifficulty,
+  //     workoutType,
+  //   });
+  // };
+
+  const handleDifficultyPress = (workoutType, workoutDifficulty) => {
+    // const exerciseList =
+    //   exerciseData[String(workoutType)][String(workoutDifficulty)];
+    // console.log(exerciseList);
+    // console.log("workoutType:", String(workoutType));
+    // console.log("workoutDifficulty:", String(workoutDifficulty));
+    // console.log(exerciseData["Legs"]["Easy1"]);
+
     navigation.navigate("ExerciseScreen", {
+      // exerciseList,
       workoutDifficulty,
       workoutType,
     });
@@ -116,7 +131,7 @@ const SelectedWorkoutScreen = ({ navigation, route }) => {
             <React.Fragment key={index}>
               <TouchableOpacity
                 style={[styles.difficultyBox]}
-                onPress={() => handleDifficultyPress(workout.difficulty, type)}
+                onPress={() => handleDifficultyPress(type, workout.difficulty)}
               >
                 {/* {console.log(workout.difficulty)} */}
                 {/* <ImageBackground
