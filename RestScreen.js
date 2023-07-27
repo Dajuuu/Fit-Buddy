@@ -1,10 +1,48 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  Animated,
+} from "react-native";
 import { Dimensions } from "react-native";
 
 const windowHeight = Dimensions.get("window").height;
 
 const RestScreen = ({ route, navigation }) => {
+  const imageWidth = useRef(new Animated.Value(100)).current;
+  const imageHeight = useRef(new Animated.Value(100)).current;
+  const imageScale = new Animated.Value(1);
+
+  useEffect(() => {
+    // Create the animation sequence (shrink and enlarge)
+    const animationSequence = Animated.sequence([
+      Animated.timing(imageScale, {
+        toValue: 0.8,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+      Animated.timing(imageScale, {
+        toValue: 1,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+    ]);
+
+    // Repeat the animation every 3 seconds
+    const animationLoop = Animated.loop(animationSequence, {
+      iterations: -1,
+      resetBeforeIteration: true,
+      delay: 3000,
+    });
+    animationLoop.start();
+
+    // Clean up the animation loop when the component unmounts
+    return () => animationLoop.stop();
+  }, [imageScale]);
+
   const { exercise, exerciseList, currentIndex } = route.params;
   const [timer, setTimer] = useState(45);
   const [isPaused, setIsPaused] = useState(false);
@@ -58,9 +96,9 @@ const RestScreen = ({ route, navigation }) => {
     <View style={styles.container}>
       <View style={styles.containerHalf}>
         {/* Add an Image component */}
-        <Image
+        <Animated.Image
           source={require("./assets/heart-rest.png")} // Replace with the path to your image
-          style={styles.image}
+          style={[styles.image, { transform: [{ scale: imageScale }] }]}
           resizeMode="cover"
         />
       </View>
@@ -113,9 +151,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   image: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
+    alignSelf: "center",
+    justifyContent: "center",
+    top: "30%",
+    width: 200,
+    height: 200,
   },
 });
 
