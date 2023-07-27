@@ -33,6 +33,7 @@ const GameScreen = ({ navigation }) => {
   }
 
   // Declare the difficulty levels
+  // TODO delete screen objects
   const workoutTypes = [
     {
       type: "Arms",
