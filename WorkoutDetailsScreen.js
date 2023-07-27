@@ -7,7 +7,7 @@ import {
   StatusBar,
   TouchableOpacity,
 } from "react-native";
-
+import { CommonActions } from "@react-navigation/native";
 import CustomHeader from "./CustomHeader";
 const WorkoutDetailsScreen = ({ route, navigation }) => {
   const { exercise, exerciseList, currentIndex } = route.params;
@@ -43,6 +43,12 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
     // Navigate back to the SelectedWorkout screen
     navigation.navigate("Home");
   };
+
+  const handleDone = () => {
+    // Navigate to the target screen (replace 'TargetScreen' with the actual name of the screen)
+    navigation.navigate("RestScreen");
+  };
+
   return (
     <View style={styles.container}>
       <View>
@@ -77,6 +83,9 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
         disabled={currentIndex === 0} // Disable the button if currentIndex is 0
       >
         <Text style={styles.nextButtonText}>Previous</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleDone} style={styles.doneButton}>
+        <Text style={styles.doneButtonText}>Done</Text>
       </TouchableOpacity>
       <StatusBar style="light" />
     </View>
@@ -124,6 +133,18 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
   nextButtonText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  doneButton: {
+    backgroundColor: "#ff6f00",
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    marginTop: 20,
+  },
+  doneButtonText: {
     color: "white",
     fontSize: 18,
     fontWeight: "bold",
