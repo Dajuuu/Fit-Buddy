@@ -48,10 +48,13 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
   };
 
   const handleDone = () => {
-    if (currentIndex < exerciseList.length - 1) {
+    if (currentIndex === exerciseList.length - 1) {
+      // If the current exercise is the last one, navigate to the WorkoutFinished screen
+      navigation.navigate("WorkoutFinished");
+    } else {
       // Get the next exercise from the exerciseList
       const nextExercise = exerciseList[currentIndex + 1];
-      // Navigate to the WorkoutDetailsScreen with the next exercise and updated currentIndex
+      // Navigate to the RestScreen with the next exercise and updated currentIndex
       navigation.push("RestScreen", {
         exercise: nextExercise,
         exerciseList: exerciseList,
