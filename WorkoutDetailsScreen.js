@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import { CommonActions } from "@react-navigation/native";
 import CustomHeader from "./CustomHeader";
+import Icon from "react-native-vector-icons/FontAwesome5";
+
 const WorkoutDetailsScreen = ({ route, navigation }) => {
   const { exercise, exerciseList, currentIndex } = route.params;
 
@@ -65,9 +67,12 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View>
-        <TouchableOpacity onPress={handleGoBack} style={styles.nextButtonBack}>
-          <Text style={styles.nextButtonText}>Go back home</Text>
+      <View style={styles.upperButtons}>
+        <TouchableOpacity
+          style={[styles.leftButton, styles.button, { marginRight: 10 }]}
+          onPress={handleGoBack}
+        >
+          <Icon name="arrow-left" style={[styles.buttonIcon]} />
         </TouchableOpacity>
       </View>
       <View style={styles.exerciseContainer}>
@@ -78,29 +83,39 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
         <Text style={styles.exerciseName}>{exercise.name}</Text>
 
         {/* Display the exercise details (kcal and time) */}
-        <Text style={styles.exerciseDetails}>Kcal: {exercise.kcal}</Text>
         <Text style={styles.exerciseDetails}>
-          Time: {exercise.time} seconds
+          Number of : {exercise.repetitionsOrTime}
         </Text>
+        {/* <Text style={styles.exerciseDetails}>
+          Time: {exercise.time} seconds
+        </Text> */}
       </View>
-      {/* Next button */}
-      <TouchableOpacity onPress={handleNextExercise} style={styles.nextButton}>
-        <Text style={styles.nextButtonText}>Next</Text>
-      </TouchableOpacity>
-      {/* Previous button */}
-      <TouchableOpacity
-        onPress={handlePreviousExercise}
-        style={[
-          styles.nextButton,
-          { backgroundColor: "gray", opacity: currentIndex === 0 ? 0.5 : 1 }, // Apply different opacity when disabled
-        ]}
-        disabled={currentIndex === 0} // Disable the button if currentIndex is 0
-      >
-        <Text style={styles.nextButtonText}>Previous</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleDone} style={styles.doneButton}>
-        <Text style={styles.doneButtonText}>Done</Text>
-      </TouchableOpacity>
+
+      <View style={styles.buttonsContainer}>
+        {/* Previous button */}
+        <TouchableOpacity
+          onPress={handlePreviousExercise}
+          style={[
+            styles.nextButton,
+            { backgroundColor: "gray", opacity: currentIndex === 0 ? 0.5 : 1 }, // Apply different opacity when disabled
+          ]}
+          disabled={currentIndex === 0} // Disable the button if currentIndex is 0
+        >
+          <Text style={styles.nextButtonText}>Previous</Text>
+        </TouchableOpacity>
+        {/* Done Button */}
+        <TouchableOpacity onPress={handleDone} style={styles.doneButton}>
+          {/* <Text style={styles.doneButtonText}>Done</Text> */}
+          <Icon name="check-circle" style={[styles.buttonIconCheck]} />
+        </TouchableOpacity>
+        {/* Next button */}
+        <TouchableOpacity
+          onPress={handleNextExercise}
+          style={styles.nextButton}
+        >
+          <Text style={styles.nextButtonText}>Next</Text>
+        </TouchableOpacity>
+      </View>
       <StatusBar style="light" />
     </View>
   );
@@ -109,14 +124,15 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    // alignItems: "center",
     // justifyContent: "center",
     backgroundColor: "rgba(40, 44, 46,1)",
   },
   exerciseImage: {
-    width: 200,
+    width: "100%",
     height: 200,
-    borderRadius: 100,
+    top: 10,
+    // borderRadius: 100,
     marginBottom: 20,
   },
   exerciseName: {
@@ -126,13 +142,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   exerciseDetails: {
-    fontSize: 18,
+    fontSize: 36,
     color: "white",
   },
   exerciseContainer: {
     justifyContent: "center",
+    alignItems: "center",
   },
   nextButton: {
+    flex: 1,
     backgroundColor: "#007BFF",
     paddingHorizontal: 20,
     paddingVertical: 10,
@@ -140,6 +158,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   nextButtonBack: {
+    flex: 1,
     backgroundColor: "#007BFF",
     paddingHorizontal: 20,
     paddingVertical: 10,
@@ -151,17 +170,53 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  doneButton: {
-    backgroundColor: "#ff6f00",
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
-    marginTop: 20,
-  },
+
   doneButtonText: {
     color: "white",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  leftButton: {
+    // marginRight: 10,
+    padding: 12,
+    paddingHorizontal: 14,
+    backgroundColor: "#ebb381",
+    borderRadius: 20,
+  },
+  upperButtons: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    // backgroundColor: "#f7d7ba",
+    paddingHorizontal: 20,
+    // borderBottomWidth: 1,
+    // borderBottomColor: "#ccc",
+    marginTop: 70,
+    marginBottom: 10,
+    paddingBottom: 15,
+  },
+  buttonsContainer: {
+    flexDirection: "row", // Align buttons horizontally
+    justifyContent: "space-between", // Stretch buttons from left to right
+    alignItems: "center", // Center buttons vertically
+    position: "absolute", // Position the container at the bottom of the screen
+    bottom: 10,
+    left: 0,
+    right: 0,
+    paddingHorizontal: 20, // Add horizontal padding to create space between buttons
+    paddingVertical: 10, // Add vertical padding to create space between buttons and screen edge
+    // backgroundColor: "rgba(0, 0, 0, 0.5)", // Add background color to the container (optional)
+  },
+  buttonIconCheck: {
+    alignSelf: "center",
+    fontSize: 50,
+  },
+  doneButton: {
+    // flex: 1,
+    backgroundColor: "rgba(56,157,60,1)",
+    padding: 20,
+    borderRadius: 100,
+    color: "white",
+    // marginTop: 20,
   },
 });
 
