@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const RestScreen = ({ navigation }) => {
+const RestScreen = ({ route, navigation }) => {
+  const { exercise, exerciseList, currentIndex } = route.params;
   const [timer, setTimer] = useState(45);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -17,9 +18,26 @@ const RestScreen = ({ navigation }) => {
     return () => clearInterval(interval);
   }, [isPaused, timer]);
 
+  const handleNext = () => {
+    if (currentIndex < exerciseList.length - 1) {
+      // Get the next exercise from the exerciseList
+      const nextExercise = exerciseList[currentIndex + 1];
+      // Go back to the previous screen (WorkoutDetailsScreen) and pass the next exercise info
+      navigation.goBack();
+      navigation.navigate("WorkoutDetailsScreen", {
+        exercise: nextExercise,
+        exerciseList: exerciseList,
+        currentIndex: currentIndex + 1,
+      });
+    } else {
+      // If there are no more exercises, navigate to the desired screen (replace "NextScreen" with your desired screen name)
+      navigation.navigate("NextScreen");
+    }
+  };
+
   const handleSkip = () => {
     // Navigate to the next screen after rest (you can replace "NextScreen" with your desired screen name)
-    navigation.navigate("NextScreen");
+    navigation.goBack();
   };
 
   const handlePauseResume = () => {
@@ -30,7 +48,7 @@ const RestScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.text}>Take a rest</Text>
       <Text style={styles.timer}>{timer} seconds</Text>
-      <TouchableOpacity style={styles.button} onPress={handleSkip}>
+      <TouchableOpacity style={styles.button} onPress={handleNext}>
         <Text style={styles.buttonText}>Skip</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={handlePauseResume}>

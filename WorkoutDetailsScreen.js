@@ -45,8 +45,16 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
   };
 
   const handleDone = () => {
-    // Navigate to the target screen (replace 'TargetScreen' with the actual name of the screen)
-    navigation.navigate("RestScreen");
+    if (currentIndex < exerciseList.length - 1) {
+      // Get the next exercise from the exerciseList
+      const nextExercise = exerciseList[currentIndex + 1];
+      // Navigate to the WorkoutDetailsScreen with the next exercise and updated currentIndex
+      navigation.push("RestScreen", {
+        exercise: nextExercise,
+        exerciseList: exerciseList,
+        currentIndex: currentIndex,
+      });
+    }
   };
 
   return (
