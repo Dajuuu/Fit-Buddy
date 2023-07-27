@@ -7,6 +7,7 @@ const ExerciseScreen = ({ route }) => {
   const { workoutDifficulty, workoutType } = route.params;
 
   // Exercise data organized by workout type and level
+  // TODO import as separate file
   const exerciseData = {
     Arms: {
       "Easy 1": [
@@ -14,13 +15,13 @@ const ExerciseScreen = ({ route }) => {
           name: "Arm Exercise 1",
           imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
           kcal: 100,
-          time: "5 minutes",
+          time: 30,
         },
         {
           name: "Arm Exercise 2",
           // imageSource: require("./path/to/image2.png"),
           kcal: 120,
-          time: "6 minutes",
+          time: 30,
         },
         // Add more exercises for Easy 1 level...
       ],
@@ -90,12 +91,41 @@ const ExerciseScreen = ({ route }) => {
 
   const exerciseList = getExerciseList(workoutType, workoutDifficulty);
 
+  // Calculate the total kcal for the level
+  const totalKcal = exerciseList.reduce(
+    (total, exercise) => total + exercise.kcal,
+    0
+  );
+
+  // Calculate the total time for the level in seconds
+  const totalTimeInSeconds = exerciseList.reduce(
+    (total, exercise) => total + exercise.time,
+    0
+  );
+
+  // Convert total time to mm:ss format
+  const minutes = Math.floor(totalTimeInSeconds / 60);
+  const seconds = totalTimeInSeconds % 60;
+  const totalTimeFormatted = `${minutes.toString().padStart(2, "0")}:${seconds
+    .toString()
+    .padStart(2, "0")}`;
+
   return (
     <View style={styles.container}>
       <CustomHeader title={workoutDifficulty} />
       {/* <Text style={styles.title}>
         {workoutType} {workoutDifficulty}
       </Text> */}
+      <View style={styles.infoContainer}>
+        <View style={[styles.totalTimeContainer, styles.center]}>
+          <Text style={styles.totalKcal}>Total Time:</Text>
+          <Text style={styles.totalKcalValue}>{totalTimeFormatted}</Text>
+        </View>
+        <View style={[styles.totalKcalContainer, styles.center]}>
+          <Text style={styles.totalKcal}>Total Kcal:</Text>
+          <Text style={styles.totalKcalValue}>{totalKcal}</Text>
+        </View>
+      </View>
       <ScrollView style={{ width: "100%" }}>
         {/* Display the list of exercises */}
         <View style={styles.exerciseListContainer}>
@@ -106,9 +136,9 @@ const ExerciseScreen = ({ route }) => {
                 style={styles.exerciseImage}
               />
               <Text style={styles.exerciseName}>{exercise.name}</Text>
-              <Text style={styles.exerciseDetails}>
+              {/* <Text style={styles.exerciseDetails}>
                 Kcal: {exercise.kcal} - Time: {exercise.time}
-              </Text>
+              </Text> */}
             </View>
           ))}
         </View>
@@ -154,6 +184,46 @@ const styles = StyleSheet.create({
   exerciseDetails: {
     fontSize: 14,
     color: "white",
+  },
+  totalKcal: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
+    // marginTop: 20,
+  },
+  infoContainer: {
+    flexDirection: "row",
+    // alignItems: "flex-start",
+    width: "90%",
+    height: 100,
+    borderRadius: 8,
+    // margin: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginVertical: 5,
+    backgroundColor: "red",
+    // borderBottomWidth: 12,
+    // borderLeftWidth: 12,
+  },
+  totalKcalValue: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  // infoContainer: {
+  //   flexDirection: "row",
+
+  //   paddingHorizontal: 20,
+  //   marginTop: 20,
+  // },
+  totalTimeContainer: {
+    alignItems: "flex-start",
+  },
+  totalKcalContainer: {
+    alignItems: "flex-end",
+  },
+  center: {
+    alignItems: "center",
   },
 });
 
