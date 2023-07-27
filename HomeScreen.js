@@ -66,8 +66,6 @@ const GameScreen = ({ navigation }) => {
     // TypeError: Cannot read property 'levelCompleted' of undefined
     navigation.navigate("ExerciseDifficulty", {
       type,
-      // levelCompleted: false,
-      // completedLevelName: "E0",
     });
   };
 

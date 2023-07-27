@@ -36,34 +36,34 @@ const SelectedWorkoutScreen = ({ navigation, route }) => {
   }
 
   // Declare the difficulty levels
-  const workoutTypes = [
+  const workoutDifficulties = [
     {
-      type: "Easy 1",
+      difficulty: "Easy 1",
       // screen: "EasyLevels",
       // imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
     },
     {
-      type: "Easy 2",
+      difficulty: "Easy 2",
       // screen: "EasyLevels",
       // imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
     },
     {
-      type: "Medium 1",
+      difficulty: "Medium 1",
       // screen: "EasyLevels",
       // imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
     },
     {
-      type: "Medium 2",
+      difficulty: "Medium 2",
       // screen: "EasyLevels",
       // imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
     },
     {
-      type: "Hard 1",
+      difficulty: "Hard 1",
       // screen: "EasyLevels",
       // imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
     },
     {
-      type: "Hard 2",
+      difficulty: "Hard 2",
       // screen: "EasyLevels",
       // imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
     },
@@ -89,12 +89,12 @@ const SelectedWorkoutScreen = ({ navigation, route }) => {
     // },
   ];
 
-  const handleDifficultyPress = () => {
+  const handleDifficultyPress = (workoutDifficulty, workoutType) => {
     // Small fix for the route parameters for the EasyLevels
     // TypeError: Cannot read property 'levelCompleted' of undefined
-    navigation.navigate("ExerciseDifficulty", {
-      // levelCompleted: false,
-      // completedLevelName: "E0",
+    navigation.navigate("ExerciseScreen", {
+      workoutDifficulty,
+      workoutType,
     });
   };
 
@@ -111,20 +111,21 @@ const SelectedWorkoutScreen = ({ navigation, route }) => {
       <CustomHeader title={type} />
       <ScrollView style={{ width: "100%" }}>
         {/* Display all workout types */}
-        <View style={styles.workoutTypesContainer}>
-          {workoutTypes.map((workout, index) => (
+        <View style={styles.workoutDifficultiesContainer}>
+          {workoutDifficulties.map((workout, index) => (
             <React.Fragment key={index}>
               <TouchableOpacity
                 style={[styles.difficultyBox]}
-                onPress={() => handleDifficultyPress(workout.screen)}
+                onPress={() => handleDifficultyPress(workout.difficulty, type)}
               >
+                {/* {console.log(workout.difficulty)} */}
                 {/* <ImageBackground
                   source={workout.imageSource}
                   style={styles.image}
                 > */}
                 {/* Apply dark overlay to the image */}
                 <View style={styles.darkOverlay} />
-                <Text style={styles.difficultyText}>{workout.type}</Text>
+                <Text style={styles.difficultyText}>{workout.difficulty}</Text>
                 {/* </ImageBackground> */}
               </TouchableOpacity>
               {renderGapView(index + 1)}
@@ -144,7 +145,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(40, 44, 46,1)",
   },
-  workoutTypesContainer: {
+  workoutDifficultiesContainer: {
     marginTop: 10,
   },
   difficultyBox: {
