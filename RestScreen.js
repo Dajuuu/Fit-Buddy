@@ -21,12 +21,12 @@ const RestScreen = ({ route, navigation }) => {
     const animationSequence = Animated.sequence([
       Animated.timing(imageScale, {
         toValue: 0.8,
-        duration: 600,
+        duration: 500,
         useNativeDriver: true,
       }),
       Animated.timing(imageScale, {
         toValue: 1,
-        duration: 600,
+        duration: 500,
         useNativeDriver: true,
       }),
     ]);
@@ -94,7 +94,7 @@ const RestScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.containerHalf}>
+      <View style={styles.containerUpperHalf}>
         {/* Add an Image component */}
         <Animated.Image
           source={require("./assets/heart-rest.png")} // Replace with the path to your image
@@ -102,14 +102,16 @@ const RestScreen = ({ route, navigation }) => {
           resizeMode="cover"
         />
       </View>
-      <Text style={styles.text}>Take a rest</Text>
-      <Text style={styles.timer}>{timer} seconds</Text>
-      <TouchableOpacity style={styles.button} onPress={handleNext}>
-        <Text style={styles.buttonText}>Skip</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={handlePauseResume}>
-        <Text style={styles.buttonText}>{isPaused ? "Resume" : "Pause"}</Text>
-      </TouchableOpacity>
+      <View style={styles.containerBottomHalf}>
+        <Text style={styles.text}>Take a rest</Text>
+        <Text style={styles.timer}>{timer} seconds</Text>
+        <TouchableOpacity style={styles.button} onPress={handleNext}>
+          <Text style={styles.buttonText}>Skip</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handlePauseResume}>
+          <Text style={styles.buttonText}>{isPaused ? "Resume" : "Pause"}</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -121,22 +123,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(40, 44, 46,1)",
   },
-  containerHalf: {
+  containerUpperHalf: {
+    // flex: 1,
     height: windowHeight * 0.5, // Set the height to 50% of the screen height
     width: "100%",
-    backgroundColor: "#1D511F",
+    backgroundColor: "rgba(46,89,47,1)",
     position: "absolute", // Position it absolutely at the top of the screen
     top: 0,
   },
+  containerBottomHalf: {
+    // height: windowHeight * 0.5, // Set the height to 50% of the screen height
+    width: "100%",
+    // backgroundColor: "rgba(46,89,47,1)",
+    // top: 0,
+    alignItems: "center",
+    marginTop: 50,
+  },
   text: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-    marginTop: 220,
+    fontSize: 40,
+    fontFamily: "TitleFontBold",
+    color: "white",
+    marginTop: 250,
   },
   timer: {
-    fontSize: 18,
-    marginBottom: 20,
+    fontSize: 35,
+    marginVertical: 30,
+    color: "white",
+    fontFamily: "TitleFont",
   },
   button: {
     backgroundColor: "#ff6f00",
