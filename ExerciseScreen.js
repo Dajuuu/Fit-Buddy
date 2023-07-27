@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
   View,
@@ -12,6 +13,17 @@ import CustomHeader from "./CustomHeader";
 
 const ExerciseScreen = ({ route }) => {
   const { workoutDifficulty, workoutType } = route.params;
+
+  // Access the navigation prop
+  const navigation = useNavigation();
+
+  // Handle press of the "Start the workout" button
+  const handleStartWorkout = () => {
+    // Get the first exercise from exerciseList
+    const firstExercise = exerciseList[0];
+    // Navigate to the "WorkoutDetailsScreen" and pass the first exercise as route parameter
+    navigation.navigate("WorkoutDetailsScreen", { exercise: firstExercise });
+  };
 
   // Exercise data organized by workout type and level
   // TODO import as separate file
@@ -30,6 +42,31 @@ const ExerciseScreen = ({ route }) => {
           kcal: 120,
           time: 30,
         },
+        {
+          name: "Arm Exercise 3",
+          imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
+          kcal: 100,
+          time: 30,
+        },
+        {
+          name: "Arm Exercise 4",
+          // imageSource: require("./path/to/image2.png"),
+          kcal: 120,
+          time: 30,
+        },
+        {
+          name: "Arm Exercise 5",
+          imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
+          kcal: 100,
+          time: 30,
+        },
+        {
+          name: "Arm Exercise 6",
+          // imageSource: require("./path/to/image2.png"),
+          kcal: 120,
+          time: 30,
+        },
+
         // Add more exercises for Easy 1 level...
       ],
       "Easy 2": [
@@ -37,13 +74,13 @@ const ExerciseScreen = ({ route }) => {
           name: "Arm Exercise 3",
           // imageSource: require("./path/to/image3.png"),
           kcal: 90,
-          time: "4 minutes",
+          time: 30,
         },
         {
           name: "Arm Exercise 4",
           // imageSource: require("./path/to/image4.png"),
           kcal: 110,
-          time: "5 minutes",
+          time: 30,
         },
         // Add more exercises for Easy 2 level...
       ],
@@ -153,7 +190,9 @@ const ExerciseScreen = ({ route }) => {
       </ScrollView>
       {/* Fixed position TouchableOpacity */}
       <TouchableOpacity style={styles.startButton}>
-        <Text style={styles.startButtonText}>Start the workout</Text>
+        <Text style={styles.startButtonText} onPress={handleStartWorkout}>
+          Start the workout
+        </Text>
       </TouchableOpacity>
       <StatusBar style="light" />
     </View>
@@ -174,6 +213,7 @@ const styles = StyleSheet.create({
   },
   exerciseListContainer: {
     alignItems: "center",
+    marginBottom: 80,
   },
   exerciseItem: {
     flexDirection: "row",

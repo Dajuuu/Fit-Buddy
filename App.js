@@ -7,6 +7,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./HomeScreen";
 import SelectedWorkout from "./SelectedWorkout";
 import ExerciseScreen from "./ExerciseScreen";
+import WorkoutDetailsScreen from "./WorkoutDetailsScreen";
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,10 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="ExerciseDifficulty" component={SelectedWorkout} />
         <Stack.Screen name="ExerciseScreen" component={ExerciseScreen} />
+        <Stack.Screen
+          name="WorkoutDetailsScreen"
+          component={WorkoutDetailsScreen}
+        />
         {/* <Stack.Screen name="GameScreen" component={GameScreen} />
             <Stack.Screen name="EasyLevels" component={EasyLevelsScreen} />
             <Stack.Screen name="MediumLevels" component={MediumLevelsScreen} />
