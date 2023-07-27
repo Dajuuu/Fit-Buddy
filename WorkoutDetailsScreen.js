@@ -97,11 +97,18 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
           onPress={handlePreviousExercise}
           style={[
             styles.nextButton,
-            { backgroundColor: "gray", opacity: currentIndex === 0 ? 0.5 : 1 }, // Apply different opacity when disabled
+            { opacity: currentIndex === 0 ? 0.5 : 1 }, // Apply different opacity when disabled
           ]}
           disabled={currentIndex === 0} // Disable the button if currentIndex is 0
         >
-          <Text style={styles.nextButtonText}>Previous</Text>
+          {/* <Text style={styles.nextButtonText}>Previous</Text> */}
+          <Icon
+            name="arrow-left"
+            style={[
+              styles.buttonIconArrowLeft,
+              { color: currentIndex === 0 ? "gray" : "white" },
+            ]}
+          />
         </TouchableOpacity>
         {/* Done Button */}
         <TouchableOpacity onPress={handleDone} style={styles.doneButton}>
@@ -113,7 +120,11 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
           onPress={handleNextExercise}
           style={styles.nextButton}
         >
-          <Text style={styles.nextButtonText}>Next</Text>
+          <Icon
+            name="arrow-right"
+            style={[styles.buttonIconArrowLeft, { color: "white" }]}
+          />
+          {/* <Text style={styles.nextButtonText}>Next</Text> */}
         </TouchableOpacity>
       </View>
       <StatusBar style="light" />
@@ -150,15 +161,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   nextButton: {
-    flex: 1,
-    backgroundColor: "#007BFF",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 5,
-    marginTop: 20,
+    // backgroundColor: "#007BFF",
+
+    padding: 20,
+    // paddingVertical: 10,
+    borderRadius: 100,
+    // marginTop: 20,
   },
   nextButtonBack: {
-    flex: 1,
+    color: "white",
     backgroundColor: "#007BFF",
     paddingHorizontal: 20,
     paddingVertical: 10,
@@ -199,16 +210,20 @@ const styles = StyleSheet.create({
     justifyContent: "space-between", // Stretch buttons from left to right
     alignItems: "center", // Center buttons vertically
     position: "absolute", // Position the container at the bottom of the screen
-    bottom: 10,
+    bottom: 30,
     left: 0,
     right: 0,
-    paddingHorizontal: 20, // Add horizontal padding to create space between buttons
+    paddingHorizontal: 50, // Add horizontal padding to create space between buttons
     paddingVertical: 10, // Add vertical padding to create space between buttons and screen edge
     // backgroundColor: "rgba(0, 0, 0, 0.5)", // Add background color to the container (optional)
   },
   buttonIconCheck: {
     alignSelf: "center",
     fontSize: 50,
+  },
+  buttonIconArrowLeft: {
+    alignSelf: "center",
+    fontSize: 30,
   },
   doneButton: {
     // flex: 1,
