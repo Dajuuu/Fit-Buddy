@@ -16,6 +16,7 @@ const exerciseData = {
     "Easy 1": [
       {
         name: "Arm Exercise 1",
+        repetitionsOrTime: "40",
         imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
         kcal: 100,
         time: 30,
@@ -193,6 +194,9 @@ const ExerciseScreen = ({ route }) => {
               </View>
               <View style={styles.rightContainer}>
                 <Text style={styles.exerciseName}>{exercise.name}</Text>
+                <Text style={styles.exerciseRepetitionsOrTime}>
+                  {exercise.repetitionsOrTime}
+                </Text>
               </View>
             </View>
           ))}
@@ -221,7 +225,7 @@ const styles = StyleSheet.create({
   },
   exerciseListContainer: {
     alignItems: "center",
-    marginBottom: 80,
+    marginBottom: 100,
   },
   exerciseItem: {
     flexDirection: "row",
@@ -303,17 +307,24 @@ const styles = StyleSheet.create({
     textAlign: "right",
     paddingRight: 5,
   },
+  exerciseRepetitionsOrTime: {
+    fontFamily: "TitleFont",
+    fontSize: 20,
+    color: "white",
+    textAlign: "right",
+    paddingRight: 5,
+  },
   startButton: {
     position: "absolute",
     bottom: 20,
-    backgroundColor: "#4CAF50",
+    backgroundColor: "rgba(56,157,60,1)",
     paddingVertical: 15,
-    paddingHorizontal: 30,
+    paddingHorizontal: 50,
     borderRadius: 30,
   },
   startButtonText: {
     color: "white",
-    fontSize: 18,
+    fontSize: 22,
     fontFamily: "TitleFontBold",
   },
 });
