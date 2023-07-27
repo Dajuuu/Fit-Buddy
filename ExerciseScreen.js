@@ -22,19 +22,19 @@ const exerciseData = {
       },
       {
         name: "Arm Exercise 2",
-        // imageSource: require("./path/to/image2.png"),
+        imageSource: require("./assets/HomeScreen/abs-workout.jpg"),
         kcal: 120,
         time: 30,
       },
       {
         name: "Arm Exercise 3",
-        imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
+        imageSource: require("./assets/HomeScreen/arms-workout.png"),
         kcal: 100,
         time: 30,
       },
       {
         name: "Arm Exercise 4",
-        // imageSource: require("./path/to/image2.png"),
+        imageSource: require("./assets/HomeScreen/legs-workout.png"),
         kcal: 120,
         time: 30,
       },
@@ -46,7 +46,7 @@ const exerciseData = {
       },
       {
         name: "Arm Exercise 6",
-        // imageSource: require("./path/to/image2.png"),
+        imageSource: require("./assets/HomeScreen/fbw-workout.jpg"),
         kcal: 120,
         time: 30,
       },
@@ -170,6 +170,7 @@ const ExerciseScreen = ({ route }) => {
         {workoutType} {workoutDifficulty}
       </Text> */}
       <View style={styles.infoContainer}>
+        {/* TODO change the name of the totalKcal */}
         <View style={[styles.totalTimeContainer, styles.center]}>
           <Text style={styles.totalKcal}>Total Time:</Text>
           <Text style={styles.totalKcalValue}>{totalTimeFormatted}</Text>
@@ -198,10 +199,8 @@ const ExerciseScreen = ({ route }) => {
         </View>
       </ScrollView>
       {/* Fixed position TouchableOpacity */}
-      <TouchableOpacity style={styles.startButton}>
-        <Text style={styles.startButtonText} onPress={handleViewDetails}>
-          Start the workout
-        </Text>
+      <TouchableOpacity style={styles.startButton} onPress={handleViewDetails}>
+        <Text style={styles.startButtonText}>Start the workout</Text>
       </TouchableOpacity>
       <StatusBar style="light" />
     </View>
@@ -228,34 +227,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "85%",
     alignItems: "center",
-    marginBottom: 20,
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    // marginBottom: 20,
+    marginTop: 10,
+    backgroundColor: "rgba(71, 78, 84,0.6)",
     padding: 10,
     borderRadius: 8,
-  },
-  exerciseImage: {
-    alignItems: "flex-start",
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 10,
-  },
-  exerciseName: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "white",
-    // right: 10,
   },
   exerciseDetails: {
     fontSize: 14,
     color: "white",
+    // fontFamily: "TitleFontBold",
   },
-  totalKcal: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "white",
-    // marginTop: 20,
-  },
+
   infoContainer: {
     flexDirection: "row",
     // alignItems: "flex-start",
@@ -265,15 +248,23 @@ const styles = StyleSheet.create({
     // margin: 10,
     justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: 5,
-    backgroundColor: "red",
+    // marginBottom: 10,
+    backgroundColor: "rgba(24, 27, 32, 1)",
+    paddingHorizontal: 30,
     // borderBottomWidth: 12,
     // borderLeftWidth: 12,
   },
   totalKcalValue: {
     color: "white",
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 25,
+    // fontWeight: "bold",
+    fontFamily: "TitleFontBold",
+  },
+  totalKcal: {
+    fontSize: 24,
+    color: "white",
+    fontFamily: "TitleFont",
+    // marginTop: 20,
   },
   // infoContainer: {
   //   flexDirection: "row",
@@ -283,6 +274,7 @@ const styles = StyleSheet.create({
   // },
   totalTimeContainer: {
     alignItems: "flex-start",
+    // fontFamily: "TitleFontBold",
   },
   totalKcalContainer: {
     alignItems: "flex-end",
@@ -298,16 +290,18 @@ const styles = StyleSheet.create({
   rightContainer: {
     flex: 3,
   },
+  // TODO change the size of the image
   exerciseImage: {
-    width: 80,
-    height: 80,
+    width: 150,
+    height: 150,
     borderRadius: 10,
   },
   exerciseName: {
     fontFamily: "TitleFontBold",
-    fontSize: 18,
+    fontSize: 20,
     color: "white",
     textAlign: "right",
+    paddingRight: 5,
   },
   startButton: {
     position: "absolute",

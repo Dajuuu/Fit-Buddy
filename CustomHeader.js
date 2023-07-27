@@ -124,10 +124,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 23,
-    fontWeight: "bold",
     flex: 1,
     textAlign: "center",
     color: "white",
+    fontFamily: "TitleFontBold",
     // paddingBottom: 5,
   },
   titleContainer: {
