@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { Dimensions } from "react-native";
+
+const windowHeight = Dimensions.get("window").height;
 
 const RestScreen = ({ route, navigation }) => {
   const { exercise, exerciseList, currentIndex } = route.params;
@@ -21,7 +24,7 @@ const RestScreen = ({ route, navigation }) => {
   // Automatically handleNext when the timer reaches zero
   useEffect(() => {
     if (timer === 0) {
-      handleNext();
+      // handleNext();
     }
   }, [timer]);
 
@@ -53,6 +56,14 @@ const RestScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.containerHalf}>
+        {/* Add an Image component */}
+        <Image
+          source={require("./assets/heart-rest.png")} // Replace with the path to your image
+          style={styles.image}
+          resizeMode="cover"
+        />
+      </View>
       <Text style={styles.text}>Take a rest</Text>
       <Text style={styles.timer}>{timer} seconds</Text>
       <TouchableOpacity style={styles.button} onPress={handleNext}>
@@ -70,12 +81,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "rgba(40, 44, 46,1)",
+  },
+  containerHalf: {
+    height: windowHeight * 0.5, // Set the height to 50% of the screen height
+    width: "100%",
+    backgroundColor: "#1D511F",
+    position: "absolute", // Position it absolutely at the top of the screen
+    top: 0,
   },
   text: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
+    marginTop: 220,
   },
   timer: {
     fontSize: 18,
@@ -92,6 +111,11 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  image: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
   },
 });
 
