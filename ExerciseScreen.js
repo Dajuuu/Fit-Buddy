@@ -131,14 +131,18 @@ const ExerciseScreen = ({ route }) => {
         <View style={styles.exerciseListContainer}>
           {exerciseList.map((exercise, index) => (
             <View key={index} style={styles.exerciseItem}>
-              <Image
-                source={exercise.imageSource}
-                style={styles.exerciseImage}
-              />
-              <Text style={styles.exerciseName}>{exercise.name}</Text>
-              {/* <Text style={styles.exerciseDetails}>
+              <View style={styles.leftContainer}>
+                <Image
+                  source={exercise.imageSource}
+                  style={styles.exerciseImage}
+                />
+              </View>
+              <View style={styles.rightContainer}>
+                <Text style={styles.exerciseName}>{exercise.name}</Text>
+                {/* <Text style={styles.exerciseDetails}>
                 Kcal: {exercise.kcal} - Time: {exercise.time}
               </Text> */}
+              </View>
             </View>
           ))}
         </View>
@@ -164,6 +168,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   exerciseItem: {
+    flexDirection: "row",
+    width: "85%",
     alignItems: "center",
     marginBottom: 20,
     backgroundColor: "rgba(255, 255, 255, 0.3)",
@@ -171,6 +177,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   exerciseImage: {
+    alignItems: "flex-start",
     width: 100,
     height: 100,
     borderRadius: 50,
@@ -180,6 +187,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     color: "white",
+    // right: 10,
   },
   exerciseDetails: {
     fontSize: 14,
@@ -224,6 +232,25 @@ const styles = StyleSheet.create({
   },
   center: {
     alignItems: "center",
+  },
+
+  leftContainer: {
+    flex: 1,
+    marginRight: 10,
+  },
+  rightContainer: {
+    flex: 3,
+  },
+  exerciseImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 10,
+  },
+  exerciseName: {
+    fontFamily: "TitleFontBold",
+    fontSize: 18,
+    color: "white",
+    textAlign: "right",
   },
 });
 

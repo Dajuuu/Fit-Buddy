@@ -139,7 +139,7 @@ const SelectedWorkoutScreen = ({ navigation, route }) => {
                   style={styles.image}
                 > */}
                 {/* Apply dark overlay to the image */}
-                <View style={styles.darkOverlay} />
+                {/* <View style={styles.darkOverlay} /> */}
                 <Text style={styles.difficultyText}>{workout.difficulty}</Text>
                 {/* </ImageBackground> */}
               </TouchableOpacity>
@@ -164,9 +164,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   difficultyBox: {
+    backgroundColor: "rgba(25, 27, 28,1)",
     width: "90%",
     height: 100,
-    borderRadius: 8,
+    borderRadius: 10,
     // margin: 10,
     justifyContent: "center",
     alignItems: "center",
