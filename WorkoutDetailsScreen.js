@@ -26,9 +26,17 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
     }
   };
 
+  const handleGoBack = () => {
+    // Navigate back to the SelectedWorkout screen
+    navigation.navigate("Home");
+  };
   return (
     <View style={styles.container}>
-      <CustomHeader></CustomHeader>
+      <View>
+        <TouchableOpacity onPress={handleGoBack} style={styles.nextButtonBack}>
+          <Text style={styles.nextButtonText}>Go back home</Text>
+        </TouchableOpacity>
+      </View>
       <View style={styles.exerciseContainer}>
         {/* Display the exercise image */}
         <Image source={exercise.imageSource} style={styles.exerciseImage} />
@@ -84,6 +92,13 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 5,
     marginTop: 20,
+  },
+  nextButtonBack: {
+    backgroundColor: "#007BFF",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
+    marginTop: 60,
   },
   nextButtonText: {
     color: "white",
