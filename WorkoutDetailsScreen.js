@@ -1,22 +1,51 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, StatusBar } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  StatusBar,
+  TouchableOpacity,
+} from "react-native";
 
-const WorkoutDetailsScreen = ({ route }) => {
-  const { exercise } = route.params;
+import CustomHeader from "./CustomHeader";
+const WorkoutDetailsScreen = ({ route, navigation }) => {
+  const { exercise, exerciseList, currentIndex } = route.params;
+
+  // Function to handle the "Next" button press
+  const handleNextExercise = () => {
+    if (currentIndex < exerciseList.length - 1) {
+      // Get the next exercise from the exerciseList
+      const nextExercise = exerciseList[currentIndex + 1];
+      // Navigate to the WorkoutDetailsScreen with the next exercise and updated currentIndex
+      navigation.push("WorkoutDetailsScreen", {
+        exercise: nextExercise,
+        exerciseList: exerciseList,
+        currentIndex: currentIndex + 1,
+      });
+    }
+  };
 
   return (
     <View style={styles.container}>
-      {/* Display the exercise image */}
-      <Image source={exercise.imageSource} style={styles.exerciseImage} />
+      <CustomHeader></CustomHeader>
+      <View style={styles.exerciseContainer}>
+        {/* Display the exercise image */}
+        <Image source={exercise.imageSource} style={styles.exerciseImage} />
 
-      {/* Display the exercise name */}
-      <Text style={styles.exerciseName}>{exercise.name}</Text>
+        {/* Display the exercise name */}
+        <Text style={styles.exerciseName}>{exercise.name}</Text>
 
-      {/* Display the exercise details (kcal and time) */}
-      <Text style={styles.exerciseDetails}>Kcal: {exercise.kcal}</Text>
-      <Text style={styles.exerciseDetails}>Time: {exercise.time} seconds</Text>
-
-      {/* Add more exercise details as needed */}
+        {/* Display the exercise details (kcal and time) */}
+        <Text style={styles.exerciseDetails}>Kcal: {exercise.kcal}</Text>
+        <Text style={styles.exerciseDetails}>
+          Time: {exercise.time} seconds
+        </Text>
+      </View>
+      {/* Next button */}
+      <TouchableOpacity onPress={handleNextExercise} style={styles.nextButton}>
+        <Text style={styles.nextButtonText}>Next</Text>
+      </TouchableOpacity>
 
       <StatusBar style="light" />
     </View>
@@ -27,7 +56,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
     backgroundColor: "rgba(40, 44, 46,1)",
   },
   exerciseImage: {
@@ -45,6 +74,21 @@ const styles = StyleSheet.create({
   exerciseDetails: {
     fontSize: 18,
     color: "white",
+  },
+  exerciseContainer: {
+    justifyContent: "center",
+  },
+  nextButton: {
+    backgroundColor: "#007BFF",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
+    marginTop: 20,
+  },
+  nextButtonText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });
 

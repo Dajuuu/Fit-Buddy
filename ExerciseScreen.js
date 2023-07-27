@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -11,117 +11,103 @@ import {
 } from "react-native";
 import CustomHeader from "./CustomHeader";
 
+const exerciseData = {
+  Arms: {
+    "Easy 1": [
+      {
+        name: "Arm Exercise 1",
+        imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
+        kcal: 100,
+        time: 30,
+      },
+      {
+        name: "Arm Exercise 2",
+        // imageSource: require("./path/to/image2.png"),
+        kcal: 120,
+        time: 30,
+      },
+      {
+        name: "Arm Exercise 3",
+        imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
+        kcal: 100,
+        time: 30,
+      },
+      {
+        name: "Arm Exercise 4",
+        // imageSource: require("./path/to/image2.png"),
+        kcal: 120,
+        time: 30,
+      },
+      {
+        name: "Arm Exercise 5",
+        imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
+        kcal: 100,
+        time: 30,
+      },
+      {
+        name: "Arm Exercise 6",
+        // imageSource: require("./path/to/image2.png"),
+        kcal: 120,
+        time: 30,
+      },
+
+      // Add more exercises for Easy 1 level...
+    ],
+    "Easy 2": [
+      {
+        name: "Arm Exercise 3",
+        // imageSource: require("./path/to/image3.png"),
+        kcal: 90,
+        time: 30,
+      },
+      {
+        name: "Arm Exercise 4",
+        // imageSource: require("./path/to/image4.png"),
+        kcal: 110,
+        time: 30,
+      },
+      // Add more exercises for Easy 2 level...
+    ],
+    // Add more levels and exercises for Arms...
+  },
+  Legs: {
+    "Easy 1": [
+      {
+        name: "Leg Exercise 1",
+        // imageSource: require("./path/to/image5.png"),
+        kcal: 80,
+        time: "3 minutes",
+      },
+      {
+        name: "Leg Exercise 2",
+        // imageSource: require("./path/to/image6.png"),
+        kcal: 95,
+        time: "4 minutes",
+      },
+      // Add more exercises for Easy 1 level...
+    ],
+    "Easy 2": [
+      {
+        name: "Leg Exercise 3",
+        // imageSource: require("./path/to/image7.png"),
+        kcal: 85,
+        time: "3.5 minutes",
+      },
+      {
+        name: "Leg Exercise 4",
+        // imageSource: require("./path/to/image8.png"),
+        kcal: 100,
+        time: "4 minutes",
+      },
+      // Add more exercises for Easy 2 level...
+    ],
+    // Add more levels and exercises for Legs...
+  },
+  // Add more workout types...
+};
+
 const ExerciseScreen = ({ route }) => {
   const { workoutDifficulty, workoutType } = route.params;
-
-  // Access the navigation prop
-  const navigation = useNavigation();
-
-  // Handle press of the "Start the workout" button
-  const handleStartWorkout = () => {
-    // Get the first exercise from exerciseList
-    const firstExercise = exerciseList[0];
-    // Navigate to the "WorkoutDetailsScreen" and pass the first exercise as route parameter
-    navigation.navigate("WorkoutDetailsScreen", { exercise: firstExercise });
-  };
-
-  // Exercise data organized by workout type and level
-  // TODO import as separate file
-  const exerciseData = {
-    Arms: {
-      "Easy 1": [
-        {
-          name: "Arm Exercise 1",
-          imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
-          kcal: 100,
-          time: 30,
-        },
-        {
-          name: "Arm Exercise 2",
-          // imageSource: require("./path/to/image2.png"),
-          kcal: 120,
-          time: 30,
-        },
-        {
-          name: "Arm Exercise 3",
-          imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
-          kcal: 100,
-          time: 30,
-        },
-        {
-          name: "Arm Exercise 4",
-          // imageSource: require("./path/to/image2.png"),
-          kcal: 120,
-          time: 30,
-        },
-        {
-          name: "Arm Exercise 5",
-          imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
-          kcal: 100,
-          time: 30,
-        },
-        {
-          name: "Arm Exercise 6",
-          // imageSource: require("./path/to/image2.png"),
-          kcal: 120,
-          time: 30,
-        },
-
-        // Add more exercises for Easy 1 level...
-      ],
-      "Easy 2": [
-        {
-          name: "Arm Exercise 3",
-          // imageSource: require("./path/to/image3.png"),
-          kcal: 90,
-          time: 30,
-        },
-        {
-          name: "Arm Exercise 4",
-          // imageSource: require("./path/to/image4.png"),
-          kcal: 110,
-          time: 30,
-        },
-        // Add more exercises for Easy 2 level...
-      ],
-      // Add more levels and exercises for Arms...
-    },
-    Legs: {
-      "Easy 1": [
-        {
-          name: "Leg Exercise 1",
-          // imageSource: require("./path/to/image5.png"),
-          kcal: 80,
-          time: "3 minutes",
-        },
-        {
-          name: "Leg Exercise 2",
-          // imageSource: require("./path/to/image6.png"),
-          kcal: 95,
-          time: "4 minutes",
-        },
-        // Add more exercises for Easy 1 level...
-      ],
-      "Easy 2": [
-        {
-          name: "Leg Exercise 3",
-          // imageSource: require("./path/to/image7.png"),
-          kcal: 85,
-          time: "3.5 minutes",
-        },
-        {
-          name: "Leg Exercise 4",
-          // imageSource: require("./path/to/image8.png"),
-          kcal: 100,
-          time: "4 minutes",
-        },
-        // Add more exercises for Easy 2 level...
-      ],
-      // Add more levels and exercises for Legs...
-    },
-    // Add more workout types...
-  };
-
   const getExerciseList = (workoutType, workoutDifficulty) => {
     if (
       exerciseData[workoutType] &&
@@ -132,8 +118,31 @@ const ExerciseScreen = ({ route }) => {
       return [];
     }
   };
-
   const exerciseList = getExerciseList(workoutType, workoutDifficulty);
+
+  // Access the navigation prop
+  const navigation = useNavigation();
+  // State to keep track of the current exercise index
+  const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
+
+  // Function to handle the "Next" button press
+  const handleNextExercise = () => {
+    if (currentExerciseIndex < exerciseList.length - 1) {
+      setCurrentExerciseIndex(currentExerciseIndex + 1);
+    }
+  };
+
+  const exercise = exerciseList[currentExerciseIndex];
+
+  const handleViewDetails = () => {
+    navigation.navigate("WorkoutDetailsScreen", {
+      exercise: exercise,
+      exerciseList: exerciseList,
+      currentIndex: currentExerciseIndex,
+    });
+  };
+  // Exercise data organized by workout type and level
+  // TODO import as separate file
 
   // Calculate the total kcal for the level
   const totalKcal = exerciseList.reduce(
@@ -190,7 +199,7 @@ const ExerciseScreen = ({ route }) => {
       </ScrollView>
       {/* Fixed position TouchableOpacity */}
       <TouchableOpacity style={styles.startButton}>
-        <Text style={styles.startButtonText} onPress={handleStartWorkout}>
+        <Text style={styles.startButtonText} onPress={handleViewDetails}>
           Start the workout
         </Text>
       </TouchableOpacity>
