@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import CustomHeader from "./CustomHeader";
 
 const ExerciseScreen = ({ route }) => {
@@ -139,14 +146,15 @@ const ExerciseScreen = ({ route }) => {
               </View>
               <View style={styles.rightContainer}>
                 <Text style={styles.exerciseName}>{exercise.name}</Text>
-                {/* <Text style={styles.exerciseDetails}>
-                Kcal: {exercise.kcal} - Time: {exercise.time}
-              </Text> */}
               </View>
             </View>
           ))}
         </View>
       </ScrollView>
+      {/* Fixed position TouchableOpacity */}
+      <TouchableOpacity style={styles.startButton}>
+        <Text style={styles.startButtonText}>Start the workout</Text>
+      </TouchableOpacity>
       <StatusBar style="light" />
     </View>
   );
@@ -251,6 +259,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "white",
     textAlign: "right",
+  },
+  startButton: {
+    position: "absolute",
+    bottom: 20,
+    backgroundColor: "#4CAF50",
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 30,
+  },
+  startButtonText: {
+    color: "white",
+    fontSize: 18,
+    fontFamily: "TitleFontBold",
   },
 });
 
