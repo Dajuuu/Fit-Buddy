@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     // borderBottomWidth: 1,
     // borderBottomColor: "#ccc",
     marginTop: 40,
-    marginBottom: 10,
+    // marginBottom: 10,
     paddingBottom: 15,
   },
   leftButton: {
