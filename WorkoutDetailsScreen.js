@@ -102,6 +102,7 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
           disabled={currentIndex === 0} // Disable the button if currentIndex is 0
         >
           {/* <Text style={styles.nextButtonText}>Previous</Text> */}
+          {/* Change the color of the button, depending on which exercise is the user */}
           <Icon
             name="arrow-left"
             style={[

@@ -8,6 +8,7 @@ import {
   Animated,
 } from "react-native";
 import { Dimensions } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 const windowHeight = Dimensions.get("window").height;
 
@@ -95,6 +96,7 @@ const RestScreen = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.containerUpperHalf}>
+        <Text style={styles.text}>Take a rest</Text>
         {/* Add an Image component */}
         <Animated.Image
           source={require("./assets/heart-rest.png")} // Replace with the path to your image
@@ -103,13 +105,28 @@ const RestScreen = ({ route, navigation }) => {
         />
       </View>
       <View style={styles.containerBottomHalf}>
-        <Text style={styles.text}>Take a rest</Text>
-        <Text style={styles.timer}>{timer} seconds</Text>
-        <TouchableOpacity style={styles.button} onPress={handleNext}>
-          <Text style={styles.buttonText}>Skip</Text>
-        </TouchableOpacity>
+        {timer >= 10 ? (
+          <Text style={styles.timer}>00:{timer}</Text>
+        ) : (
+          <Text style={styles.timer}>00:0{timer}</Text>
+        )}
         <TouchableOpacity style={styles.button} onPress={handlePauseResume}>
-          <Text style={styles.buttonText}>{isPaused ? "Resume" : "Pause"}</Text>
+          <Text style={styles.buttonText}>
+            {isPaused ? (
+              <Icon
+                name="play"
+                style={[styles.buttonIconArrowLeft, { color: "white" }]}
+              />
+            ) : (
+              <Icon
+                name="pause"
+                style={[styles.buttonIconArrowLeft, { color: "white" }]}
+              />
+            )}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonNext} onPress={handleNext}>
+          <Text style={styles.buttonText}>Go to the next exercise</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -132,43 +149,67 @@ const styles = StyleSheet.create({
     top: 0,
   },
   containerBottomHalf: {
-    // height: windowHeight * 0.5, // Set the height to 50% of the screen height
+    top: windowHeight / 5,
+    // height: windowHeight * 0.1, // Set the height to 50% of the screen height
     width: "100%",
     // backgroundColor: "rgba(46,89,47,1)",
     // top: 0,
     alignItems: "center",
-    marginTop: 50,
+    // marginTop: 120,
   },
   text: {
     fontSize: 40,
     fontFamily: "TitleFontBold",
     color: "white",
-    marginTop: 250,
+    // marginTop: 250,
+    alignSelf: "center",
+    paddingTop: windowHeight / 10,
   },
   timer: {
     fontSize: 35,
-    marginVertical: 30,
+    marginTop: 30,
+    paddingVertical: 30,
     color: "white",
     fontFamily: "TitleFont",
   },
   button: {
-    backgroundColor: "#ff6f00",
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
+    backgroundColor: "rgba(56,157,60,1)",
+    paddingVertical: 30,
+    paddingHorizontal: 30,
+    borderRadius: 100,
     marginBottom: 10,
+    // marginTop: 50,
+    // width: 280,
+    // height: 70,
+  },
+
+  buttonNext: {
+    backgroundColor: "rgba(49,74,52,1)",
+    borderRadius: 8,
+    marginTop: 30,
+    // marginTop: 50,
+    width: 280,
+    // height: 60,
+    paddingVertical: 15,
+    justifyContent: "center", // Center the content vertically
+    alignItems: "center", // Center the content horizontally
   },
   buttonText: {
     color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 20,
+    fontFamily: "TitleFontBold",
+    alignSelf: "center",
   },
   image: {
     alignSelf: "center",
     justifyContent: "center",
-    top: "30%",
+    // top: "30%",
     width: 200,
     height: 200,
+  },
+  buttonIconArrowLeft: {
+    alignSelf: "center",
+    fontSize: 25,
   },
 });
 
