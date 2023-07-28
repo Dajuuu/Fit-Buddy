@@ -14,7 +14,8 @@ import { AppContext } from "./AppContext";
 
 const WorkoutDetailsScreen = ({ route, navigation }) => {
   const { exercise, exerciseList, currentIndex } = route.params;
-  const { increaseDoneCount } = useContext(AppContext);
+  const { increaseDoneCount, increaseTotalCaloriesBurnt } =
+    useContext(AppContext);
 
   // Function to handle the "Next" button press
   const handleNextExercise = () => {
@@ -52,6 +53,8 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
   };
 
   const handleDone = () => {
+    // Burnt calories
+    increaseTotalCaloriesBurnt(exercise.kcal);
     // Increment the number of exercises done by the user
     increaseDoneCount();
     if (currentIndex === exerciseList.length - 1) {
@@ -90,9 +93,7 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
         <Text style={styles.exerciseDetails}>
           Number of : {exercise.repetitionsOrTime}
         </Text>
-        {/* <Text style={styles.exerciseDetails}>
-          Time: {exercise.time} seconds
-        </Text> */}
+        <Text style={styles.exerciseDetails}>{exercise.kcal} kcal</Text>
       </View>
 
       <View style={styles.buttonsContainer}>

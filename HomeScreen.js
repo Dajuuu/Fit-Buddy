@@ -17,7 +17,7 @@ import { useAppContext } from "./AppContext";
 const GameScreen = ({ navigation }) => {
   // Load fonts
   const [fontLoaded, setFontLoaded] = useState(false);
-  const { doneCount } = useAppContext();
+  const { doneCount, totalCaloriesBurnt } = useAppContext();
 
   useEffect(() => {
     const loadFont = async () => {
@@ -81,6 +81,7 @@ const GameScreen = ({ navigation }) => {
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.countText}>Done Count: {doneCount}</Text>
+        <Text style={styles.countText}>Calories: {totalCaloriesBurnt}</Text>
       </View>
       <ScrollView style={{ width: "100%" }}>
         {/* Display all difficulty levels */}
@@ -169,7 +170,7 @@ const styles = StyleSheet.create({
   },
   countText: {
     textAlign: "center",
-    fontSize: 15,
+    fontSize: 25,
     fontFamily: "TitleFont",
     color: "white",
   },

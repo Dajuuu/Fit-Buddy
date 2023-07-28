@@ -5,10 +5,12 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [doneCount, setDoneCount] = useState(0);
+  const [totalCaloriesBurnt, setTotalCaloriesBurnt] = useState(0);
 
   useEffect(() => {
     // Load the doneCount from AsyncStorage when the app starts
     loadDoneCount();
+    loadTotalCaloriesBurnt();
   }, []);
 
   const loadDoneCount = async () => {
@@ -32,11 +34,40 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const loadTotalCaloriesBurnt = async () => {
+    try {
+      const totalCalories = await AsyncStorage.getItem("totalCaloriesBurnt");
+      if (totalCalories) {
+        setTotalCaloriesBurnt(parseInt(totalCalories));
+      }
+    } catch (error) {
+      console.error(
+        "Error loading totalCaloriesBurnt from AsyncStorage:",
+        error
+      );
+    }
+  };
+
+  const increaseTotalCaloriesBurnt = async (calories) => {
+    try {
+      const newTotalCalories = totalCaloriesBurnt + calories;
+      await AsyncStorage.setItem(
+        "totalCaloriesBurnt",
+        newTotalCalories.toString()
+      );
+      setTotalCaloriesBurnt(newTotalCalories);
+    } catch (error) {
+      console.error("Error saving totalCaloriesBurnt to AsyncStorage:", error);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
         doneCount,
         increaseDoneCount,
+        totalCaloriesBurnt,
+        increaseTotalCaloriesBurnt,
       }}
     >
       {children}
