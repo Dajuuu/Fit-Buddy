@@ -10,6 +10,9 @@ const useTimer = () => {
 
   const stopTimer = () => {
     setIsActive(false);
+  };
+
+  const resetTimer = () => {
     setSeconds(0);
   };
 
@@ -30,7 +33,7 @@ const useTimer = () => {
     return () => clearInterval(interval);
   }, [isActive]);
 
-  return { secondsTimer, startTimer, stopTimer };
+  return { secondsTimer, startTimer, stopTimer, resetTimer };
 };
 
 export default useTimer;

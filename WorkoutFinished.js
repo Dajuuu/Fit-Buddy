@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useTimerContext } from "./TimerContext";
 
 const WorkoutFinished = ({ navigation }) => {
-  const { secondsTimer, stopTimer } = useTimerContext();
+  const { secondsTimer, stopTimer, resetTimer } = useTimerContext();
 
   useEffect(() => {
     stopTimer();
@@ -14,6 +14,14 @@ const WorkoutFinished = ({ navigation }) => {
   const handleDone = () => {
     // Navigate to the Home screen
     navigation.navigate("Home");
+    // resetTimer();
+    // Delay is needed, so when the button is pressed the 0 is not yet visible
+    const timerResetDelay = setTimeout(() => {
+      resetTimer();
+    }, 2000);
+
+    // Clean up the timeout when the component unmounts
+    return () => clearTimeout(timerResetDelay);
   };
 
   return (
