@@ -16,41 +16,39 @@ const exerciseData = {
   Arms: {
     "Easy 1": [
       {
-        name: "Arm Exercise 1",
-        repetitionsOrTime: "40",
-        imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
-        kcal: 100,
+        name: "Bicep Curls",
+        repetitionsOrTime: "x10",
+        imageSource: require("./assets/ArmsExercises/easy1_bicepCurl.gif"),
+        kcal: 4,
         time: 30,
       },
       {
-        name: "Arm Exercise 2",
-        imageSource: require("./assets/HomeScreen/abs-workout.jpg"),
-        kcal: 120,
-        time: 30,
+        name: "Hammer Curls",
+        imageSource: require("./assets/ArmsExercises/easy1_hammerCurl.gif"),
+        repetitionsOrTime: "x12",
+        kcal: 5,
+        time: 45,
       },
       {
-        name: "Arm Exercise 3",
-        imageSource: require("./assets/HomeScreen/arms-workout.png"),
-        kcal: 100,
-        time: 30,
+        name: "Wrist Curls",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/ArmsExercises/easy1_wristCurl.gif"),
+        kcal: 3,
+        time: 40,
       },
       {
-        name: "Arm Exercise 4",
-        imageSource: require("./assets/HomeScreen/legs-workout.png"),
-        kcal: 120,
-        time: 30,
+        name: "Push Ups",
+        repetitionsOrTime: "x10",
+        imageSource: require("./assets/ArmsExercises/easy1_pushUp.gif"),
+        kcal: 2,
+        time: 20,
       },
       {
-        name: "Arm Exercise 5",
-        imageSource: require("./assets/HomeScreen/abs-workout1.jpg"),
-        kcal: 100,
-        time: 30,
-      },
-      {
-        name: "Arm Exercise 6",
-        imageSource: require("./assets/HomeScreen/fbw-workout.jpg"),
-        kcal: 120,
-        time: 30,
+        name: "Tricep Kickbacks",
+        repetitionsOrTime: "x12",
+        imageSource: require("./assets/ArmsExercises/easy1_tricepKickback.gif"),
+        kcal: 3,
+        time: 50,
       },
 
       // Add more exercises for Easy 1 level...
@@ -179,7 +177,7 @@ const ExerciseScreen = ({ route }) => {
       <View style={styles.infoContainer}>
         {/* TODO change the name of the totalKcal */}
         <View style={[styles.totalTimeContainer, styles.center]}>
-          <Text style={styles.totalKcal}>Total Time:</Text>
+          <Text style={styles.totalKcal}>Estimated Time:</Text>
           <Text style={styles.totalKcalValue}>{totalTimeFormatted}</Text>
         </View>
         <View style={[styles.totalKcalContainer, styles.center]}>
@@ -280,7 +278,7 @@ const styles = StyleSheet.create({
     fontFamily: "TitleFontBold",
   },
   totalKcal: {
-    fontSize: 24,
+    fontSize: 22,
     color: "white",
     fontFamily: "TitleFont",
     // marginTop: 20,
@@ -311,9 +309,8 @@ const styles = StyleSheet.create({
   },
   // TODO change the size of the image
   exerciseImage: {
-    width: 150,
+    width: 120,
     height: 150,
-    borderRadius: 10,
   },
   exerciseName: {
     fontFamily: "TitleFontBold",
