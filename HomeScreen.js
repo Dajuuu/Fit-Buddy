@@ -109,7 +109,7 @@ const GameScreen = ({ navigation }) => {
         statusBarTranslucent
       >
         <View style={styles.overlay}>
-          <View contentContainerStyle={styles.overlayContent}>
+          <View style={styles.overlayContent}>
             <Text style={styles.overlayText}>
               Do you want to delete your saved progress?
             </Text>
