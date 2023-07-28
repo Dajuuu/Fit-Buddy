@@ -8,6 +8,7 @@ import {
   ScrollView,
   Image,
   ImageBackground,
+  Modal,
 } from "react-native";
 import * as Font from "expo-font";
 import { useAppContext } from "./AppContext";
@@ -21,8 +22,12 @@ const GameScreen = ({ navigation }) => {
   const [fontLoaded, setFontLoaded] = useState(false);
   const { doneCount, totalCaloriesBurnt } = useAppContext();
   const { stopTimer, resetTimer } = useTimerContext();
+  // Show delete progress overlay
+  const [showOverlay, setShowOverlay] = useState(false);
 
   useEffect(() => {
+    setShowOverlay(false);
+
     const loadFont = async () => {
       await Font.loadAsync({
         TitleFont: require("./assets/fonts/JosefinSans-Regular.ttf"),
@@ -74,9 +79,50 @@ const GameScreen = ({ navigation }) => {
       type,
     });
   };
+  const handleTrashPress = () => {
+    // Show the overlay when the trash icon is pressed
+    setShowOverlay(true);
+  };
+  const handleDeleteProgress = () => {
+    // Handle the deletion of progress and reset counters
+    setShowOverlay(false); // Hide the overlay after confirming
+  };
+
+  const handleCancelDelete = () => {
+    // Hide the overlay when cancel is pressed
+    setShowOverlay(false);
+  };
 
   return (
     <View style={styles.container}>
+      <Modal
+        visible={showOverlay}
+        animationType="slide"
+        transparent
+        statusBarTranslucent
+      >
+        <View style={styles.overlay}>
+          <View style={styles.overlayContent}>
+            <Text style={styles.overlayText}>
+              Do you want to delete your saved progress?
+            </Text>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.buttonYes}
+                onPress={handleDeleteProgress}
+              >
+                <Text style={styles.buttonText}>Yes</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.buttonCancel}
+                onPress={handleCancelDelete}
+              >
+                <Text style={styles.buttonText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
       {/* Display Custom header */}
       {/* <CustomHeader title="Choose Difficulty" /> */}
       <View style={styles.textContainer}>
@@ -94,7 +140,7 @@ const GameScreen = ({ navigation }) => {
         </View>
         <TouchableOpacity
           style={styles.trashIconContainer}
-          // onPress={handleTrashPress}
+          onPress={handleTrashPress}
         >
           <Icon name="trash" style={[styles.iconStyle, { color: "white" }]} />
         </TouchableOpacity>
@@ -238,6 +284,52 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10,
     right: 10,
+  },
+
+  // Overlay
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  overlayContent: {
+    backgroundColor: "rgba(40, 44, 46,1)",
+    padding: 30,
+    borderRadius: 8,
+    width: "70%",
+  },
+  overlayText: {
+    fontSize: 18,
+    marginBottom: 20,
+    textAlign: "center",
+    color: "white",
+    fontFamily: "TitleFontBold",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  buttonYes: {
+    backgroundColor: "rgba(56,157,60,1)",
+    // paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 8,
+    width: 100,
+  },
+  buttonCancel: {
+    backgroundColor: "rgba(56,64,56,1)",
+    // paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 8,
+    width: 100,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 23,
+    justifyContent: "center",
+    alignSelf: "center",
+    fontFamily: "TitleFont",
   },
 });
 
