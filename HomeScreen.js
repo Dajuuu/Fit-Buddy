@@ -20,7 +20,12 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 const GameScreen = ({ navigation }) => {
   // Load fonts
   const [fontLoaded, setFontLoaded] = useState(false);
-  const { doneCount, totalCaloriesBurnt } = useAppContext();
+  const {
+    doneCount,
+    totalCaloriesBurnt,
+    resetLoadDoneCount,
+    resetTotalCaloriesBurnt,
+  } = useAppContext();
   const { stopTimer, resetTimer } = useTimerContext();
   // Show delete progress overlay
   const [showOverlay, setShowOverlay] = useState(false);
@@ -85,6 +90,8 @@ const GameScreen = ({ navigation }) => {
   };
   const handleDeleteProgress = () => {
     // Handle the deletion of progress and reset counters
+    resetLoadDoneCount();
+    resetTotalCaloriesBurnt();
     setShowOverlay(false); // Hide the overlay after confirming
   };
 

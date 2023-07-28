@@ -33,6 +33,14 @@ const AppProvider = ({ children }) => {
     setCurrentCaloriesBurnt(0);
   };
 
+  const resetLoadDoneCount = () => {
+    setDoneCount(0);
+  };
+
+  const resetTotalCaloriesBurnt = () => {
+    setTotalCaloriesBurnt(0);
+  };
+
   const loadDoneCount = async () => {
     try {
       const count = await AsyncStorage.getItem("doneCount");
@@ -94,6 +102,8 @@ const AppProvider = ({ children }) => {
         currentCaloriesBurnt,
         increaseCurrentCaloriesBurnt,
         resetCurrentCaloriesBurnt,
+        resetLoadDoneCount,
+        resetTotalCaloriesBurnt,
       }}
     >
       {children}
