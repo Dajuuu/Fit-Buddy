@@ -14,8 +14,11 @@ import { AppContext } from "./AppContext";
 
 const WorkoutDetailsScreen = ({ route, navigation }) => {
   const { exercise, exerciseList, currentIndex } = route.params;
-  const { increaseDoneCount, increaseTotalCaloriesBurnt } =
-    useContext(AppContext);
+  const {
+    increaseDoneCount,
+    increaseTotalCaloriesBurnt,
+    increaseCurrentExerciseDone,
+  } = useContext(AppContext);
 
   // Function to handle the "Next" button press
   const handleNextExercise = () => {
@@ -57,6 +60,8 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
     increaseTotalCaloriesBurnt(exercise.kcal);
     // Increment the number of exercises done by the user
     increaseDoneCount();
+    // Increase the count of exercise in current workout
+    increaseCurrentExerciseDone();
     if (currentIndex === exerciseList.length - 1) {
       // If the current exercise is the last one, navigate to the WorkoutFinished screen
       navigation.navigate("WorkoutFinished");
