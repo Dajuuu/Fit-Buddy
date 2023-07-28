@@ -14,10 +14,12 @@ import { AppContext } from "./AppContext";
 
 const WorkoutDetailsScreen = ({ route, navigation }) => {
   const { exercise, exerciseList, currentIndex } = route.params;
+  // TODO Zmiana variable
   const {
     increaseDoneCount,
     increaseTotalCaloriesBurnt,
     increaseCurrentExerciseDone,
+    increaseCurrentCaloriesBurnt,
   } = useContext(AppContext);
 
   // Function to handle the "Next" button press
@@ -62,6 +64,8 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
     increaseDoneCount();
     // Increase the count of exercise in current workout
     increaseCurrentExerciseDone();
+    // Increase current counter of burnt calories
+    increaseCurrentCaloriesBurnt(exercise.kcal);
     if (currentIndex === exerciseList.length - 1) {
       // If the current exercise is the last one, navigate to the WorkoutFinished screen
       navigation.navigate("WorkoutFinished");

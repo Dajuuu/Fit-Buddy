@@ -6,7 +6,8 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
   const [doneCount, setDoneCount] = useState(0);
   const [totalCaloriesBurnt, setTotalCaloriesBurnt] = useState(0);
-  const [currentExerciseDone, setCurrentExerciseDone] = useState(false);
+  const [currentExerciseDone, setCurrentExerciseDone] = useState(0);
+  const [currentCaloriesBurnt, setCurrentCaloriesBurnt] = useState(0);
 
   useEffect(() => {
     // Load the doneCount from AsyncStorage when the app starts
@@ -20,6 +21,16 @@ const AppProvider = ({ children }) => {
 
   const resetCurrentExerciseDoneCount = () => {
     setCurrentExerciseDone(0);
+  };
+
+  const increaseCurrentCaloriesBurnt = (calories) => {
+    const newTotalCalories = currentCaloriesBurnt + calories;
+    setCurrentCaloriesBurnt(newTotalCalories);
+    return newTotalCalories;
+  };
+
+  const resetCurrentCaloriesBurnt = () => {
+    setCurrentCaloriesBurnt(0);
   };
 
   const loadDoneCount = async () => {
@@ -80,6 +91,9 @@ const AppProvider = ({ children }) => {
         currentExerciseDone,
         increaseCurrentExerciseDone,
         resetCurrentExerciseDoneCount,
+        currentCaloriesBurnt,
+        increaseCurrentCaloriesBurnt,
+        resetCurrentCaloriesBurnt,
       }}
     >
       {children}

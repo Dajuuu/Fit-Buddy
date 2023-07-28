@@ -4,11 +4,16 @@ import React, { useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useTimerContext } from "./TimerContext";
 import { useAppContext } from "./AppContext";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 const WorkoutFinished = ({ navigation }) => {
   const { secondsTimer, stopTimer, resetTimer } = useTimerContext();
-  const { currentExerciseDone, resetCurrentExerciseDoneCount } =
-    useAppContext();
+  const {
+    currentExerciseDone,
+    resetCurrentExerciseDoneCount,
+    currentCaloriesBurnt,
+    resetCurrentCaloriesBurnt,
+  } = useAppContext();
 
   useEffect(() => {
     stopTimer();
@@ -22,6 +27,7 @@ const WorkoutFinished = ({ navigation }) => {
     const timerResetDelay = setTimeout(() => {
       resetTimer();
       resetCurrentExerciseDoneCount();
+      resetCurrentCaloriesBurnt();
     }, 2000);
 
     // Clean up the timeout when the component unmounts
@@ -30,11 +36,19 @@ const WorkoutFinished = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.iconContainer}>
+        <Icon name="check" style={[styles.iconStyle, { color: "white" }]} />
+      </View>
       <Text style={styles.title}>Workout Finished!</Text>
-      <Text style={styles.title}>Time: {secondsTimer}</Text>
-      <Text style={styles.title}>Done Exercises: {currentExerciseDone}</Text>
-      <TouchableOpacity onPress={handleDone} style={styles.doneButton}>
-        <Text style={styles.doneButtonText}>Done</Text>
+      <Text style={styles.completedExercisesText}>
+        Completed Exercises: {currentExerciseDone}
+      </Text>
+      <View style={styles.timeAndKcalContainer}>
+        <Text style={styles.title}>Time: {secondsTimer}</Text>
+        <Text style={styles.title}>Kcal: {currentCaloriesBurnt}</Text>
+      </View>
+      <TouchableOpacity style={styles.startButton} onPress={handleDone}>
+        <Text style={styles.startButtonText}>Done</Text>
       </TouchableOpacity>
     </View>
   );
@@ -48,10 +62,19 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(40, 44, 46,1)",
   },
   title: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: 30,
     marginBottom: 20,
     color: "white",
+    fontFamily: "TitleFontBold",
+  },
+  completedExercisesText: {
+    fontSize: 20,
+    // marginBottom: 20,
+    color: "white",
+    fontFamily: "TitleFont",
+  },
+  timeAndKcalContainer: {
+    flexDirection: "row",
   },
   doneButton: {
     backgroundColor: "#007AFF",
@@ -63,6 +86,32 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  startButton: {
+    position: "absolute",
+    bottom: 60,
+    backgroundColor: "rgba(56,157,60,1)",
+    paddingVertical: 15,
+    paddingHorizontal: 50,
+    borderRadius: 30,
+    width: 200,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  startButtonText: {
+    color: "white",
+    fontSize: 25,
+    fontFamily: "TitleFontBold",
+  },
+  iconContainer: {
+    position: "absolute",
+    top: 160,
+    backgroundColor: "rgba(44, 122, 47,1)",
+    padding: 30,
+    borderRadius: 100,
+  },
+  iconStyle: {
+    fontSize: 40,
   },
 });
 
