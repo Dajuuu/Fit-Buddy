@@ -1,9 +1,16 @@
 // WorkoutFinished.js
 
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { useTimerContext } from "./TimerContext";
 
 const WorkoutFinished = ({ navigation }) => {
+  const { secondsTimer, stopTimer } = useTimerContext();
+
+  useEffect(() => {
+    stopTimer();
+  }, []);
+
   const handleDone = () => {
     // Navigate to the Home screen
     navigation.navigate("Home");
@@ -12,6 +19,7 @@ const WorkoutFinished = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Workout Finished!</Text>
+      <Text style={styles.title}>Time: {secondsTimer}</Text>
       <TouchableOpacity onPress={handleDone} style={styles.doneButton}>
         <Text style={styles.doneButtonText}>Done</Text>
       </TouchableOpacity>
@@ -30,6 +38,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
+    color: "white",
   },
   doneButton: {
     backgroundColor: "#007AFF",

@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import CustomHeader from "./CustomHeader";
+import { useTimerContext } from "./TimerContext";
 
 const exerciseData = {
   Arms: {
@@ -121,6 +122,11 @@ const ExerciseScreen = ({ route }) => {
   };
   const exerciseList = getExerciseList(workoutType, workoutDifficulty);
 
+  const { secondsTimer, startTimer } = useTimerContext();
+
+  // useEffect(() => {
+  //   startTimer();
+  // }, []);
   // Access the navigation prop
   const navigation = useNavigation();
   // State to keep track of the current exercise index
@@ -203,7 +209,13 @@ const ExerciseScreen = ({ route }) => {
         </View>
       </ScrollView>
       {/* Fixed position TouchableOpacity */}
-      <TouchableOpacity style={styles.startButton} onPress={handleViewDetails}>
+      <TouchableOpacity
+        style={styles.startButton}
+        onPress={() => {
+          handleViewDetails();
+          startTimer();
+        }}
+      >
         <Text style={styles.startButtonText}>Start the workout</Text>
       </TouchableOpacity>
       <StatusBar style="light" />
