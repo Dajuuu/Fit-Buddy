@@ -122,7 +122,7 @@ const ExerciseScreen = ({ route }) => {
   };
   const exerciseList = getExerciseList(workoutType, workoutDifficulty);
 
-  const { secondsTimer, startTimer } = useTimerContext();
+  const { secondsTimer, startTimer, stopTimer, resetTimer } = useTimerContext();
 
   // useEffect(() => {
   //   startTimer();
@@ -209,10 +209,13 @@ const ExerciseScreen = ({ route }) => {
         </View>
       </ScrollView>
       {/* Fixed position TouchableOpacity */}
+      {/* Firstly stop reset the timer if there was one running in the background, then start from 0 */}
       <TouchableOpacity
         style={styles.startButton}
         onPress={() => {
           handleViewDetails();
+          stopTimer();
+          resetTimer();
           startTimer();
         }}
       >

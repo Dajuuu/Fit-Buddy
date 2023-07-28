@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import * as Font from "expo-font";
 import { useAppContext } from "./AppContext";
+import { useTimerContext } from "./TimerContext";
 
 // import CustomHeader from "./CustomHeader";
 
@@ -18,6 +19,7 @@ const GameScreen = ({ navigation }) => {
   // Load fonts
   const [fontLoaded, setFontLoaded] = useState(false);
   const { doneCount, totalCaloriesBurnt } = useAppContext();
+  const { stopTimer, resetTimer } = useTimerContext();
 
   useEffect(() => {
     const loadFont = async () => {
@@ -90,7 +92,11 @@ const GameScreen = ({ navigation }) => {
             <TouchableOpacity
               key={index}
               style={[styles.difficultyBox]}
-              onPress={() => handleDifficultyPress(workout.type)}
+              onPress={() => {
+                handleDifficultyPress(workout.type);
+                stopTimer();
+                resetTimer();
+              }}
             >
               <ImageBackground
                 source={workout.imageSource}
