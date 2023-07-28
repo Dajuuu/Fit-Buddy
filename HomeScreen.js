@@ -109,7 +109,7 @@ const GameScreen = ({ navigation }) => {
         statusBarTranslucent
       >
         <View style={styles.overlay}>
-          <View style={styles.overlayContent}>
+          <View contentContainerStyle={styles.overlayContent}>
             <Text style={styles.overlayText}>
               Do you want to delete your saved progress?
             </Text>
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(40, 44, 46,1)",
     padding: 30,
     borderRadius: 8,
-    width: "70%",
+    width: "75%",
   },
   overlayText: {
     fontSize: 18,

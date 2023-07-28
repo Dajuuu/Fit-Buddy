@@ -6,6 +6,8 @@ import {
   StyleSheet,
   Dimensions,
   Image,
+  Modal,
+  ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -46,6 +48,50 @@ const CustomHeader = ({ title }) => {
       anything */
   return (
     <View style={styles.header}>
+      <Modal
+        visible={settingsVisible}
+        animationType="slide"
+        transparent
+        statusBarTranslucent
+      >
+        <View style={styles.overlay}>
+          <View contentContainerStyle={styles.overlayContent}>
+            <Text style={styles.overlayTextTitle}>Information box</Text>
+            <Text style={styles.overlayText}>
+              After you have selected the workout type or muscle group, you can
+              choose the exercises difficulty
+            </Text>
+            <Text style={styles.overlayText}>Easy</Text>
+            <Text style={styles.overlayText}>Medium</Text>
+            <Text style={styles.overlayText}>Hard</Text>
+            <Text style={styles.overlayText}>
+              Then, you will be presented with a list of all exercises for
+              chosen difficulty, estimated time for completed all of them, and
+              total number of calories that can be burnt.{" "}
+            </Text>
+            <Text style={styles.overlayText}>
+              Start the workout and train at your own pace! Between any
+              completed exercises you get a small rest to calm your breath.{" "}
+            </Text>
+            <Text style={styles.overlayText}>Good luck!</Text>
+
+            <View style={styles.buttonContainer}>
+              {/* <TouchableOpacity
+                style={styles.buttonYes}
+                onPress={handleDeleteProgress}
+              >
+                <Text style={styles.buttonText}>Yes</Text>
+              </TouchableOpacity> */}
+              <TouchableOpacity
+                style={styles.buttonCancel}
+                onPress={handleCloseSettings}
+              >
+                <Text style={styles.buttonText}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
       {/* Icon on the left (go back) */}
       <TouchableOpacity
         style={[styles.leftButton, styles.button, { marginRight: 10 }]}
@@ -98,8 +144,8 @@ const styles = StyleSheet.create({
     // marginRight: 10,
     padding: 12,
     paddingHorizontal: 14,
-    backgroundColor: "#ebb381",
-    borderRadius: 20,
+    // backgroundColor: "#ebb381",
+    // borderRadius: 20,
   },
   // rightButton: {
   //   marginLeft: 10,
@@ -120,7 +166,8 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   buttonIcon: {
-    fontSize: 18,
+    fontSize: 26,
+    color: "white",
   },
   title: {
     fontSize: 23,
@@ -128,7 +175,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontFamily: "TitleFontBold",
-    // paddingBottom: 5,
+    paddingBottom: 10,
   },
   titleContainer: {
     flex: 1,
@@ -160,6 +207,60 @@ const styles = StyleSheet.create({
     height: 30,
     marginRight: 5,
     marginLeft: -5,
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  overlayContent: {
+    backgroundColor: "rgba(40, 44, 46,1)",
+    padding: 30,
+    borderRadius: 8,
+    width: "75%",
+    height: "75%",
+  },
+  overlayTextTitle: {
+    fontSize: 25,
+    marginBottom: 20,
+    textAlign: "center",
+    color: "white",
+    fontFamily: "TitleFontBold",
+  },
+  overlayText: {
+    fontSize: 18,
+    marginBottom: 10,
+    textAlign: "center",
+    color: "white",
+    fontFamily: "TitleFont",
+    paddingVertical: 2,
+    lineHeight: 30,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  buttonYes: {
+    backgroundColor: "rgba(56,157,60,1)",
+    // paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 8,
+    width: 100,
+  },
+  buttonCancel: {
+    backgroundColor: "rgba(56,64,56,1)",
+    // paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 8,
+    width: 100,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 23,
+    justifyContent: "center",
+    alignSelf: "center",
+    fontFamily: "TitleFont",
   },
 });
 
