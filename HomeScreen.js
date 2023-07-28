@@ -12,6 +12,7 @@ import {
 import * as Font from "expo-font";
 import { useAppContext } from "./AppContext";
 import { useTimerContext } from "./TimerContext";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 // import CustomHeader from "./CustomHeader";
 
@@ -88,10 +89,17 @@ const GameScreen = ({ navigation }) => {
           <Text style={styles.totalKcalValue}>{doneCount}</Text>
         </View>
         <View style={[styles.totalKcalContainer, styles.center]}>
-          <Text style={styles.totalKcal}>Kcal Burnt:</Text>
+          <Text style={styles.totalKcal}>Calories Burnt:</Text>
           <Text style={styles.totalKcalValue}>{totalCaloriesBurnt}</Text>
         </View>
+        <TouchableOpacity
+          style={styles.trashIconContainer}
+          // onPress={handleTrashPress}
+        >
+          <Icon name="trash" style={[styles.iconStyle, { color: "white" }]} />
+        </TouchableOpacity>
       </View>
+
       {/* <View style={styles.textContainer}>
         <Text style={styles.countText}>Done Count: {doneCount}</Text>
         <Text style={styles.countText}>Calories: {totalCaloriesBurnt}</Text>
@@ -202,7 +210,7 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: "row",
     // alignItems: "flex-start",
-    width: "90%",
+    width: "95%",
     height: 100,
     borderRadius: 8,
     // margin: 10,
@@ -216,7 +224,7 @@ const styles = StyleSheet.create({
   },
   totalKcalValue: {
     color: "white",
-    fontSize: 22,
+    fontSize: 23,
     // fontWeight: "bold",
     fontFamily: "TitleFontBold",
   },
@@ -225,6 +233,11 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: "TitleFont",
     // marginTop: 20,
+  },
+  trashIconContainer: {
+    position: "absolute",
+    top: 10,
+    right: 10,
   },
 });
 
