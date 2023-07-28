@@ -10,12 +10,14 @@ import {
   ImageBackground,
 } from "react-native";
 import * as Font from "expo-font";
+import { useAppContext } from "./AppContext";
 
 // import CustomHeader from "./CustomHeader";
 
 const GameScreen = ({ navigation }) => {
   // Load fonts
   const [fontLoaded, setFontLoaded] = useState(false);
+  const { doneCount } = useAppContext();
 
   useEffect(() => {
     const loadFont = async () => {
@@ -76,6 +78,9 @@ const GameScreen = ({ navigation }) => {
       {/* <CustomHeader title="Choose Difficulty" /> */}
       <View style={styles.textContainer}>
         <Text style={styles.titleText}> FitBuddy</Text>
+      </View>
+      <View style={styles.textContainer}>
+        <Text style={styles.countText}>Done Count: {doneCount}</Text>
       </View>
       <ScrollView style={{ width: "100%" }}>
         {/* Display all difficulty levels */}
@@ -159,6 +164,12 @@ const styles = StyleSheet.create({
   titleText: {
     textAlign: "center",
     fontSize: 35,
+    fontFamily: "TitleFont",
+    color: "white",
+  },
+  countText: {
+    textAlign: "center",
+    fontSize: 15,
     fontFamily: "TitleFont",
     color: "white",
   },

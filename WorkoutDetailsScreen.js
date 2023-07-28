@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   View,
   Text,
@@ -10,9 +10,11 @@ import {
 import { CommonActions } from "@react-navigation/native";
 import CustomHeader from "./CustomHeader";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import { AppContext } from "./AppContext";
 
 const WorkoutDetailsScreen = ({ route, navigation }) => {
   const { exercise, exerciseList, currentIndex } = route.params;
+  const { increaseDoneCount } = useContext(AppContext);
 
   // Function to handle the "Next" button press
   const handleNextExercise = () => {
@@ -50,6 +52,8 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
   };
 
   const handleDone = () => {
+    // Increment the number of exercises done by the user
+    increaseDoneCount();
     if (currentIndex === exerciseList.length - 1) {
       // If the current exercise is the last one, navigate to the WorkoutFinished screen
       navigation.navigate("WorkoutFinished");
