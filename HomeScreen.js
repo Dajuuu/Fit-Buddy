@@ -81,10 +81,21 @@ const GameScreen = ({ navigation }) => {
       <View style={styles.textContainer}>
         <Text style={styles.titleText}> FitBuddy</Text>
       </View>
-      <View style={styles.textContainer}>
+      <View style={styles.infoContainer}>
+        {/* TODO change the name of the totalKcal */}
+        <View style={[styles.totalTimeContainer, styles.center]}>
+          <Text style={styles.totalKcal}>Exercises Done:</Text>
+          <Text style={styles.totalKcalValue}>{doneCount}</Text>
+        </View>
+        <View style={[styles.totalKcalContainer, styles.center]}>
+          <Text style={styles.totalKcal}>Kcal Burnt:</Text>
+          <Text style={styles.totalKcalValue}>{totalCaloriesBurnt}</Text>
+        </View>
+      </View>
+      {/* <View style={styles.textContainer}>
         <Text style={styles.countText}>Done Count: {doneCount}</Text>
         <Text style={styles.countText}>Calories: {totalCaloriesBurnt}</Text>
-      </View>
+      </View> */}
       <ScrollView style={{ width: "100%" }}>
         {/* Display all difficulty levels */}
         <View style={styles.workoutTypesContainer}>
@@ -183,6 +194,37 @@ const styles = StyleSheet.create({
   darkOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0,0,0,0.5)", // Adjust the opacity (last value) to control darkness
+  },
+  totalTimeContainer: {
+    alignItems: "flex-start",
+    // fontFamily: "TitleFontBold",
+  },
+  infoContainer: {
+    flexDirection: "row",
+    // alignItems: "flex-start",
+    width: "90%",
+    height: 100,
+    borderRadius: 8,
+    // margin: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+    // marginBottom: 10,
+    backgroundColor: "rgba(24, 27, 32, 1)",
+    paddingHorizontal: 30,
+    // borderBottomWidth: 12,
+    // borderLeftWidth: 12,
+  },
+  totalKcalValue: {
+    color: "white",
+    fontSize: 22,
+    // fontWeight: "bold",
+    fontFamily: "TitleFontBold",
+  },
+  totalKcal: {
+    fontSize: 18,
+    color: "white",
+    fontFamily: "TitleFont",
+    // marginTop: 20,
   },
 });
 
