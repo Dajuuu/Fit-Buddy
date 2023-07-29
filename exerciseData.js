@@ -355,6 +355,81 @@ const exerciseData = {
       },
     ],
 
+    "Medium 1": [
+      {
+        name: "Goblet Squats",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/LegsExercises/gobletSquat.gif"),
+        kcal: 8,
+        time: 40 + restTime,
+      },
+      {
+        name: "Bulgarian Split Squats",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/LegsExercises/bulgarianSquat.gif"),
+        kcal: 4,
+        time: 45 + restTime,
+      },
+      {
+        name: "Box Jumps",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/LegsExercises/boxJump.gif"),
+        kcal: 10,
+        time: 60 + restTime,
+      },
+      {
+        name: "Standing Calf Raises (Dumbells)",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/LegsExercises/standingCalfRaisesDumbells.gif"),
+        kcal: 7,
+        time: 40 + restTime,
+      },
+      {
+        name: "Leg Curl Seated",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/LegsExercises/legCurlSeated.gif"),
+        kcal: 7,
+        time: 45 + restTime,
+      },
+    ],
+    "Medium 2": [
+      {
+        name: "Squats (Barbell)",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/LegsExercises/squatBarbell.gif"),
+        kcal: 8,
+        time: 40 + restTime,
+      },
+      {
+        name: "Romanian Deadlifts",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/LegsExercises/romanianDeadlifts.gif"),
+        kcal: 6,
+        time: 45 + restTime,
+      },
+      {
+        name: "Dumbbell Lunges",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/LegsExercises/dumbbellLunge.gif"),
+        kcal: 10,
+        time: 60 + restTime,
+      },
+      {
+        name: "Donkey Kick",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/LegsExercises/donkeyKick.gif"),
+        kcal: 4,
+        time: 45 + restTime,
+      },
+      {
+        name: "Leg rises",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/LegsExercises/legRise.gif"),
+        kcal: 5,
+        time: 30 + restTime,
+      },
+    ],
+
     // Add more levels and exercises for Legs...
   },
   // Add more workout types...
