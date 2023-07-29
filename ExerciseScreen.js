@@ -250,6 +250,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "right",
     paddingRight: 5,
+    lineHeight: 25,
   },
   exerciseRepetitionsOrTime: {
     fontFamily: "TitleFont",

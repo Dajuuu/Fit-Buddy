@@ -289,34 +289,72 @@ const exerciseData = {
   Legs: {
     "Easy 1": [
       {
-        name: "Leg Exercise 1",
-        // imageSource: require("./path/to/image5.png"),
-        kcal: 80,
-        time: "3 minutes",
+        name: "Jump Squats",
+        repetitionsOrTime: "x10",
+        imageSource: require("./assets/LegsExercises/jumpSquat.gif"),
+        kcal: 8,
+        time: 40 + restTime,
       },
       {
-        name: "Leg Exercise 2",
-        // imageSource: require("./path/to/image6.png"),
-        kcal: 95,
-        time: "4 minutes",
+        name: "Glute Bridges",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/LegsExercises/gluteBridge.gif"),
+        kcal: 5,
+        time: 40 + restTime,
       },
-      // Add more exercises for Easy 1 level...
+      {
+        name: "Leg rises",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/LegsExercises/legRise.gif"),
+        kcal: 5,
+        time: 30 + restTime,
+      },
+      {
+        name: "Step Ups",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/LegsExercises/stepUps.gif"),
+        kcal: 8,
+        time: 60 + restTime,
+      },
     ],
     "Easy 2": [
       {
-        name: "Leg Exercise 3",
-        // imageSource: require("./path/to/image7.png"),
-        kcal: 85,
-        time: "3.5 minutes",
+        name: "Squats",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/LegsExercises/squat.gif"),
+        kcal: 8,
+        time: 30 + restTime,
       },
       {
-        name: "Leg Exercise 4",
-        // imageSource: require("./path/to/image8.png"),
-        kcal: 100,
-        time: "4 minutes",
+        name: "Donkey Kick",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/LegsExercises/donkeyKick.gif"),
+        kcal: 4,
+        time: 45 + restTime,
       },
-      // Add more exercises for Easy 2 level...
+      {
+        name: "Standing Calf Raises",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/LegsExercises/standingCalfRaises.gif"),
+        kcal: 5,
+        time: 50 + restTime,
+      },
+      {
+        name: "Clamshells",
+        repetitionsOrTime: "x30",
+        imageSource: require("./assets/LegsExercises/clamShell.gif"),
+        kcal: 8,
+        time: 30 + restTime,
+      },
+      {
+        name: "Seated Leg Press",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/LegsExercises/seatedLegPress.gif"),
+        kcal: 8,
+        time: 40 + restTime,
+      },
     ],
+
     // Add more levels and exercises for Legs...
   },
   // Add more workout types...
