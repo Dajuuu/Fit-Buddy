@@ -16,6 +16,7 @@ import { Asset } from "expo-asset";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
+const restTime = 45;
 
 const exerciseData = {
   Arms: {
@@ -188,6 +189,118 @@ const exerciseData = {
         imageSource: require("./assets/ArmsExercises/easy1_mountainClimber.gif"),
         kcal: 10,
         time: 30,
+      },
+    ],
+    "Hard 1": [
+      {
+        name: "Tricep Dips",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/dips.gif"),
+        kcal: 5,
+        time: 40 + restTime,
+      },
+      {
+        name: "Military Press",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/militaryPress.gif"),
+        kcal: 5,
+        time: 45 + restTime,
+      },
+      {
+        name: "Zottman Curls",
+        repetitionsOrTime: "x10",
+        imageSource: require("./assets/ArmsExercises/zottmanCurl.gif"),
+        kcal: 4,
+        time: 50 + restTime,
+      },
+      {
+        name: "Reverse Barbell Curl",
+        repetitionsOrTime: "x10",
+        imageSource: require("./assets/ArmsExercises/reverseBarbellCurl.gif"),
+        kcal: 3,
+        time: 40 + restTime,
+      },
+      {
+        name: "Skull Crushers",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/medium_skullcrushers.gif"),
+        kcal: 3,
+        time: 40 + restTime,
+      },
+      {
+        name: "Hammer Curls",
+        imageSource: require("./assets/ArmsExercises/easy1_hammerCurl.gif"),
+        repetitionsOrTime: "x20",
+        kcal: 6,
+        time: 60 + restTime,
+      },
+
+      {
+        name: "Push Ups",
+        repetitionsOrTime: "x25",
+        imageSource: require("./assets/ArmsExercises/easy1_pushUp.gif"),
+        kcal: 6,
+        time: 50 + restTime,
+      },
+    ],
+
+    "Hard 2": [
+      {
+        name: "Decline Push Ups",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/declinePushUp.gif"),
+        kcal: 5,
+        time: 40 + restTime,
+      },
+      {
+        name: "Bicep Curl",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/ArmsExercises/easy1_bicepCurl.gif"),
+        kcal: 5,
+        time: 45 + restTime,
+      },
+      {
+        name: "Lying Tricep Extensions",
+        repetitionsOrTime: "x10",
+        imageSource: require("./assets/ArmsExercises/lyingTricepExtensions.gif"),
+        kcal: 3,
+        time: 40 + restTime,
+      },
+      {
+        name: "Zottman Curls",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/zottmanCurl.gif"),
+        kcal: 4,
+        time: 50 + restTime,
+      },
+
+      {
+        name: "Skull Crushers",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/medium_skullcrushers.gif"),
+        kcal: 3,
+        time: 40 + restTime,
+      },
+      {
+        name: "Tricep Kickbacks",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/ArmsExercises/easy1_tricepKickback.gif"),
+        kcal: 3,
+        time: 50,
+      },
+      {
+        name: "Push Ups",
+        repetitionsOrTime: "x25",
+        imageSource: require("./assets/ArmsExercises/easy1_pushUp.gif"),
+        kcal: 6,
+        time: 50 + restTime,
+      },
+      {
+        name: "Prone Dumbbell Spider Curl",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/medium_ProneDumbbellSpiderCurl.gif"),
+        kcal: 4,
+        time: 40,
       },
     ],
     // Add more levels and exercises for Arms...
