@@ -8,9 +8,13 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 import CustomHeader from "./CustomHeader";
 import { useTimerContext } from "./TimerContext";
+
+const windowHeight = Dimensions.get("window").height;
+const windowWidth = Dimensions.get("window").width;
 
 const exerciseData = {
   Arms: {
@@ -96,8 +100,94 @@ const exerciseData = {
         kcal: 3,
         time: 40,
       },
-
-      // Add more exercises for Easy 2 level...
+    ],
+    "Medium 1": [
+      {
+        name: "Reverse-Grip EZ Bar Curl",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/medium_ReverseGripBarCurl.gif"),
+        kcal: 5,
+        time: 60,
+      },
+      {
+        name: "Tate Press",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/medium_tatePress.gif"),
+        kcal: 4,
+        time: 50,
+      },
+      {
+        name: "Prone Dumbbell Spider Curl",
+        repetitionsOrTime: "x10",
+        imageSource: require("./assets/ArmsExercises/medium_ProneDumbbellSpiderCurl.gif"),
+        kcal: 4,
+        time: 40,
+      },
+      {
+        name: "Skull Crushers",
+        repetitionsOrTime: "x10",
+        imageSource: require("./assets/ArmsExercises/medium_skullcrushers.gif"),
+        kcal: 3,
+        time: 40,
+      },
+      {
+        name: "Palms-Down Wrist Curls",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/ArmsExercises/easy1_palmsDownWristCurl.gif"),
+        kcal: 3,
+        time: 40,
+      },
+      {
+        name: "Diamond Push Ups",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/easy1_diamondPushUp.gif"),
+        kcal: 3,
+        time: 40,
+      },
+    ],
+    "Medium 2": [
+      {
+        name: "Close-Grip Bench Press",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/medium_ReverseGripBarCurl.gif"),
+        kcal: 5,
+        time: 60,
+      },
+      {
+        name: "Tate Press",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/medium_tatePress.gif"),
+        kcal: 4,
+        time: 50,
+      },
+      {
+        name: "Prone Dumbbell Spider Curl",
+        repetitionsOrTime: "x10",
+        imageSource: require("./assets/ArmsExercises/medium_ProneDumbbellSpiderCurl.gif"),
+        kcal: 4,
+        time: 40,
+      },
+      {
+        name: "Skull Crushers",
+        repetitionsOrTime: "x10",
+        imageSource: require("./assets/ArmsExercises/medium_skullcrushers.gif"),
+        kcal: 3,
+        time: 40,
+      },
+      {
+        name: "Palms-Down Wrist Curls",
+        repetitionsOrTime: "x20",
+        imageSource: require("./assets/ArmsExercises/easy1_palmsDownWristCurl.gif"),
+        kcal: 3,
+        time: 40,
+      },
+      {
+        name: "Diamond Push Ups",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/easy1_diamondPushUp.gif"),
+        kcal: 3,
+        time: 40,
+      },
     ],
     // Add more levels and exercises for Arms...
   },
@@ -337,7 +427,7 @@ const styles = StyleSheet.create({
   },
   rightContainer: {
     flex: 3,
-    maxWidth: 200,
+    maxWidth: windowWidth * 0.4,
   },
   // TODO change the size of the image
   exerciseImage: {
@@ -357,6 +447,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "right",
     paddingRight: 5,
+    paddingTop: 10,
   },
   startButton: {
     position: "absolute",
