@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import CustomHeader from "./CustomHeader";
 import { useTimerContext } from "./TimerContext";
+import { Asset } from "expo-asset";
 
 const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
@@ -229,6 +230,24 @@ const exerciseData = {
 
 const ExerciseScreen = ({ route }) => {
   const { workoutDifficulty, workoutType } = route.params;
+
+  // More caching needed
+  useEffect(() => {
+    // Preload images
+    const cacheIcon = async () => {
+      await Asset.fromModule(
+        require("./assets/ArmsExercises/easy1_bicepCurl.gif")
+      ).downloadAsync();
+      await Asset.fromModule(
+        require("./assets/ArmsExercises/easy1_hammerCurl.gif")
+      ).downloadAsync();
+      await Asset.fromModule(
+        require("./assets/ArmsExercises/easy1_wristCurl.gif")
+      ).downloadAsync();
+    };
+    cacheIcon();
+  }, []);
+
   const getExerciseList = (workoutType, workoutDifficulty) => {
     if (
       exerciseData[workoutType] &&
@@ -293,8 +312,8 @@ const ExerciseScreen = ({ route }) => {
     <View style={styles.container}>
       <CustomHeader title={workoutDifficulty} />
       {/* <Text style={styles.title}>
-        {workoutType} {workoutDifficulty}
-      </Text> */}
+          {workoutType} {workoutDifficulty}
+        </Text> */}
       <View style={styles.infoContainer}>
         {/* TODO change the name of the totalKcal */}
         <View style={[styles.totalTimeContainer, styles.center]}>

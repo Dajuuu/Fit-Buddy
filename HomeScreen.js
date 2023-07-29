@@ -14,6 +14,7 @@ import * as Font from "expo-font";
 import { useAppContext } from "./AppContext";
 import { useTimerContext } from "./TimerContext";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import { Asset } from "expo-asset";
 
 // import CustomHeader from "./CustomHeader";
 
@@ -41,6 +42,25 @@ const GameScreen = ({ navigation }) => {
       setFontLoaded(true);
     };
     loadFont();
+
+    const cacheIcon = async () => {
+      await Asset.fromModule(
+        require("./assets/HomeScreen/arms-workout.png")
+      ).downloadAsync();
+      await Asset.fromModule(
+        require("./assets/HomeScreen/legs-workout.png")
+      ).downloadAsync();
+      await Asset.fromModule(
+        require("./assets/HomeScreen/abs-workout.jpg")
+      ).downloadAsync();
+      await Asset.fromModule(
+        require("./assets/HomeScreen/fbw-workout.jpg")
+      ).downloadAsync();
+      await Asset.fromModule(
+        require("./assets/HomeScreen/yoga-workout.png")
+      ).downloadAsync();
+    };
+    cacheIcon();
   }, []);
 
   if (!fontLoaded) {
