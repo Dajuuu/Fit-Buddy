@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   leftButton: {
     // marginRight: 10,
-    padding: 12,
+    // padding: 12,
     paddingHorizontal: 14,
     // backgroundColor: "#ebb381",
     // borderRadius: 20,
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
     fontFamily: "TitleFontBold",
-    paddingBottom: 10,
+    // paddingBottom: 10,
   },
   titleContainer: {
     flex: 1,

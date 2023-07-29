@@ -30,7 +30,7 @@ const exerciseData = {
         time: 45,
       },
       {
-        name: "Wrist Curls",
+        name: "Palms-Up Wrist Curls",
         repetitionsOrTime: "x20",
         imageSource: require("./assets/ArmsExercises/easy1_wristCurl.gif"),
         kcal: 3,
@@ -55,17 +55,48 @@ const exerciseData = {
     ],
     "Easy 2": [
       {
-        name: "Arm Exercise 3",
-        // imageSource: require("./path/to/image3.png"),
-        kcal: 90,
+        name: "Band Bicep Curls",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/easy1_bandBicepCurls.gif"),
+        kcal: 4,
+        time: 45,
+      },
+      {
+        name: "Concentration Curls",
+        repetitionsOrTime: "x10",
+        imageSource: require("./assets/ArmsExercises/easy1_concentrationCurls.gif"),
+        kcal: 3,
+        time: 40,
+      },
+      {
+        name: "Tricep Behind Back",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/easy1_tricepBehindBack.gif"),
+        kcal: 4,
+        time: 50,
+      },
+      {
+        name: "Mountain Climber",
+        repetitionsOrTime: "x16",
+        imageSource: require("./assets/ArmsExercises/easy1_mountainClimber.gif"),
+        kcal: 10,
         time: 30,
       },
       {
-        name: "Arm Exercise 4",
-        // imageSource: require("./path/to/image4.png"),
-        kcal: 110,
-        time: 30,
+        name: "Diamond Push Ups",
+        repetitionsOrTime: "x10",
+        imageSource: require("./assets/ArmsExercises/easy1_diamondPushUp.gif"),
+        kcal: 3,
+        time: 40,
       },
+      {
+        name: "Palms-Down Wrist Curls",
+        repetitionsOrTime: "x15",
+        imageSource: require("./assets/ArmsExercises/easy1_palmsDownWristCurl.gif"),
+        kcal: 3,
+        time: 40,
+      },
+
       // Add more exercises for Easy 2 level...
     ],
     // Add more levels and exercises for Arms...
@@ -267,7 +298,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     // marginBottom: 10,
     backgroundColor: "rgba(24, 27, 32, 1)",
-    paddingHorizontal: 30,
+    paddingHorizontal: 15,
     // borderBottomWidth: 12,
     // borderLeftWidth: 12,
   },
@@ -306,6 +337,7 @@ const styles = StyleSheet.create({
   },
   rightContainer: {
     flex: 3,
+    maxWidth: 200,
   },
   // TODO change the size of the image
   exerciseImage: {
