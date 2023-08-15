@@ -19,6 +19,13 @@ const WorkoutFinished = ({ navigation }) => {
     stopTimer();
   }, []);
 
+  // Convert total time to mm:ss format
+  const minutes = Math.floor(secondsTimer / 60);
+  const seconds = secondsTimer % 60;
+  const totalTimeFormatted = `${minutes.toString().padStart(2, "0")}:${seconds
+    .toString()
+    .padStart(2, "0")}`;
+
   const handleDone = () => {
     // Navigate to the Home screen
     navigation.navigate("Home");
@@ -44,8 +51,8 @@ const WorkoutFinished = ({ navigation }) => {
         Completed Exercises: {currentExerciseDone}
       </Text>
       <View style={styles.timeAndKcalContainer}>
-        <Text style={styles.title}>Time: {secondsTimer}</Text>
-        <Text style={styles.title}>Kcal: {currentCaloriesBurnt}</Text>
+        <Text style={styles.text}>Time: {totalTimeFormatted}</Text>
+        <Text style={styles.text}>Kcal: {currentCaloriesBurnt}</Text>
       </View>
       <TouchableOpacity style={styles.startButton} onPress={handleDone}>
         <Text style={styles.startButtonText}>Done</Text>
@@ -62,19 +69,25 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(40, 44, 46,1)",
   },
   title: {
-    fontSize: 30,
-    marginBottom: 20,
+    fontSize: 36,
+    marginBottom: 10,
+    color: "white",
+    fontFamily: "TitleFontBold",
+  },
+  text: {
+    fontSize: 28,
     color: "white",
     fontFamily: "TitleFontBold",
   },
   completedExercisesText: {
     fontSize: 20,
-    // marginBottom: 20,
+    marginBottom: 20,
     color: "white",
     fontFamily: "TitleFont",
   },
   timeAndKcalContainer: {
-    flexDirection: "row",
+    flexDirection: "column",
+    marginTop: 20,
   },
   doneButton: {
     backgroundColor: "#007AFF",
