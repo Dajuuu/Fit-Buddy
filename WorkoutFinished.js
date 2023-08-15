@@ -1,10 +1,18 @@
 // WorkoutFinished.js
 
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 import { useTimerContext } from "./TimerContext";
 import { useAppContext } from "./AppContext";
 import Icon from "react-native-vector-icons/FontAwesome5";
+
+const windowHeight = Dimensions.get("window").height;
 
 const WorkoutFinished = ({ navigation }) => {
   const { secondsTimer, stopTimer, resetTimer } = useTimerContext();
@@ -76,6 +84,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 28,
+    marginVertical: 8,
     color: "white",
     fontFamily: "TitleFontBold",
   },
@@ -118,7 +127,7 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     position: "absolute",
-    top: 160,
+    top: windowHeight * 0.1,
     backgroundColor: "rgba(44, 122, 47,1)",
     padding: 30,
     borderRadius: 100,

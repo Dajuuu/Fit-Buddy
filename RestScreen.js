@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import { Asset } from "expo-asset";
 
 const windowHeight = Dimensions.get("window").height;
 
@@ -66,6 +67,16 @@ const RestScreen = ({ route, navigation }) => {
       // handleNext();
     }
   }, [timer]);
+
+  // Problem needs to be cached at the start up of the app
+  useEffect(() => {
+    const cacheIcon = async () => {
+      await Asset.fromModule(
+        require("./assets/heart-rest.png")
+      ).downloadAsync();
+    };
+    cacheIcon();
+  }, []);
 
   const handleNext = () => {
     if (currentIndex < exerciseList.length - 1) {
