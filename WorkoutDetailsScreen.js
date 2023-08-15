@@ -1,16 +1,20 @@
+import { StatusBar } from "expo-status-bar";
 import React, { useContext } from "react";
+
 import {
   View,
   Text,
   StyleSheet,
   Image,
-  StatusBar,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 import { CommonActions } from "@react-navigation/native";
 import CustomHeader from "./CustomHeader";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { AppContext } from "./AppContext";
+
+const windowHeight = Dimensions.get("window").height;
 
 const WorkoutDetailsScreen = ({ route, navigation }) => {
   const { exercise, exerciseList, currentIndex } = route.params;
@@ -85,10 +89,10 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
     <View style={styles.container}>
       <View style={styles.upperButtons}>
         <TouchableOpacity
-          style={[styles.leftButton, styles.button, { marginRight: 10 }]}
+          style={[styles.leftButton, styles.button]}
           onPress={handleGoBack}
         >
-          <Icon name="arrow-left" style={[styles.buttonIcon]} />
+          <Icon name="arrow-left" style={[styles.leftButton]} />
         </TouchableOpacity>
       </View>
       <View style={styles.exerciseContainer}>
@@ -99,10 +103,8 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
         <Text style={styles.exerciseName}>{exercise.name}</Text>
 
         {/* Display the exercise details (kcal and time) */}
-        <Text style={styles.exerciseDetails}>
-          Number of : {exercise.repetitionsOrTime}
-        </Text>
-        <Text style={styles.exerciseDetails}>{exercise.kcal} kcal</Text>
+        <Text style={styles.exerciseDetails}>{exercise.repetitionsOrTime}</Text>
+        {/* <Text style={styles.exerciseDetails}>{exercise.kcal} kcal</Text> */}
       </View>
 
       <View style={styles.buttonsContainer}>
@@ -156,24 +158,31 @@ const styles = StyleSheet.create({
   },
   exerciseImage: {
     width: "100%",
-    height: 200,
-    top: 10,
+    height: 300,
+    top: windowHeight * 0.05,
     // borderRadius: 100,
     marginBottom: 20,
   },
   exerciseName: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontFamily: "TitleFontBold",
+    fontSize: 36,
+    // fontWeight: "bold",
     color: "white",
     marginBottom: 10,
+    marginTop: 50,
+    paddingHorizontal: 20,
+    textAlign: "center",
   },
   exerciseDetails: {
-    fontSize: 36,
-    color: "white",
+    fontSize: 50,
+    // marginTop: 50,
+    color: "#449944",
+    fontFamily: "TitleFont",
   },
   exerciseContainer: {
     justifyContent: "center",
     alignItems: "center",
+    zIndex: -100,
   },
   nextButton: {
     // backgroundColor: "#007BFF",
@@ -203,20 +212,23 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   leftButton: {
+    alignSelf: "center",
+    fontSize: 22,
     // marginRight: 10,
-    padding: 12,
-    paddingHorizontal: 14,
-    backgroundColor: "#ebb381",
-    borderRadius: 20,
+    // padding: 12,
+    // paddingHorizontal: 14,
+    // backgroundColor: "#ebb381",
+    // borderRadius: 20,
   },
   upperButtons: {
+    position: "absolute",
     flexDirection: "row",
     alignItems: "flex-end",
     // backgroundColor: "#f7d7ba",
     paddingHorizontal: 20,
     // borderBottomWidth: 1,
     // borderBottomColor: "#ccc",
-    marginTop: 70,
+    marginTop: windowHeight * 0.08,
     marginBottom: 10,
     paddingBottom: 15,
   },

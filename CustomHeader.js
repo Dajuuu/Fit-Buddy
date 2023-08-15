@@ -58,21 +58,19 @@ const CustomHeader = ({ title }) => {
           <View style={styles.overlayContent}>
             <Text style={styles.overlayTextTitle}>Information box</Text>
             <Text style={styles.overlayText}>
-              Once you have selected the type of workout or muscle group, you
-              can choose the difficulty level of the exercises:
+              Once you have selected the type of workout, you can choose the
+              difficulty level of the exercises:
             </Text>
             <Text style={styles.overlayText}>🥉 Easy</Text>
             <Text style={styles.overlayText}>🥈 Medium</Text>
             <Text style={styles.overlayText}>🥇 Hard</Text>
             <Text style={styles.overlayText}>
-              Then, you will be presented with a list of all exercises for the
-              chosen difficulty level. The estimated time for completing all
-              exercises and the total number of calories that can be burnt will
-              also be displayed.{" "}
+              Then, you'll see a list of exercises for chosen difficulty, along
+              with estimated completion time and total calories burned.{" "}
             </Text>
             <Text style={styles.overlayText}>
-              Start the workout and train at your own pace! Between any
-              completed exercises you get a small rest to calm your breath.{" "}
+              Begin your workout and pace yourself. Take short breaks between
+              exercises to catch your breath.{" "}
             </Text>
             <Text style={styles.overlayText}>Good luck!</Text>
 
@@ -131,7 +129,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     // borderBottomWidth: 1,
     // borderBottomColor: "#ccc",
-    marginTop: 40,
+    marginTop: 20,
     // marginBottom: 10,
     paddingBottom: 15,
   },
@@ -211,7 +209,8 @@ const styles = StyleSheet.create({
   },
   overlayContent: {
     backgroundColor: "rgba(40, 44, 46,1)",
-    padding: 30,
+    padding: 15,
+    paddingVertical: 20,
     borderRadius: 8,
     width: "85%",
     // maxHeight: "75%",
