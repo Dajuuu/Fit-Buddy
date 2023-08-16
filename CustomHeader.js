@@ -66,7 +66,8 @@ const CustomHeader = ({ title }) => {
             <Text style={styles.overlayText}>🥇 Hard</Text>
             <Text style={styles.overlayText}>
               Then, you'll see a list of exercises for chosen difficulty, along
-              with estimated completion time and total calories burned.{" "}
+              with estimated completion time. Total calories are also visible,
+              except for Yoga.{" "}
             </Text>
             <Text style={styles.overlayText}>
               Begin your workout and pace yourself. Take short breaks between

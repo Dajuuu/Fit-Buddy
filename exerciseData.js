@@ -771,27 +771,28 @@ const exerciseData = {
       },
     ],
   },
+  // For yoga all exercises got kcal of 0, as those are the exercises that are not primarily intended for calorie burning
   Yoga: {
     "Easy 1": [
       {
         name: "Child's Pose",
         repetitionsOrTime: "20 sec",
         imageSource: require("./assets/YogaExercises/childPose.webp"),
-        kcal: 2,
+        kcal: 0,
         time: 20 + restTime,
       },
       {
         name: "Downward Facing Dog",
         repetitionsOrTime: "20 sec",
         imageSource: require("./assets/YogaExercises/downwardFacingDog.jpg"),
-        kcal: 2,
+        kcal: 0,
         time: 30 + restTime,
       },
       {
         name: "Russian Twist",
         repetitionsOrTime: "x15",
         imageSource: require("./assets/ABSExercises/russianTwist.gif"),
-        kcal: 3,
+        kcal: 0,
         time: 30 + restTime,
       },
     ],

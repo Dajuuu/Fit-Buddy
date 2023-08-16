@@ -60,7 +60,10 @@ const WorkoutFinished = ({ navigation }) => {
       </Text>
       <View style={styles.timeAndKcalContainer}>
         <Text style={styles.text}>Time: {totalTimeFormatted}</Text>
-        <Text style={styles.text}>Kcal: {currentCaloriesBurnt}</Text>
+        {/* If the exerciseType is Yoga or user just skipped all exercises - do not show the Kcal value*/}
+        {currentCaloriesBurnt > 0 && (
+          <Text style={styles.text}>Kcal: {currentCaloriesBurnt}</Text>
+        )}
       </View>
       <TouchableOpacity style={styles.startButton} onPress={handleDone}>
         <Text style={styles.startButtonText}>Done</Text>
