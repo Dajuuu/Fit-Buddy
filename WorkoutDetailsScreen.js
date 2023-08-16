@@ -176,6 +176,7 @@ const styles = StyleSheet.create({
   exerciseDetails: {
     fontSize: 50,
     // marginTop: 50,
+    padding: 20,
     color: "#449944",
     fontFamily: "TitleFont",
   },
