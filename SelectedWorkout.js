@@ -127,25 +127,33 @@ const SelectedWorkoutScreen = ({ navigation, route }) => {
       <ScrollView style={{ width: "100%" }}>
         {/* Display all workout types */}
         <View style={styles.workoutDifficultiesContainer}>
-          {workoutDifficulties.map((workout, index) => (
-            <React.Fragment key={index}>
-              <TouchableOpacity
-                style={[styles.difficultyBox]}
-                onPress={() => handleDifficultyPress(type, workout.difficulty)}
-              >
-                {/* {console.log(workout.difficulty)} */}
-                {/* <ImageBackground
+          {type === "FBW" ? (
+            <View style={styles.centeredContent}>
+              <Text style={styles.pageInBuildingText}>Page in building</Text>
+            </View>
+          ) : (
+            workoutDifficulties.map((workout, index) => (
+              <React.Fragment key={index}>
+                <TouchableOpacity
+                  style={[styles.difficultyBox]}
+                  onPress={() =>
+                    handleDifficultyPress(type, workout.difficulty)
+                  }
+                >
+                  {/* <ImageBackground
                   source={workout.imageSource}
                   style={styles.image}
-                > */}
-                {/* Apply dark overlay to the image */}
-                {/* <View style={styles.darkOverlay} /> */}
-                <Text style={styles.difficultyText}>{workout.difficulty}</Text>
-                {/* </ImageBackground> */}
-              </TouchableOpacity>
-              {renderGapView(index + 1)}
-            </React.Fragment>
-          ))}
+                >
+                  <View style={styles.darkOverlay} />
+                </ImageBackground> */}
+                  <Text style={styles.difficultyText}>
+                    {workout.difficulty}
+                  </Text>
+                </TouchableOpacity>
+                {renderGapView(index + 1)}
+              </React.Fragment>
+            ))
+          )}
         </View>
       </ScrollView>
       <StatusBar style="light" />
@@ -183,6 +191,29 @@ const styles = StyleSheet.create({
     left: 20,
     color: "white",
     alignSelf: "flex-start",
+  },
+  placeholderText: {
+    fontFamily: "TitleFontBold",
+    // fontWeight: "bold",
+    fontSize: 30,
+    left: 20,
+    color: "white",
+  },
+  centeredContent: {
+    // flex: 1,
+    marginTop: 200,
+    justifyContent: "center",
+    alignSelf: "center",
+    // height: "100%",
+  },
+
+  pageInBuildingText: {
+    fontSize: 18,
+    color: "black",
+    fontFamily: "TitleFontBold",
+    // fontWeight: "bold",
+    fontSize: 30,
+    color: "white",
   },
   image: {
     position: "absolute",

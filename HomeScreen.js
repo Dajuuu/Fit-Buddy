@@ -86,14 +86,14 @@ const GameScreen = ({ navigation }) => {
       imageSource: require("fit-buddy/assets/HomeScreen/abs-workout.jpg"),
     },
     {
-      type: "FBW",
-      screen: "ExpertLevels",
-      imageSource: require("fit-buddy/assets/HomeScreen/fbw-workout.jpg"),
-    },
-    {
       type: "Yoga",
       screen: "ThemedLevels",
       imageSource: require("fit-buddy/assets/HomeScreen/yoga-workout.png"),
+    },
+    {
+      type: "FBW",
+      screen: "ExpertLevels",
+      imageSource: require("fit-buddy/assets/HomeScreen/fbw-workout.jpg"),
     },
   ];
 
