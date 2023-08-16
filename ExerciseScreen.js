@@ -103,18 +103,28 @@ const ExerciseScreen = ({ route }) => {
     <View style={styles.container}>
       <CustomHeader title={workoutDifficulty} />
       {/* <Text style={styles.title}>
-          {workoutType} {workoutDifficulty}
-        </Text> */}
-      <View style={styles.infoContainer}>
+        {workoutType} {workoutDifficulty}
+      </Text> */}
+      <View
+        style={
+          workoutType === "Yoga"
+            ? [styles.infoContainerYoga]
+            : styles.infoContainer
+        }
+      >
         {/* TODO change the name of the totalKcal */}
+
         <View style={[styles.totalTimeContainer, styles.center]}>
           <Text style={styles.totalKcal}>Estimated Time:</Text>
           <Text style={styles.totalKcalValue}>{totalTimeFormatted}</Text>
         </View>
-        <View style={[styles.totalKcalContainer, styles.center]}>
-          <Text style={styles.totalKcal}>Total Kcal:</Text>
-          <Text style={styles.totalKcalValue}>{totalKcal}</Text>
-        </View>
+
+        {workoutType !== "Yoga" && (
+          <View style={[styles.totalKcalContainer, styles.center]}>
+            <Text style={styles.totalKcal}>Total Kcal:</Text>
+            <Text style={styles.totalKcalValue}>{totalKcal}</Text>
+          </View>
+        )}
       </View>
       <ScrollView style={{ width: "100%" }}>
         {/* Display the list of exercises */}
@@ -201,6 +211,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     // borderBottomWidth: 12,
     // borderLeftWidth: 12,
+  },
+  infoContainerYoga: {
+    width: "90%",
+    height: 100,
+    borderRadius: 8,
+    // justifyContent: "space-between",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(24, 27, 32, 1)",
+    // paddingHorizontal: 15,
   },
   totalKcalValue: {
     color: "white",
