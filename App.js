@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { Asset } from "expo-asset";
+import * as Font from "expo-font";
+
+// Contexts
 import { AppProvider } from "./AppContext";
 import { TimerProvider } from "./TimerContext";
 
+// Screens
 import LoadingScreen from "./AppLoading";
 import HomeScreen from "./HomeScreen";
 import SelectedWorkout from "./SelectedWorkout";
@@ -12,8 +17,6 @@ import WorkoutDetailsScreen from "./WorkoutDetailsScreen";
 import RestScreen from "./RestScreen";
 import WorkoutFinished from "./WorkoutFinished";
 
-import { Asset } from "expo-asset";
-import * as Font from "expo-font";
 // Imports paths for all images/gifs that will ba cached
 import imageAssets from "./generatedImagePathArray";
 
