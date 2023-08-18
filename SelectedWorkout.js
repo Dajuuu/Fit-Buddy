@@ -6,34 +6,11 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  Image,
-  ImageBackground,
 } from "react-native";
-import * as Font from "expo-font";
 import CustomHeader from "./CustomHeader";
-
-// import CustomHeader from "./CustomHeader";
 
 const SelectedWorkoutScreen = ({ navigation, route }) => {
   const { type } = route.params;
-
-  // Load fonts
-  const [fontLoaded, setFontLoaded] = useState(false);
-
-  useEffect(() => {
-    const loadFont = async () => {
-      await Font.loadAsync({
-        TitleFont: require("./assets/fonts/JosefinSans-Regular.ttf"),
-        TitleFontBold: require("./assets/fonts/JosefinSans-Bold.ttf"),
-      });
-      setFontLoaded(true);
-    };
-    loadFont();
-  }, []);
-
-  if (!fontLoaded) {
-    return null;
-  }
 
   // Declare the difficulty levels
   const workoutDifficulties = [

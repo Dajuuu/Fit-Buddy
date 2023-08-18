@@ -14,10 +14,12 @@ import WorkoutFinished from "./WorkoutFinished";
 
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
-import imageAssets from "./generatedImageArray";
+// Imports paths for all images/gifs that will ba cached
+import imageAssets from "./generatedImagePathArray";
 
 const Stack = createStackNavigator();
 
+// Function that takes the imageAssets images' path and caches those images asynchronously
 const cacheImages = async () => {
   await Promise.all(
     imageAssets.map(async (image) => {
@@ -27,16 +29,17 @@ const cacheImages = async () => {
 };
 
 export default function App() {
+  // Hooks needed for the loading screen and fonts
   const [loading, setLoading] = useState(true);
   const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
-    // Simulate loading time (replace with your actual loading logic)
-
+    // Close the loading screen after x seconds
     setTimeout(() => {
       setLoading(false);
     }, 2000);
 
+    // Load the fonts that will be used within the app
     const loadFont = async () => {
       await Font.loadAsync({
         TitleFont: require("./assets/fonts/JosefinSans-Regular.ttf"),
@@ -46,7 +49,7 @@ export default function App() {
     };
     loadFont();
 
-    // Cache the images for the HomeScreen
+    // Cache the images
     cacheImages();
   }, []);
 
@@ -61,23 +64,17 @@ export default function App() {
     <TimerProvider>
       <AppProvider>
         <NavigationContainer>
-          {/* <Stack.Navigator
-            initialRouteName="Home"
-            screenOptions={{
-              headerShown: false,
-            }}
-          > */}
           <Stack.Navigator
             screenOptions={{
               headerShown: false,
             }}
           >
+            {/* When loading variable is true display LoadingScreen, otherwise display home screen */}
             {loading ? (
               <Stack.Screen name="Loading" component={LoadingScreen} />
             ) : (
               <Stack.Screen name="Home" component={HomeScreen} />
             )}
-            {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
             <Stack.Screen
               name="ExerciseDifficulty"
               component={SelectedWorkout}
