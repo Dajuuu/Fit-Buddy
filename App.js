@@ -47,7 +47,7 @@ export default function App() {
     loadFont();
 
     // Cache the images for the HomeScreen
-    // cacheImages();
+    cacheImages();
   }, []);
 
   if (!fontLoaded) {

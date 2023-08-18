@@ -1,3 +1,4 @@
+import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   View,
@@ -20,6 +21,7 @@ const LoadingScreen = () => {
         style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }] }}
       />
       <Text style={styles.loadingText}>Loading the application</Text>
+      <StatusBar style="light" />
     </View>
   );
 };

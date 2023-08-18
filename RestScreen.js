@@ -69,14 +69,14 @@ const RestScreen = ({ route, navigation }) => {
   }, [timer]);
 
   // Problem needs to be cached at the start up of the app
-  useEffect(() => {
-    const cacheIcon = async () => {
-      await Asset.fromModule(
-        require("./assets/Others/heart-rest.png")
-      ).downloadAsync();
-    };
-    cacheIcon();
-  }, []);
+  // useEffect(() => {
+  //   const cacheIcon = async () => {
+  //     await Asset.fromModule(
+  //       require("./assets/Others/heart-rest.png")
+  //     ).downloadAsync();
+  //   };
+  //   cacheIcon();
+  // }, []);
 
   const handleNext = () => {
     if (currentIndex < exerciseList.length - 1) {
