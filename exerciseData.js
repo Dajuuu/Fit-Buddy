@@ -1,4 +1,19 @@
+// Declare the rest time - helpful to estimate the length of the workout
 const restTime = 45;
+
+// All data for all exercises, for particular workouts
+// It takes the data as follows:
+
+// ├── Workout type
+// │   ├── Difficulty
+// │   │   ├── Name of the exercise: -
+// │   │   ├── Repetitions: -
+// │   │   ├── Image: -
+// │   │   ├── Kcal: -
+// │   │   └── Time: -
+
+//------
+
 const exerciseData = {
   Arms: {
     "Easy 1": [

@@ -13,7 +13,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 // Get the height of the device
 const windowHeight = Dimensions.get("window").height;
 
-const CustomHeader = ({ title }) => {
+export default CustomHeader = ({ title }) => {
   // Access the Navigation
   const navigation = useNavigation();
   // handles the settings overlay
@@ -169,5 +169,3 @@ const styles = StyleSheet.create({
     fontFamily: "TitleFont",
   },
 });
-
-export default CustomHeader;
