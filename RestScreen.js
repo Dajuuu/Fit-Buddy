@@ -72,7 +72,7 @@ const RestScreen = ({ route, navigation }) => {
   useEffect(() => {
     const cacheIcon = async () => {
       await Asset.fromModule(
-        require("./assets/heart-rest.png")
+        require("./assets/Others/heart-rest.png")
       ).downloadAsync();
     };
     cacheIcon();
@@ -110,7 +110,7 @@ const RestScreen = ({ route, navigation }) => {
         <Text style={styles.text}>Take a rest</Text>
         {/* Add an Image component */}
         <Animated.Image
-          source={require("./assets/heart-rest.png")} // Replace with the path to your image
+          source={require("./assets/Others/heart-rest.png")} // Replace with the path to your image
           style={[styles.image, { transform: [{ scale: imageScale }] }]}
           resizeMode="cover"
         />

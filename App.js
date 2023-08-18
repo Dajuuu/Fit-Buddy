@@ -33,9 +33,9 @@ export default function App() {
   useEffect(() => {
     // Simulate loading time (replace with your actual loading logic)
 
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 20000);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
 
     const loadFont = async () => {
       await Font.loadAsync({
@@ -47,8 +47,7 @@ export default function App() {
     loadFont();
 
     // Cache the images for the HomeScreen
-    cacheImages();
-    setLoading(false);
+    // cacheImages();
   }, []);
 
   if (!fontLoaded) {
