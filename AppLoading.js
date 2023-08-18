@@ -15,6 +15,7 @@ const LoadingScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.appName}>FitBuddy</Text>
+      {/* Display circle indicator */}
       <ActivityIndicator
         color="white"
         size="large"
