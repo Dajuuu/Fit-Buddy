@@ -1,5 +1,3 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -17,12 +15,12 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
+    // TimerProvider enables to have the second counter, to measure the time needed to complete the workout
+    // AppProvider saves the data about the user - number of exercies done and total calories counter
+    // NavigationContainer enables navigation
     <TimerProvider>
       <AppProvider>
         <NavigationContainer>
-          {/* <StatusBar hidden></StatusBar> */}
-          {/* Hide system header for all of the screens */}
-          {/* TODO few screen will have header while some will not */}
           <Stack.Navigator
             initialRouteName="Home"
             screenOptions={{
@@ -41,11 +39,6 @@ export default function App() {
             />
             <Stack.Screen name="RestScreen" component={RestScreen} />
             <Stack.Screen name="WorkoutFinished" component={WorkoutFinished} />
-            {/* <Stack.Screen name="GameScreen" component={GameScreen} />
-            <Stack.Screen name="EasyLevels" component={EasyLevelsScreen} />
-            <Stack.Screen name="MediumLevels" component={MediumLevelsScreen} />
-            <Stack.Screen name="LevelScreen" component={LevelScreen} />
-            <Stack.Screen name="CrosswordScreen" component={CrosswordApp} /> */}
           </Stack.Navigator>
         </NavigationContainer>
       </AppProvider>
