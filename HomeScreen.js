@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  Image,
   ImageBackground,
   Modal,
 } from "react-native";
@@ -16,24 +15,26 @@ import { useTimerContext } from "./TimerContext";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { Asset } from "expo-asset";
 
-// import CustomHeader from "./CustomHeader";
-
 const GameScreen = ({ navigation }) => {
-  // Load fonts
+  // Load fonts hook
   const [fontLoaded, setFontLoaded] = useState(false);
+  // Import functions and variables for the calories and exercise count from the AppContext
   const {
     doneCount,
     totalCaloriesBurnt,
     resetLoadDoneCount,
     resetTotalCaloriesBurnt,
   } = useAppContext();
+  // Import function and variable for the timer from the TimerContext
   const { stopTimer, resetTimer } = useTimerContext();
   // Show delete progress overlay
   const [showOverlay, setShowOverlay] = useState(false);
 
   useEffect(() => {
+    // Declare the overlay to initially stay hidden
     setShowOverlay(false);
 
+    // Load fonts
     const loadFont = async () => {
       await Font.loadAsync({
         TitleFont: require("./assets/fonts/JosefinSans-Regular.ttf"),
@@ -43,6 +44,7 @@ const GameScreen = ({ navigation }) => {
     };
     loadFont();
 
+    // Cache the images for the HomeScreen
     const cacheIcon = async () => {
       await Asset.fromModule(
         require("./assets/HomeScreen/arms-workout.png")
@@ -97,7 +99,7 @@ const GameScreen = ({ navigation }) => {
     },
   ];
 
-  const handleDifficultyPress = (type) => {
+  const handleWorkoutTypePress = (type) => {
     // Small fix for the route parameters for the EasyLevels
     // TypeError: Cannot read property 'levelCompleted' of undefined
     navigation.navigate("ExerciseDifficulty", {
@@ -185,7 +187,7 @@ const GameScreen = ({ navigation }) => {
               key={index}
               style={[styles.difficultyBox]}
               onPress={() => {
-                handleDifficultyPress(workout.type);
+                handleWorkoutTypePress(workout.type);
                 stopTimer();
                 resetTimer();
               }}

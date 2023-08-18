@@ -14,30 +14,32 @@ import CustomHeader from "./CustomHeader";
 import { useTimerContext } from "./TimerContext";
 import { Asset } from "expo-asset";
 
-const windowHeight = Dimensions.get("window").height;
+// Get the width of the screen
 const windowWidth = Dimensions.get("window").width;
 
+// Import the data for exercises from file
 import exerciseData from "./exerciseData";
 
 const ExerciseScreen = ({ route }) => {
+  //
   const { workoutDifficulty, workoutType } = route.params;
 
-  // More caching needed
-  useEffect(() => {
-    // Preload images
-    const cacheIcon = async () => {
-      await Asset.fromModule(
-        require("./assets/ArmsExercises/easy1_bicepCurl.gif")
-      ).downloadAsync();
-      await Asset.fromModule(
-        require("./assets/ArmsExercises/easy1_hammerCurl.gif")
-      ).downloadAsync();
-      await Asset.fromModule(
-        require("./assets/ArmsExercises/easy1_wristCurl.gif")
-      ).downloadAsync();
-    };
-    cacheIcon();
-  }, []);
+  // // More caching needed
+  // useEffect(() => {
+  //   // Preload images
+  //   const cacheIcon = async () => {
+  //     await Asset.fromModule(
+  //       require("./assets/ArmsExercises/easy1_bicepCurl.gif")
+  //     ).downloadAsync();
+  //     await Asset.fromModule(
+  //       require("./assets/ArmsExercises/easy1_hammerCurl.gif")
+  //     ).downloadAsync();
+  //     await Asset.fromModule(
+  //       require("./assets/ArmsExercises/easy1_wristCurl.gif")
+  //     ).downloadAsync();
+  //   };
+  //   cacheIcon();
+  // }, []);
 
   const getExerciseList = (workoutType, workoutDifficulty) => {
     if (

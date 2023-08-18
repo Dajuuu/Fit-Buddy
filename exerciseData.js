@@ -297,7 +297,6 @@ const exerciseData = {
         time: 40 + restTime,
       },
     ],
-    // Add more levels and exercises for Arms...
   },
   Legs: {
     "Easy 1": [
@@ -544,8 +543,6 @@ const exerciseData = {
         time: 50 + restTime,
       },
     ],
-
-    // Add more levels and exercises for Legs...
   },
   ABS: {
     "Easy 1": [
