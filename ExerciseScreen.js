@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import CustomHeader from "./CustomHeader";
 import { useTimerContext } from "./TimerContext";
-import { Asset } from "expo-asset";
 
 // Get the width of the screen
 const windowWidth = Dimensions.get("window").width;
@@ -20,27 +19,13 @@ const windowWidth = Dimensions.get("window").width;
 // Import the data for exercises from file
 import exerciseData from "./exerciseData";
 
-const ExerciseScreen = ({ route }) => {
-  //
+export default ExerciseScreen = ({ route }) => {
+  // Paramaters taken from previous screen
   const { workoutDifficulty, workoutType } = route.params;
 
-  // // More caching needed
-  // useEffect(() => {
-  //   // Preload images
-  //   const cacheIcon = async () => {
-  //     await Asset.fromModule(
-  //       require("./assets/ArmsExercises/easy1_bicepCurl.gif")
-  //     ).downloadAsync();
-  //     await Asset.fromModule(
-  //       require("./assets/ArmsExercises/easy1_hammerCurl.gif")
-  //     ).downloadAsync();
-  //     await Asset.fromModule(
-  //       require("./assets/ArmsExercises/easy1_wristCurl.gif")
-  //     ).downloadAsync();
-  //   };
-  //   cacheIcon();
-  // }, []);
-
+  // Function that takes the data from exerciseData for specific difficulty and workout type
+  // If something does not exist or is missing, then simply display nothing
+  // This is to make sure that no error is present
   const getExerciseList = (workoutType, workoutDifficulty) => {
     if (
       exerciseData[workoutType] &&
@@ -51,38 +36,31 @@ const ExerciseScreen = ({ route }) => {
       return [];
     }
   };
+
+  // Get the data for a workout type and difficulty user chose
   const exerciseList = getExerciseList(workoutType, workoutDifficulty);
 
-  const { secondsTimer, startTimer, stopTimer, resetTimer } = useTimerContext();
+  // Get the functions for timer from the TimerContext
+  const { startTimer, stopTimer, resetTimer } = useTimerContext();
 
-  // useEffect(() => {
-  //   startTimer();
-  // }, []);
   // Access the navigation prop
   const navigation = useNavigation();
-  // State to keep track of the current exercise index
-  const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
 
-  // Function to handle the "Next" button press
-  const handleNextExercise = () => {
-    if (currentExerciseIndex < exerciseList.length - 1) {
-      setCurrentExerciseIndex(currentExerciseIndex + 1);
-    }
-  };
+  // Display the current exercise from the exerciseList, based on the index.
+  // Starting from the first one
+  const exercise = exerciseList[0];
 
-  const exercise = exerciseList[currentExerciseIndex];
-
+  // Pass the the data to the next screen
   const handleViewDetails = () => {
     navigation.navigate("WorkoutDetailsScreen", {
       exercise: exercise,
       exerciseList: exerciseList,
-      currentIndex: currentExerciseIndex,
+      // Current index indicates, which position of the exercises list to start from
+      currentIndex: 0,
     });
   };
-  // Exercise data organized by workout type and level
-  // TODO import as separate file
 
-  // Calculate the total kcal for the level
+  // Calculate the total kcal for the given workout
   const totalKcal = exerciseList.reduce(
     (total, exercise) => total + exercise.kcal,
     0
@@ -104,9 +82,8 @@ const ExerciseScreen = ({ route }) => {
   return (
     <View style={styles.container}>
       <CustomHeader title={workoutDifficulty} />
-      {/* <Text style={styles.title}>
-        {workoutType} {workoutDifficulty}
-      </Text> */}
+      {/* Change the style depending whether it is a Yoga or not */}
+      {/* For yoga there is not kcal values, so the styling applied for the info box is different */}
       <View
         style={
           workoutType === "Yoga"
@@ -114,22 +91,21 @@ const ExerciseScreen = ({ route }) => {
             : styles.infoContainer
         }
       >
-        {/* TODO change the name of the totalKcal */}
-
         <View style={[styles.totalTimeContainer, styles.center]}>
-          <Text style={styles.totalKcal}>Estimated Time:</Text>
-          <Text style={styles.totalKcalValue}>{totalTimeFormatted}</Text>
+          <Text style={styles.infoText}>Estimated Time:</Text>
+          <Text style={styles.infoTextValue}>{totalTimeFormatted}</Text>
         </View>
 
+        {/* If it is yoga, do not display the Kcal information */}
         {workoutType !== "Yoga" && (
           <View style={[styles.totalKcalContainer, styles.center]}>
-            <Text style={styles.totalKcal}>Total Kcal:</Text>
-            <Text style={styles.totalKcalValue}>{totalKcal}</Text>
+            <Text style={styles.infoText}>Total Kcal:</Text>
+            <Text style={styles.infoTextValue}>{totalKcal}</Text>
           </View>
         )}
       </View>
       <ScrollView style={{ width: "100%" }}>
-        {/* Display the list of exercises */}
+        {/* Display the list of exercises and all information associated */}
         <View style={styles.exerciseListContainer}>
           {exerciseList.map((exercise, index) => (
             <View key={index} style={styles.exerciseItem}>
@@ -187,64 +163,41 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "85%",
     alignItems: "center",
-    // marginBottom: 20,
     marginTop: 10,
     backgroundColor: "rgba(71, 78, 84,0.6)",
     padding: 10,
     borderRadius: 8,
   },
-  exerciseDetails: {
-    fontSize: 14,
-    color: "white",
-    // fontFamily: "TitleFontBold",
-  },
-
   infoContainer: {
     flexDirection: "row",
-    // alignItems: "flex-start",
     width: "90%",
     height: 100,
     borderRadius: 8,
-    // margin: 10,
     justifyContent: "space-between",
     alignItems: "center",
-    // marginBottom: 10,
     backgroundColor: "rgba(24, 27, 32, 1)",
     paddingHorizontal: 15,
-    // borderBottomWidth: 12,
-    // borderLeftWidth: 12,
   },
   infoContainerYoga: {
     width: "90%",
     height: 100,
     borderRadius: 8,
-    // justifyContent: "space-between",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "rgba(24, 27, 32, 1)",
-    // paddingHorizontal: 15,
   },
-  totalKcalValue: {
+  infoTextValue: {
     color: "white",
     fontSize: 25,
-    // fontWeight: "bold",
     fontFamily: "TitleFontBold",
   },
-  totalKcal: {
+  infoText: {
     fontSize: 22,
     color: "white",
     fontFamily: "TitleFont",
-    // marginTop: 20,
   },
-  // infoContainer: {
-  //   flexDirection: "row",
-
-  //   paddingHorizontal: 20,
-  //   marginTop: 20,
-  // },
   totalTimeContainer: {
     alignItems: "flex-start",
-    // fontFamily: "TitleFontBold",
   },
   totalKcalContainer: {
     alignItems: "flex-end",
@@ -261,7 +214,6 @@ const styles = StyleSheet.create({
     flex: 3,
     maxWidth: windowWidth * 0.4,
   },
-  // TODO change the size of the image
   exerciseImage: {
     width: 120,
     height: 150,
@@ -296,5 +248,3 @@ const styles = StyleSheet.create({
     fontFamily: "TitleFontBold",
   },
 });
-
-export default ExerciseScreen;

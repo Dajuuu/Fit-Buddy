@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
     marginTop: 40,
     textAlign: "center",
     color: "white",
-    fontFamily: "TitleFont",
+    fontFamily: "TitleFontBold",
   },
   appName: {
     fontSize: 40,
     marginBottom: windowWidth / 3,
     textAlign: "center",
     color: "white",
-    fontFamily: "TitleFontBold",
+    fontFamily: "TitleFont",
   },
 });
