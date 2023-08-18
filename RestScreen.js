@@ -4,18 +4,14 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Image,
   Animated,
 } from "react-native";
 import { Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { Asset } from "expo-asset";
 
 const windowHeight = Dimensions.get("window").height;
 
-const RestScreen = ({ route, navigation }) => {
-  const imageWidth = useRef(new Animated.Value(100)).current;
-  const imageHeight = useRef(new Animated.Value(100)).current;
+export default RestScreen = ({ route, navigation }) => {
   const imageScale = new Animated.Value(1);
 
   useEffect(() => {
@@ -45,7 +41,7 @@ const RestScreen = ({ route, navigation }) => {
     return () => animationLoop.stop();
   }, [imageScale]);
 
-  const { exercise, exerciseList, currentIndex } = route.params;
+  const { exerciseList, currentIndex } = route.params;
   const [timer, setTimer] = useState(45);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -61,22 +57,12 @@ const RestScreen = ({ route, navigation }) => {
     return () => clearInterval(interval);
   }, [isPaused, timer]);
 
-  // Automatically handleNext when the timer reaches zero
+  // Automatically handleNext (go to the next exercise) when the timer reaches zero
   useEffect(() => {
     if (timer === 0) {
       // handleNext();
     }
   }, [timer]);
-
-  // Problem needs to be cached at the start up of the app
-  // useEffect(() => {
-  //   const cacheIcon = async () => {
-  //     await Asset.fromModule(
-  //       require("./assets/Others/heart-rest.png")
-  //     ).downloadAsync();
-  //   };
-  //   cacheIcon();
-  // }, []);
 
   const handleNext = () => {
     if (currentIndex < exerciseList.length - 1) {
@@ -89,17 +75,10 @@ const RestScreen = ({ route, navigation }) => {
         exerciseList: exerciseList,
         currentIndex: currentIndex + 1,
       });
-    } else {
-      // If there are no more exercises, navigate to the desired screen (replace "NextScreen" with your desired screen name)
-      navigation.navigate("NextScreen");
     }
   };
 
-  const handleSkip = () => {
-    // Navigate to the next screen after rest (you can replace "NextScreen" with your desired screen name)
-    navigation.goBack();
-  };
-
+  // Pause/Resume rest timer
   const handlePauseResume = () => {
     setIsPaused((prevIsPaused) => !prevIsPaused);
   };
@@ -108,34 +87,30 @@ const RestScreen = ({ route, navigation }) => {
     <View style={styles.container}>
       <View style={styles.containerUpperHalf}>
         <Text style={styles.text}>Take a rest</Text>
-        {/* Add an Image component */}
         <Animated.Image
-          source={require("./assets/Others/heart-rest.png")} // Replace with the path to your image
+          source={require("./assets/Others/heart-rest.png")}
           style={[styles.image, { transform: [{ scale: imageScale }] }]}
           resizeMode="cover"
         />
       </View>
       <View style={styles.containerBottomHalf}>
+        {/* If the timer has more than 10 seconds change the text accordingly */}
         {timer >= 10 ? (
           <Text style={styles.timer}>00:{timer}</Text>
         ) : (
           <Text style={styles.timer}>00:0{timer}</Text>
         )}
         <TouchableOpacity style={styles.button} onPress={handlePauseResume}>
+          {/* Change the icon on the button, depending on the state */}
           <Text style={styles.buttonText}>
             {isPaused ? (
-              <Icon
-                name="play"
-                style={[styles.buttonIconArrowLeft, { color: "white" }]}
-              />
+              <Icon name="play" style={[styles.buttonIcon]} />
             ) : (
-              <Icon
-                name="pause"
-                style={[styles.buttonIconArrowLeft, { color: "white" }]}
-              />
+              <Icon name="pause" style={[styles.buttonIcon]} />
             )}
           </Text>
         </TouchableOpacity>
+        {/* Go to next exercise button */}
         <TouchableOpacity style={styles.buttonNext} onPress={handleNext}>
           <Text style={styles.buttonText}>Go to the next exercise</Text>
         </TouchableOpacity>
@@ -152,27 +127,21 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(40, 44, 46,1)",
   },
   containerUpperHalf: {
-    // flex: 1,
-    height: windowHeight * 0.5, // Set the height to 50% of the screen height
+    height: windowHeight * 0.5,
     width: "100%",
     backgroundColor: "rgba(46,89,47,1)",
-    position: "absolute", // Position it absolutely at the top of the screen
+    position: "absolute",
     top: 0,
   },
   containerBottomHalf: {
     top: windowHeight / 5,
-    // height: windowHeight * 0.1, // Set the height to 50% of the screen height
     width: "100%",
-    // backgroundColor: "rgba(46,89,47,1)",
-    // top: 0,
     alignItems: "center",
-    // marginTop: 120,
   },
   text: {
     fontSize: 40,
     fontFamily: "TitleFontBold",
     color: "white",
-    // marginTop: 250,
     alignSelf: "center",
     paddingTop: windowHeight / 10,
   },
@@ -189,21 +158,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     borderRadius: 100,
     marginBottom: 10,
-    // marginTop: 50,
-    // width: 280,
-    // height: 70,
   },
-
   buttonNext: {
     backgroundColor: "rgba(49,74,52,1)",
     borderRadius: 8,
     marginTop: 30,
-    // marginTop: 50,
     width: 280,
-    // height: 60,
     paddingVertical: 15,
-    justifyContent: "center", // Center the content vertically
-    alignItems: "center", // Center the content horizontally
+    justifyContent: "center",
+    alignItems: "center",
   },
   buttonText: {
     color: "white",
@@ -214,14 +177,12 @@ const styles = StyleSheet.create({
   image: {
     alignSelf: "center",
     justifyContent: "center",
-    // top: "30%",
     width: 200,
     height: 200,
   },
-  buttonIconArrowLeft: {
+  buttonIcon: {
     alignSelf: "center",
     fontSize: 25,
+    color: "white",
   },
 });
-
-export default RestScreen;
