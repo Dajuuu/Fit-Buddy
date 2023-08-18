@@ -14,8 +14,17 @@ import WorkoutFinished from "./WorkoutFinished";
 
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
+import imageAssets from "./generatedImageArray";
 
 const Stack = createStackNavigator();
+
+const cacheImages = async () => {
+  await Promise.all(
+    imageAssets.map(async (image) => {
+      await Asset.fromModule(image).downloadAsync();
+    })
+  );
+};
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -23,9 +32,10 @@ export default function App() {
 
   useEffect(() => {
     // Simulate loading time (replace with your actual loading logic)
-    setTimeout(() => {
-      setLoading(false);
-    }, 20000);
+
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 20000);
 
     const loadFont = async () => {
       await Font.loadAsync({
@@ -37,24 +47,8 @@ export default function App() {
     loadFont();
 
     // Cache the images for the HomeScreen
-    const cacheIcon = async () => {
-      await Asset.fromModule(
-        require("./assets/HomeScreen/arms-workout.png")
-      ).downloadAsync();
-      await Asset.fromModule(
-        require("./assets/HomeScreen/legs-workout.png")
-      ).downloadAsync();
-      await Asset.fromModule(
-        require("./assets/HomeScreen/abs-workout.jpg")
-      ).downloadAsync();
-      await Asset.fromModule(
-        require("./assets/HomeScreen/fbw-workout.jpg")
-      ).downloadAsync();
-      await Asset.fromModule(
-        require("./assets/HomeScreen/yoga-workout.png")
-      ).downloadAsync();
-    };
-    cacheIcon();
+    cacheImages();
+    setLoading(false);
   }, []);
 
   if (!fontLoaded) {
