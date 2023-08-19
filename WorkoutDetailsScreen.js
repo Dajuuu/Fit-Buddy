@@ -1,6 +1,5 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useContext } from "react";
-
 import {
   View,
   Text,
@@ -9,16 +8,16 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
-import { CommonActions } from "@react-navigation/native";
-import CustomHeader from "./CustomHeader";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { AppContext } from "./AppContext";
 
+// Get the screens height
 const windowHeight = Dimensions.get("window").height;
 
 const WorkoutDetailsScreen = ({ route, navigation }) => {
+  // Imported parameters
   const { exercise, exerciseList, currentIndex } = route.params;
-  // TODO Zmiana variable
+  // Import functions from the AppContext
   const {
     increaseDoneCount,
     increaseTotalCaloriesBurnt,
@@ -44,6 +43,7 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
   };
   // Function to handle the "Previous" button press
   const handlePreviousExercise = () => {
+    // Make sure the array does not go to negative index values
     if (currentIndex > 0) {
       // Get the previous exercise from the exerciseList
       const previousExercise = exerciseList[currentIndex - 1];
@@ -57,19 +57,21 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
   };
 
   const handleGoBack = () => {
-    // Navigate back to the SelectedWorkout screen
+    // Navigate back to the Home screen
     navigation.navigate("Home");
   };
 
+  // Function that takes care of things when user confirm that a given exercise is completed
   const handleDone = () => {
-    // Burnt calories
+    // Increment the total Burnt calories by user
     increaseTotalCaloriesBurnt(exercise.kcal);
-    // Increment the number of exercises done by the user
+    // Increase current counter of burnt calories
+    increaseCurrentCaloriesBurnt(exercise.kcal);
+    // Increment the total number of exercises done by the user
     increaseDoneCount();
     // Increase the count of exercise in current workout
     increaseCurrentExerciseDone();
-    // Increase current counter of burnt calories
-    increaseCurrentCaloriesBurnt(exercise.kcal);
+
     if (currentIndex === exerciseList.length - 1) {
       // If the current exercise is the last one, navigate to the WorkoutFinished screen
       navigation.navigate("WorkoutFinished");
@@ -88,10 +90,8 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.upperButtons}>
-        <TouchableOpacity
-          style={[styles.leftButton, styles.button]}
-          onPress={handleGoBack}
-        >
+        {/* Go back to the home screen button */}
+        <TouchableOpacity style={styles.button} onPress={handleGoBack}>
           <Icon name="arrow-left" style={[styles.leftButton]} />
         </TouchableOpacity>
       </View>
@@ -104,44 +104,37 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
 
         {/* Display the exercise details (kcal and time) */}
         <Text style={styles.exerciseDetails}>{exercise.repetitionsOrTime}</Text>
-        {/* <Text style={styles.exerciseDetails}>{exercise.kcal} kcal</Text> */}
       </View>
 
+      {/* Buttons at the button */}
       <View style={styles.buttonsContainer}>
         {/* Previous button */}
+        {/* When this is the first exercise, disable and change the opacity of the button */}
         <TouchableOpacity
           onPress={handlePreviousExercise}
-          style={[
-            styles.nextButton,
-            { opacity: currentIndex === 0 ? 0.5 : 1 }, // Apply different opacity when disabled
-          ]}
-          disabled={currentIndex === 0} // Disable the button if currentIndex is 0
+          style={[styles.nextButton, { opacity: currentIndex === 0 ? 0.5 : 1 }]}
+          disabled={currentIndex === 0}
         >
-          {/* <Text style={styles.nextButtonText}>Previous</Text> */}
           {/* Change the color of the button, depending on which exercise is the user */}
           <Icon
             name="arrow-left"
             style={[
-              styles.buttonIconArrowLeft,
+              styles.buttonIconArrow,
               { color: currentIndex === 0 ? "gray" : "white" },
             ]}
           />
         </TouchableOpacity>
+
         {/* Done Button */}
         <TouchableOpacity onPress={handleDone} style={styles.doneButton}>
-          {/* <Text style={styles.doneButtonText}>Done</Text> */}
-          <Icon name="check-circle" style={[styles.buttonIconCheck]} />
+          <Icon name="check-circle" style={styles.buttonIconCheck} />
         </TouchableOpacity>
         {/* Next button */}
         <TouchableOpacity
           onPress={handleNextExercise}
           style={styles.nextButton}
         >
-          <Icon
-            name="arrow-right"
-            style={[styles.buttonIconArrowLeft, { color: "white" }]}
-          />
-          {/* <Text style={styles.nextButtonText}>Next</Text> */}
+          <Icon name="arrow-right" style={styles.buttonIconArrow} />
         </TouchableOpacity>
       </View>
       <StatusBar style="light" />
@@ -152,21 +145,17 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: "center",
-    // justifyContent: "center",
     backgroundColor: "rgba(40, 44, 46,1)",
   },
   exerciseImage: {
     width: "100%",
     height: 300,
     top: windowHeight * 0.05,
-    // borderRadius: 100,
     marginBottom: 20,
   },
   exerciseName: {
     fontFamily: "TitleFontBold",
     fontSize: 36,
-    // fontWeight: "bold",
     color: "white",
     marginBottom: 10,
     marginTop: 50,
@@ -175,7 +164,6 @@ const styles = StyleSheet.create({
   },
   exerciseDetails: {
     fontSize: 50,
-    // marginTop: 50,
     padding: 20,
     color: "#449944",
     fontFamily: "TitleFont",
@@ -186,80 +174,47 @@ const styles = StyleSheet.create({
     zIndex: -100,
   },
   nextButton: {
-    // backgroundColor: "#007BFF",
-
     padding: 20,
-    // paddingVertical: 10,
     borderRadius: 100,
-    // marginTop: 20,
-  },
-  nextButtonBack: {
-    color: "white",
-    backgroundColor: "#007BFF",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 5,
-    marginTop: 60,
-  },
-  nextButtonText: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-
-  doneButtonText: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
   },
   leftButton: {
     alignSelf: "center",
     fontSize: 22,
-    // marginRight: 10,
-    // padding: 12,
-    // paddingHorizontal: 14,
-    // backgroundColor: "#ebb381",
-    // borderRadius: 20,
   },
   upperButtons: {
     position: "absolute",
     flexDirection: "row",
     alignItems: "flex-end",
-    // backgroundColor: "#f7d7ba",
     paddingHorizontal: 20,
-    // borderBottomWidth: 1,
-    // borderBottomColor: "#ccc",
     marginTop: windowHeight * 0.08,
     marginBottom: 10,
     paddingBottom: 15,
   },
   buttonsContainer: {
-    flexDirection: "row", // Align buttons horizontally
-    justifyContent: "space-between", // Stretch buttons from left to right
-    alignItems: "center", // Center buttons vertically
-    position: "absolute", // Position the container at the bottom of the screen
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    position: "absolute",
     bottom: 30,
     left: 0,
     right: 0,
-    paddingHorizontal: 50, // Add horizontal padding to create space between buttons
-    paddingVertical: 10, // Add vertical padding to create space between buttons and screen edge
-    // backgroundColor: "rgba(0, 0, 0, 0.5)", // Add background color to the container (optional)
+    paddingHorizontal: 50,
+    paddingVertical: 10,
   },
   buttonIconCheck: {
     alignSelf: "center",
     fontSize: 50,
   },
-  buttonIconArrowLeft: {
+  buttonIconArrow: {
     alignSelf: "center",
     fontSize: 30,
+    color: "white",
   },
   doneButton: {
-    // flex: 1,
     backgroundColor: "rgba(56,157,60,1)",
     padding: 20,
     borderRadius: 100,
     color: "white",
-    // marginTop: 20,
   },
 });
 
