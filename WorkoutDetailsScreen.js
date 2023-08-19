@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
   },
   exerciseName: {
     fontFamily: "TitleFontBold",
-    fontSize: 36,
+    fontSize: windowHeight * 0.05,
     color: "white",
     marginBottom: 10,
     marginTop: 50,
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   exerciseDetails: {
-    fontSize: 50,
+    fontSize: windowHeight * 0.05,
     padding: 20,
     color: "#449944",
     fontFamily: "TitleFont",
