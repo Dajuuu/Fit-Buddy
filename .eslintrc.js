@@ -6,7 +6,9 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        // Make sure the jest testing functions are visible and recognised
+        "plugin:jest/recommended",
     ],
     "overrides": [
         {
@@ -28,8 +30,7 @@ module.exports = {
         "react"
     ],
     "rules": {
-            // Add rule to ignore the require statement for assets
-            // To omit the missing props validation errors
+    // To omit the missing props validation errors
     "react/prop-types": "off"
     }
 }
