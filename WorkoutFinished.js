@@ -1,5 +1,3 @@
-// WorkoutFinished.js
-
 import React, { useEffect } from "react";
 import {
   View,
@@ -7,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  Vibration,
 } from "react-native";
 import { useTimerContext } from "./TimerContext";
 import { useAppContext } from "./AppContext";
@@ -15,6 +14,9 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 const windowHeight = Dimensions.get("window").height;
 
 const WorkoutFinished = ({ navigation }) => {
+  // When user reaches the end of the workout - make a small vibration of the device
+  Vibration.vibrate(1000); // Vibrate for 1 second
+
   const { secondsTimer, stopTimer, resetTimer } = useTimerContext();
   const {
     currentExerciseDone,
