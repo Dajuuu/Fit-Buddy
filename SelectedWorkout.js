@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   pageInBuildingText: {
-    fontSize: 18,
     fontFamily: "TitleFontBold",
     fontSize: 30,
     color: "white",

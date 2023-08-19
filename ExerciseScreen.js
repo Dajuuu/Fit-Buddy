@@ -19,7 +19,7 @@ const windowWidth = Dimensions.get("window").width;
 // Import the data for exercises from file
 import exerciseData from "./exerciseData";
 
-export default ExerciseScreen = ({ route }) => {
+const ExerciseScreen = ({ route }) => {
   // Paramaters taken from previous screen
   const { workoutDifficulty, workoutType } = route.params;
 
@@ -248,3 +248,4 @@ const styles = StyleSheet.create({
     fontFamily: "TitleFontBold",
   },
 });
+export default ExerciseScreen;

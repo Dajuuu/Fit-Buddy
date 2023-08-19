@@ -13,7 +13,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 // Get the height of the device
 const windowHeight = Dimensions.get("window").height;
 
-export default CustomHeader = ({ title }) => {
+const CustomHeader = ({ title }) => {
   // Access the Navigation
   const navigation = useNavigation();
   // handles the settings overlay
@@ -48,9 +48,9 @@ export default CustomHeader = ({ title }) => {
             <Text style={styles.overlayText}>🥈 Medium</Text>
             <Text style={styles.overlayText}>🥇 Hard</Text>
             <Text style={styles.overlayText}>
-              Then, you'll see a list of exercises for chosen difficulty, along
-              with estimated completion time. Total calories are also visible,
-              except for Yoga.{" "}
+              Then, you will see a list of exercises for chosen difficulty,
+              along with estimated completion time. Total calories are also
+              visible, except for Yoga.{" "}
             </Text>
             <Text style={styles.overlayText}>
               Begin your workout and pace yourself. Take short breaks between
@@ -104,10 +104,6 @@ const styles = StyleSheet.create({
   },
   buttonsSpacing: {
     paddingHorizontal: 14,
-  },
-  buttonText: {
-    fontSize: 16,
-    color: "#333",
   },
   buttonIcon: {
     fontSize: 26,
@@ -169,3 +165,5 @@ const styles = StyleSheet.create({
     fontFamily: "TitleFont",
   },
 });
+
+export default CustomHeader;

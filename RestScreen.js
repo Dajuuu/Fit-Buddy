@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -11,7 +11,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 
 const windowHeight = Dimensions.get("window").height;
 
-export default RestScreen = ({ route, navigation }) => {
+const RestScreen = ({ route, navigation }) => {
   const imageScale = new Animated.Value(1);
 
   useEffect(() => {
@@ -186,3 +186,5 @@ const styles = StyleSheet.create({
     color: "white",
   },
 });
+
+export default RestScreen;

@@ -9,13 +9,11 @@ import {
   ImageBackground,
   Modal,
 } from "react-native";
-import * as Font from "expo-font";
 import { useAppContext } from "./AppContext";
 import { useTimerContext } from "./TimerContext";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { Asset } from "expo-asset";
 
-export default GameScreen = ({ navigation }) => {
+const GameScreen = ({ navigation }) => {
   // Import functions and variables for the calories and exercise count from the AppContext
   const {
     doneCount,
@@ -288,3 +286,4 @@ const styles = StyleSheet.create({
     fontFamily: "TitleFont",
   },
 });
+export default GameScreen;
