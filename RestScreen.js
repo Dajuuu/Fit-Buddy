@@ -60,7 +60,7 @@ export default RestScreen = ({ route, navigation }) => {
   // Automatically handleNext (go to the next exercise) when the timer reaches zero
   useEffect(() => {
     if (timer === 0) {
-      // handleNext();
+      handleNext();
     }
   }, [timer]);
 

@@ -1,3 +1,12 @@
+// ---***---
+// This file generate paths to all images/gifs that are inside the assets folder
+// Those images will be then cached
+// It takes all folders declared in the imageFolders array, and saves all file with appropriate extensions
+// --
+// If in the future more images would be imported or changed, then this script should be run once again
+//  to update all paths inside the generatedImagePathArray file.
+// Otherwise, the paths generated before do not need to be updated
+
 const fs = require("fs");
 const path = require("path");
 
