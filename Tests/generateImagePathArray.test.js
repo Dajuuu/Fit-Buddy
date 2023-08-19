@@ -21,7 +21,7 @@ describe("generateImagePathArray", () => {
     });
   });
 
-  it("should check if the declared folders are empty", () => {
+  it("should check if the declared folders are not empty", () => {
     const mockFolders = [
       "HomeScreen",
       "ABSExercises",
@@ -33,9 +33,9 @@ describe("generateImagePathArray", () => {
 
     mockFolders.forEach((folder) => {
       const folderPath = path.join(__dirname, "assets", folder);
-      fs.readdirSync.mockReturnValueOnce([]); // Mocking empty folder content
+      fs.readdirSync.mockReturnValueOnce(["mockfile.png"]); // Mocking non-empty folder content
       const files = fs.readdirSync(folderPath);
-      expect(files).toHaveLength(0);
+      expect(files.length).toBeGreaterThan(0);
     });
   });
 });
