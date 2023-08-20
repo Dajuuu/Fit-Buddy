@@ -23,11 +23,19 @@ describe("LoadingScreen", () => {
     const loadingText = getByTestId("loadingText"); // Use the correct test ID here
     const appName = getByTestId("appName"); // Use the correct test ID here
 
-    expect(container).toHaveStyle({ backgroundColor: "rgba(40, 44, 46,1)" });
+    expect(container).toHaveStyle({
+      backgroundColor: "rgba(40, 44, 46,1)",
+      alignItems: "center",
+      justifyContent: "center",
+    });
     expect(loadingText).toHaveStyle({
       color: "white",
       fontFamily: "TitleFontBold",
     });
-    expect(appName).toHaveStyle({ color: "white", fontFamily: "TitleFont" });
+    expect(appName).toHaveStyle({
+      color: "white",
+      fontFamily: "TitleFont",
+      textAlign: "center",
+    });
   });
 });

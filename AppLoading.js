@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "rgba(40, 44, 46,1)",
-    testID: "container",
   },
   loadingText: {
     fontSize: 18,
