@@ -13,7 +13,7 @@ import { useAppContext } from "./AppContext";
 import { useTimerContext } from "./TimerContext";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
-const GameScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation }) => {
   // Import functions and variables for the calories and exercise count from the AppContext
   const {
     doneCount,
@@ -286,4 +286,4 @@ const styles = StyleSheet.create({
     fontFamily: "TitleFont",
   },
 });
-export default GameScreen;
+export default HomeScreen;

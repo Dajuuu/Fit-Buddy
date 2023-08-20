@@ -31,7 +31,8 @@
     "react-native": "^0.72.4"
   },
   "jest": {
-    "preset": "jest-expo/universal"
+    "preset": "jest-expo",
+    "setupFiles": ["./jestSetupFile.js"]
   },
   "moduleNameMapper": {
     "^react-native$": "react-native-web"
