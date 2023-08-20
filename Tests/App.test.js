@@ -1,6 +1,22 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import HomeScreen from "../HomeScreen";
+import LoadingScreen from "../AppLoading";
+import SelectedWorkout from "../SelectedWorkout";
+
+import ExerciseScreen from "../ExerciseScreen";
+import WorkoutDetailsScreen from "../WorkoutDetailsScreen";
+import RestScreen from "../RestScreen";
+import WorkoutFinished from "../WorkoutFinished";
+
+// Mock the useNavigation hook
+jest.mock("@react-navigation/native", () => {
+  return {
+    useNavigation: jest.fn(),
+  };
+});
 
 // jest.mock("../AppContext");
 jest.mock("../AppContext", () => ({
@@ -38,11 +54,59 @@ describe("App Tests", () => {
     expect(() => require.resolve(boldFontPath)).not.toThrow();
   });
   it("should render HomeScreen", () => {
-    // Render the HomeScreen component
     // Render the HomeScreen component with the mocked context
     const { root } = render(<HomeScreen />);
 
     // Check if the rendered component is not null or empty
     expect(root).toBeTruthy();
   });
+
+  it("should render LoadingScreen", () => {
+    const { root } = render(<LoadingScreen />);
+
+    // Check if the rendered component is not null or empty
+    expect(root).toBeTruthy();
+  });
+  it("should render SelectedWorkout", () => {
+    // Mock the route.params object
+    const mockRoute = {
+      params: {
+        type: "someType", // Replace with the actual value needed for testing
+      },
+    };
+
+    // Mock the navigation object
+    useNavigation.mockReturnValue({
+      navigate: jest.fn(),
+    });
+    // Render the SelectedWorkoutScreen component with the mocked route prop
+    const { root } = render(<SelectedWorkout route={mockRoute} />);
+
+    // Check if the rendered component is not null or empty
+    expect(root).toBeTruthy();
+  });
+  // it("should render ExerciseScreen", () => {
+  //   const { root } = render(<ExerciseScreen />);
+
+  //   // Check if the rendered component is not null or empty
+  //   expect(root).toBeTruthy();
+  // });
+  // it("should render WorkoutDetailsScreen", () => {
+  //   const { root } = render(<WorkoutDetailsScreen />);
+
+  //   // Check if the rendered component is not null or empty
+  //   expect(root).toBeTruthy();
+  // });
+  // it("should render RestScreen", () => {
+  //   const { root } = render(<RestScreen />);
+
+  //   // Check if the rendered component is not null or empty
+  //   expect(root).toBeTruthy();
+  // });
+  // it("should render WorkoutFinished", () => {
+  //   const { root } = render(<WorkoutFinished />);
+
+  //   // Check if the rendered component is not null or empty
+  //   expect(root).toBeTruthy();
+  // });
 });
