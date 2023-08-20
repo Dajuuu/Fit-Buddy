@@ -13,15 +13,20 @@ const windowWidth = Dimensions.get("window").width;
 
 const LoadingScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.appName}>FitBuddy</Text>
+    <View style={styles.container} testID="container">
+      <Text style={styles.appName} testID="appName">
+        FitBuddy
+      </Text>
       {/* Display circle indicator */}
       <ActivityIndicator
         color="white"
         size="large"
+        testID="loading-indicator"
         style={{ transform: [{ scaleX: 2 }, { scaleY: 2 }] }}
       />
-      <Text style={styles.loadingText}>Loading the application</Text>
+      <Text style={styles.loadingText} testID="loadingText">
+        Loading the application
+      </Text>
       <StatusBar style="light" />
     </View>
   );
@@ -35,6 +40,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "rgba(40, 44, 46,1)",
+    testID: "container",
   },
   loadingText: {
     fontSize: 18,
