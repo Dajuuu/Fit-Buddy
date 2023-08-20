@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useContext } from "react";
+import React from "react";
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { AppContext } from "./AppContext";
+import { useAppContext } from "./AppContext";
 
 // Get the screens height
 const windowHeight = Dimensions.get("window").height;
@@ -23,7 +23,7 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
     increaseTotalCaloriesBurnt,
     increaseCurrentExerciseDone,
     increaseCurrentCaloriesBurnt,
-  } = useContext(AppContext);
+  } = useAppContext();
 
   // Function to handle the "Next" button press
   const handleNextExercise = () => {

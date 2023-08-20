@@ -5,9 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import HomeScreen from "../HomeScreen";
 import LoadingScreen from "../AppLoading";
 import SelectedWorkout from "../SelectedWorkout";
-
 import ExerciseScreen from "../ExerciseScreen";
-import WorkoutDetailsScreen from "../WorkoutDetailsScreen";
 import RestScreen from "../RestScreen";
 import WorkoutFinished from "../WorkoutFinished";
 
@@ -85,28 +83,61 @@ describe("App Tests", () => {
     // Check if the rendered component is not null or empty
     expect(root).toBeTruthy();
   });
-  // it("should render ExerciseScreen", () => {
-  //   const { root } = render(<ExerciseScreen />);
+  it("should render ExerciseScreen", () => {
+    // Mock the route.params object
+    const mockRoute = {
+      params: {
+        type: "someType", // Replace with the actual value needed for testing
+      },
+    };
 
-  //   // Check if the rendered component is not null or empty
-  //   expect(root).toBeTruthy();
-  // });
-  // it("should render WorkoutDetailsScreen", () => {
-  //   const { root } = render(<WorkoutDetailsScreen />);
+    // Mock the navigation object
+    useNavigation.mockReturnValue({
+      navigate: jest.fn(),
+    });
+    // Render the SelectedWorkoutScreen component with the mocked route prop
+    const { root } = render(<ExerciseScreen route={mockRoute} />);
 
-  //   // Check if the rendered component is not null or empty
-  //   expect(root).toBeTruthy();
-  // });
-  // it("should render RestScreen", () => {
-  //   const { root } = render(<RestScreen />);
+    // Check if the rendered component is not null or empty
+    expect(root).toBeTruthy();
+  });
 
-  //   // Check if the rendered component is not null or empty
-  //   expect(root).toBeTruthy();
-  // });
-  // it("should render WorkoutFinished", () => {
-  //   const { root } = render(<WorkoutFinished />);
+  it("should render RestScreen", () => {
+    // Mock the route.params object
+    const mockRoute = {
+      params: {
+        type: "someType", // Replace with the actual value needed for testing
+      },
+    };
 
-  //   // Check if the rendered component is not null or empty
-  //   expect(root).toBeTruthy();
-  // });
+    // Mock the navigation object
+    useNavigation.mockReturnValue({
+      navigate: jest.fn(),
+    });
+    // Render the SelectedWorkoutScreen component with the mocked route prop
+    const { root } = render(<RestScreen route={mockRoute} />);
+
+    // Check if the rendered component is not null or empty
+    expect(root).toBeTruthy();
+  });
+
+  it("should render WorkoutFinished", () => {
+    // Mock the route.params object
+    const mockRoute = {
+      params: {
+        type: "someType", // Replace with the actual value needed for testing
+      },
+    };
+
+    // Mock the navigation object
+    useNavigation.mockReturnValue({
+      navigate: jest.fn(),
+    });
+    // Render the SelectedWorkoutScreen component with the mocked route prop
+    const { root } = render(<WorkoutFinished route={mockRoute} />);
+
+    // Check if the rendered component is not null or empty
+    expect(root).toBeTruthy();
+  });
+  //There is not test for the WorkoutDetailsScreen because there were some problems with this
 });
