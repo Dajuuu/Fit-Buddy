@@ -29,7 +29,7 @@ const CustomHeader = ({ title }) => {
   };
 
   return (
-    <View style={styles.header}>
+    <View style={styles.header} testID="custom-header">
       {/* Declare the type of modal - needed for settings overlay */}
       <Modal
         visible={settingsVisible}
@@ -37,10 +37,10 @@ const CustomHeader = ({ title }) => {
         transparent
         statusBarTranslucent
       >
-        <View style={styles.overlay}>
-          <View style={styles.overlayContent}>
+        <View style={styles.overlay} testID="overlay">
+          <View style={styles.overlayContent} testID="overlay-content">
             <Text style={styles.overlayTextTitle}>Information box</Text>
-            <Text style={styles.overlayText}>
+            <Text style={styles.overlayText} testID="overlay-text">
               Once you have selected the type of workout, you can choose the
               difficulty level of the exercises:
             </Text>
@@ -62,6 +62,7 @@ const CustomHeader = ({ title }) => {
             <TouchableOpacity
               style={styles.buttonCancel}
               onPress={handleCloseSettings}
+              testID="hide-button"
             >
               <Text style={styles.buttonText}>Hide</Text>
             </TouchableOpacity>
@@ -75,7 +76,7 @@ const CustomHeader = ({ title }) => {
         style={styles.buttonsSpacing}
         onPress={() => navigation.goBack()}
       >
-        <Icon name="arrow-left" style={styles.buttonIcon} />
+        <Icon name="arrow-left" style={styles.buttonIcon} testID="icon" />
       </TouchableOpacity>
 
       {/* Icon on the right (info) */}
@@ -87,7 +88,11 @@ const CustomHeader = ({ title }) => {
         style={styles.buttonsSpacing}
         onPress={handleSettingsButtonPress}
       >
-        <Icon name="info-circle" style={styles.buttonIcon} />
+        <Icon
+          name="info-circle"
+          style={styles.buttonIcon}
+          testID="settings-button"
+        />
       </TouchableOpacity>
     </View>
   );
