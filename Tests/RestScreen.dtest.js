@@ -1,8 +1,7 @@
 import React from "react";
-import { render, fireEvent, act } from "@testing-library/react-native";
+import { render, fireEvent } from "@testing-library/react-native";
 import "@testing-library/jest-native/extend-expect";
 import RestScreen from "../RestScreen";
-import { Animated } from "react-native"; // Import Animated from react-native
 
 // Mock navigation functions
 const navigateMock = jest.fn();
