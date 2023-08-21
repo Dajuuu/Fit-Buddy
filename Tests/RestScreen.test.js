@@ -1,5 +1,6 @@
 import React from "react";
 import { render, fireEvent, act } from "@testing-library/react-native";
+import "@testing-library/jest-native/extend-expect";
 import RestScreen from "../RestScreen";
 import { Animated } from "react-native"; // Import Animated from react-native
 
@@ -84,5 +85,50 @@ describe("RestScreen", () => {
     });
     // Ensure that goBackMock was not called
     expect(goBackMock).toHaveBeenCalled();
+  });
+
+  it("should have the correct containerUpperHalf style", () => {
+    const { getByTestId } = render(
+      <RestScreen
+        route={route}
+        navigation={{ navigate: navigateMock, goBack: goBackMock }}
+      />
+    );
+
+    const startButton = getByTestId("container-upper-half");
+
+    expect(startButton).toHaveStyle({
+      width: "100%",
+      backgroundColor: "rgba(46,89,47,1)",
+      position: "absolute",
+      top: 0,
+    });
+  });
+
+  it("should have the correct containerBottomHalf style", () => {
+    const { getByTestId } = render(
+      <RestScreen
+        route={route}
+        navigation={{ navigate: navigateMock, goBack: goBackMock }}
+      />
+    );
+
+    const startButton = getByTestId("container-bottom-half");
+
+    expect(startButton).toHaveStyle({
+      width: "100%",
+      alignItems: "center",
+    });
+  });
+  it("should display Take a rest text", () => {
+    const { getByText } = render(
+      <RestScreen
+        route={route}
+        navigation={{ navigate: navigateMock, goBack: goBackMock }}
+      />
+    );
+
+    const estimatedTime = getByText("Take a rest");
+    expect(estimatedTime).toBeTruthy();
   });
 });

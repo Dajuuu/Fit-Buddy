@@ -85,7 +85,7 @@ const RestScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.containerUpperHalf}>
+      <View style={styles.containerUpperHalf} testID="container-upper-half">
         <Text style={styles.text}>Take a rest</Text>
         <Animated.Image
           source={require("./assets/Others/heart-rest.png")}
@@ -94,7 +94,7 @@ const RestScreen = ({ route, navigation }) => {
           testID="heart-image"
         />
       </View>
-      <View style={styles.containerBottomHalf}>
+      <View style={styles.containerBottomHalf} testID="container-bottom-half">
         {/* If the timer has more than 10 seconds change the text accordingly */}
         {timer >= 10 ? (
           <Text style={styles.timer}>00:{timer}</Text>
