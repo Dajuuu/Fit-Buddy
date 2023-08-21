@@ -56,18 +56,26 @@ const WorkoutFinished = ({ navigation }) => {
       <View style={styles.iconContainer}>
         <Icon name="check" style={[styles.iconStyle, { color: "white" }]} />
       </View>
-      <Text style={styles.title}>Workout Finished!</Text>
-      <Text style={styles.completedExercisesText}>
+      <Text style={styles.title} testID="title">
+        Workout Finished!
+      </Text>
+      <Text style={styles.completedExercisesText} testID="compl-text">
         Completed Exercises: {currentExerciseDone}
       </Text>
       <View style={styles.timeAndKcalContainer}>
-        <Text style={styles.text}>Time: {totalTimeFormatted}</Text>
+        <Text style={styles.text} testID="text">
+          Time: {totalTimeFormatted}
+        </Text>
         {/* If the exerciseType is Yoga or user just skipped all exercises - do not show the Kcal value*/}
         {currentCaloriesBurnt > 0 && (
           <Text style={styles.text}>Kcal: {currentCaloriesBurnt}</Text>
         )}
       </View>
-      <TouchableOpacity style={styles.startButton} onPress={handleDone}>
+      <TouchableOpacity
+        style={styles.startButton}
+        onPress={handleDone}
+        testID="done-button"
+      >
         <Text style={styles.startButtonText}>Done</Text>
       </TouchableOpacity>
     </View>
