@@ -2,11 +2,6 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
 import "@testing-library/jest-native/extend-expect";
 import HomeScreen from "../HomeScreen";
-import { handleWorkoutTypePress } from "../HomeScreen"; // Update this path
-
-const navigation = {
-  navigate: jest.fn(),
-};
 
 // Mock the dependencies
 jest.mock("../AppContext", () => ({
@@ -53,26 +48,6 @@ describe("HomeScreen", () => {
     // Assert that the overlay is shown (you can check its style or visibility)
     expect(overlayElement).toBeVisible(); // You can adjust this assertion as needed
   });
-
-  // it("should delete progress and reset counters when delete is confirmed", () => {
-  //   const { getByTestId } = render(<HomeScreen />);
-  //   const deleteButton = getByTestId("delete-button");
-
-  //   fireEvent.press(deleteButton);
-
-  //   // You can use assertions to verify that counters are reset and overlay is hidden
-  //   // ...
-  // });
-
-  // it("should hide overlay when cancel is pressed", () => {
-  //   const { getByTestId } = render(<HomeScreen />);
-  //   const cancelButton = getByTestId("cancel-button");
-
-  //   fireEvent.press(cancelButton);
-
-  //   // You can use assertions to verify that the overlay is hidden
-  //   // ...
-  // });
 
   it("should have the correct info Container style", () => {
     const { getByTestId } = render(<HomeScreen />);

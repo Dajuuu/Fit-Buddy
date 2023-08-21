@@ -95,6 +95,7 @@ const HomeScreen = ({ navigation }) => {
               <TouchableOpacity
                 style={styles.buttonYes}
                 onPress={handleDeleteProgress}
+                testID="delete-button"
               >
                 <Text style={styles.buttonText}>Yes</Text>
               </TouchableOpacity>
@@ -134,7 +135,7 @@ const HomeScreen = ({ navigation }) => {
 
       <ScrollView style={{ width: "100%" }}>
         {/* Display all difficulty levels */}
-        <View style={styles.workoutTypesContainer}>
+        <View style={styles.workoutTypesContainer} testID="workout-types">
           {workoutTypes.map((workout, index) => (
             <TouchableOpacity
               key={index}
