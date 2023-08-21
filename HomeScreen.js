@@ -78,12 +78,13 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="homescreen-container">
       <Modal
         visible={showOverlay}
         animationType="slide"
         transparent
         statusBarTranslucent
+        testID="overlay"
       >
         <View style={styles.overlay}>
           <View style={styles.overlayContent}>
@@ -112,7 +113,7 @@ const HomeScreen = ({ navigation }) => {
         <Text style={styles.titleText}> FitBuddy</Text>
       </View>
       {/* Small info box at the top */}
-      <View style={styles.infoContainer}>
+      <View style={styles.infoContainer} testID="info-container">
         {/* TODO change the name of the infoText */}
         <View style={styles.totalTimeContainer}>
           <Text style={styles.infoText}>Exercises Done:</Text>
@@ -125,6 +126,7 @@ const HomeScreen = ({ navigation }) => {
         <TouchableOpacity
           style={styles.trashIconContainer}
           onPress={handleTrashBinPress}
+          testID="trash-bin-button"
         >
           <Icon name="trash" style={{ color: "white" }} />
         </TouchableOpacity>

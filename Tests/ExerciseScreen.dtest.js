@@ -40,7 +40,7 @@ describe("ExerciseScreen", () => {
     const totalKcal = getByText("Total Kcal:");
     expect(totalKcal).toBeTruthy();
   });
-  it("should display exercise container", () => {
+  it("should display exercise container/ exercises list", () => {
     const { getByTestId } = render(<ExerciseScreen route={route} />);
 
     // Use the testID that you add to an exercise element within the mapping loop
