@@ -56,7 +56,10 @@ const SelectedWorkoutScreen = ({ navigation, route }) => {
       <CustomHeader title={type} />
       <ScrollView style={{ width: "100%" }}>
         {/* Display all workout types */}
-        <View style={styles.workoutDifficultiesContainer}>
+        <View
+          style={styles.workoutDifficultiesContainer}
+          testID="diff-container"
+        >
           {/* Here is a small placeholder for the FBW workout type - it displays that the page is building */}
           {type === "FBW" ? (
             <View style={styles.centeredContent}>
