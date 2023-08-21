@@ -135,6 +135,7 @@ const ExerciseScreen = ({ route }) => {
           resetTimer();
           startTimer();
         }}
+        testID="start-button"
       >
         <Text style={styles.startButtonText}>Start the workout</Text>
       </TouchableOpacity>
