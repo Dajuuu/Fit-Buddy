@@ -1,19 +1,20 @@
 import React from "react";
 import { render, fireEvent, act } from "@testing-library/react-native";
-import WorkoutFinished from "../WorkoutFinished"; // Import the correct path
+import WorkoutFinished from "../WorkoutFinished";
 import "@testing-library/jest-native/extend-expect";
 
-// Create empty Jest mock functions for the context functions
+// Create mock functions for the context functions
 const mockCurrentExerciseDone = 0;
 const mockResetCurrentExerciseDoneCount = jest.fn();
 const mockCurrentCaloriesBurnt = 0;
 const mockResetCurrentCaloriesBurnt = jest.fn();
+// Enable fake timers for this test
+jest.useFakeTimers();
 
+// Mock Navigation and contexts
 const navigation = {
   navigate: jest.fn(),
 };
-
-jest.useFakeTimers(); // Enable fake timers for this test
 
 jest.mock("../AppContext", () => ({
   useAppContext: () => ({
@@ -24,7 +25,6 @@ jest.mock("../AppContext", () => ({
   }),
 }));
 
-// Mock TimerContext module
 jest.mock("../TimerContext", () => ({
   useTimerContext: jest.fn(() => ({
     startTimer: jest.fn(),
@@ -33,7 +33,8 @@ jest.mock("../TimerContext", () => ({
   })),
 }));
 
-describe("WorkoutDetailsScreen", () => {
+describe("WorkoutDetailsScreen tests", () => {
+  // Function to convert the seconds to a correct format
   const formatTotalTime = (secondsTimer) => {
     const minutes = Math.floor(secondsTimer / 60);
     const seconds = secondsTimer % 60;
@@ -42,7 +43,7 @@ describe("WorkoutDetailsScreen", () => {
       .padStart(2, "0")}`;
   };
 
-  it("should display correct text fields", () => {
+  it("Correct text fields should displayed", () => {
     const { getByText } = render(<WorkoutFinished />);
 
     const workoutFin = getByText("Workout Finished!");
@@ -54,7 +55,7 @@ describe("WorkoutDetailsScreen", () => {
     expect(time).toBeTruthy();
   });
 
-  it("should have the correct title style", () => {
+  it("Check for correct title style", () => {
     const { getByTestId } = render(<WorkoutFinished />);
 
     const exerciseImage = getByTestId("title");
@@ -66,7 +67,7 @@ describe("WorkoutDetailsScreen", () => {
       fontFamily: "TitleFontBold",
     });
   });
-  it("should have the correct completedExercisesText style", () => {
+  it("Check for correct completedExercisesText style", () => {
     const { getByTestId } = render(<WorkoutFinished />);
 
     const exerciseImage = getByTestId("compl-text");
@@ -78,7 +79,7 @@ describe("WorkoutDetailsScreen", () => {
       fontFamily: "TitleFont",
     });
   });
-  it("should have the correct timeAndKcal style", () => {
+  it("Check for correct timeAndKcal style", () => {
     const { getByTestId } = render(<WorkoutFinished />);
 
     const exerciseImage = getByTestId("text");
@@ -90,16 +91,14 @@ describe("WorkoutDetailsScreen", () => {
       fontFamily: "TitleFontBold",
     });
   });
-  it("should format total time to mm:ss format", () => {
-    const secondsTimer = 125; // Example total time in seconds
-
-    const expectedFormattedTime = "02:05"; // Expected formatted time
+  it("Time should be formated to mm:ss format", () => {
+    const secondsTimer = 180; // Example total time in seconds
+    const expectedFormattedTime = "03:00"; // Expected formatted time
 
     const formattedTime = formatTotalTime(secondsTimer);
-
     expect(formattedTime).toBe(expectedFormattedTime);
   });
-  it("should navigate to Home screen when Done button is pressed", () => {
+  it("Navigate to Home screen when Done button is pressed", () => {
     const resetTimerMock = jest.fn();
     const resetCurrentExerciseDoneCountMock = jest.fn();
     const resetCurrentCaloriesBurntMock = jest.fn();

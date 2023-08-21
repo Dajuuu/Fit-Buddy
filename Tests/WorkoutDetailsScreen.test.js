@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import WorkoutDetailsScreen from "../WorkoutDetailsScreen"; // Import the correct path
+import WorkoutDetailsScreen from "../WorkoutDetailsScreen";
 import "@testing-library/jest-native/extend-expect";
 
 // Create empty Jest mock functions for the context functions
@@ -9,6 +9,7 @@ const mockIncreaseTotalCaloriesBurnt = jest.fn();
 const mockIncreaseCurrentExerciseDone = jest.fn();
 const mockIncreaseCurrentCaloriesBurnt = jest.fn();
 
+// Mock AppContext
 jest.mock("../AppContext", () => ({
   useAppContext: () => ({
     increaseDoneCount: mockIncreaseDoneCount,
@@ -18,123 +19,106 @@ jest.mock("../AppContext", () => ({
   }),
 }));
 
-describe("WorkoutDetailsScreen", () => {
+describe("WorkoutDetailsScreen tests", () => {
+  // Mock the exercise
   const mockExercise = {
-    imageSource: require("../assets/icon.png"), // Provide the actual path to a mock image
+    imageSource: require("../assets/icon.png"),
     name: "Mock Exercise",
     repetitionsOrTime: "30 seconds",
   };
 
-  it("should render buttons = Home Button", () => {
+  it("Render buttons - Home Button", () => {
     const { getByTestId } = render(
       <WorkoutDetailsScreen
         route={{
           params: {
             currentIndex: 0,
             exerciseList: [],
-            exercise: mockExercise, // Pass the mock exercise object
+            exercise: mockExercise,
           },
         }}
       />
     );
 
     const backButton = getByTestId("back-button");
-    // const previousButton = getByTestId("previous-button");
-    // const doneButton = getByTestId("done-button");
-    // const nextButton = getByTestId("next-button");
-
-    // Assert that all buttons are visible
     expect(backButton).toBeTruthy();
-    // expect(previousButton).toBeTruthy();
-    // expect(doneButton).toBeTruthy();
-    // expect(nextButton).toBeTruthy();
   });
 
-  it("should render buttons = Previous Button", () => {
+  it("Render buttons - Previous Button", () => {
     const { getByTestId } = render(
       <WorkoutDetailsScreen
         route={{
           params: {
             currentIndex: 0,
             exerciseList: [],
-            exercise: mockExercise, // Pass the mock exercise object
+            exercise: mockExercise,
           },
         }}
       />
     );
 
     const previousButton = getByTestId("previous-button");
-    // const doneButton = getByTestId("done-button");
-    // const nextButton = getByTestId("next-button");
-
-    // Assert that all buttons are visible
     expect(previousButton).toBeTruthy();
-    // expect(doneButton).toBeTruthy();
-    // expect(nextButton).toBeTruthy();
   });
-  it("should render buttons = Done Button", () => {
+
+  it("Render buttons - Done Button", () => {
     const { getByTestId } = render(
       <WorkoutDetailsScreen
         route={{
           params: {
             currentIndex: 0,
             exerciseList: [],
-            exercise: mockExercise, // Pass the mock exercise object
+            exercise: mockExercise,
           },
         }}
       />
     );
 
     const doneButton = getByTestId("done-button");
-    // const nextButton = getByTestId("next-button");
-
-    // Assert that all buttons are visible
     expect(doneButton).toBeTruthy();
-    // expect(nextButton).toBeTruthy();
   });
-  it("should render buttons = Next Button", () => {
+
+  it("Render buttons - Next Button", () => {
     const { getByTestId } = render(
       <WorkoutDetailsScreen
         route={{
           params: {
             currentIndex: 0,
             exerciseList: [],
-            exercise: mockExercise, // Pass the mock exercise object
+            exercise: mockExercise,
           },
         }}
       />
     );
 
     const nextButton = getByTestId("next-button");
-
-    // Assert that all buttons are visible
     expect(nextButton).toBeTruthy();
   });
-  it("should render exerciseContainer", () => {
+  it("exerciseContainer should be displayed", () => {
     const { getByTestId } = render(
       <WorkoutDetailsScreen
         route={{
           params: {
             currentIndex: 0,
             exerciseList: [],
-            exercise: mockExercise, // Pass the mock exercise object
+            exercise: mockExercise,
           },
         }}
       />
     );
 
     const exerciseContainer = getByTestId("exercise-container");
-    expect(exerciseContainer).toBeTruthy(); // Assert that the exerciseContainer is visible
+    expect(exerciseContainer).toBeTruthy();
   });
 
-  it("should have the correct exerciseImage style", () => {
+  it("Check for correct exerciseImage style", () => {
     const { getByTestId } = render(
       <WorkoutDetailsScreen
         route={{
           params: {
             currentIndex: 0,
             exerciseList: [],
-            exercise: mockExercise, // Pass the mock exercise object
+            exercise: mockExercise,
           },
         }}
       />
@@ -148,14 +132,14 @@ describe("WorkoutDetailsScreen", () => {
     });
   });
 
-  it("should have the correct exerciseName style", () => {
+  it("Check for correct exerciseName style", () => {
     const { getByTestId } = render(
       <WorkoutDetailsScreen
         route={{
           params: {
             currentIndex: 0,
             exerciseList: [],
-            exercise: mockExercise, // Pass the mock exercise object
+            exercise: mockExercise,
           },
         }}
       />
@@ -173,14 +157,14 @@ describe("WorkoutDetailsScreen", () => {
     });
   });
 
-  it("should have the correct exerciseDetails style", () => {
+  it("Check for correct exerciseDetails style", () => {
     const { getByTestId } = render(
       <WorkoutDetailsScreen
         route={{
           params: {
             currentIndex: 0,
             exerciseList: [],
-            exercise: mockExercise, // Pass the mock exercise object
+            exercise: mockExercise,
           },
         }}
       />

@@ -3,6 +3,9 @@ import "@testing-library/jest-native/extend-expect";
 import { render } from "@testing-library/react-native";
 import ExerciseScreen from "../ExerciseScreen";
 
+// Mock useNavigation hook
+jest.mock("@react-navigation/native");
+
 // Mock TimerContext module
 jest.mock("../TimerContext", () => ({
   useTimerContext: jest.fn(() => ({
@@ -12,10 +15,8 @@ jest.mock("../TimerContext", () => ({
   })),
 }));
 
-// Mock useNavigation hook
-jest.mock("@react-navigation/native");
-
-describe("ExerciseScreen", () => {
+describe("ExerciseScreen tests", () => {
+  // Mock the route parameters
   const route = {
     params: {
       workoutDifficulty: "Easy",
@@ -23,15 +24,15 @@ describe("ExerciseScreen", () => {
     },
   };
 
-  it('should display the "Start the workout" button', () => {
+  it('The "Start the workout" button should be displayed', () => {
     const { getByTestId } = render(<ExerciseScreen route={route} />);
 
     const startButton = getByTestId("start-button");
 
-    // Assert that the "Start the workout" button is found in the rendered component
     expect(startButton).toBeTruthy();
   });
-  it("should display estimated time and total kcal information", () => {
+
+  it("Estimated time and total kcal information should be displayed", () => {
     const { getByText } = render(<ExerciseScreen route={route} />);
 
     const estimatedTime = getByText("Estimated Time:");
@@ -40,17 +41,16 @@ describe("ExerciseScreen", () => {
     const totalKcal = getByText("Total Kcal:");
     expect(totalKcal).toBeTruthy();
   });
-  it("should display exercise container/ exercises list", () => {
+
+  it("Exercises container/list should be displayed", () => {
     const { getByTestId } = render(<ExerciseScreen route={route} />);
 
-    // Use the testID that you add to an exercise element within the mapping loop
     const exerciseElement = getByTestId("exercise-container");
 
-    // Assert that at least one exercise element is found in the rendered component
     expect(exerciseElement).toBeTruthy();
   });
 
-  it("should have the correct Start button style", () => {
+  it("Check for correct Start button style", () => {
     const { getByTestId } = render(<ExerciseScreen route={route} />);
 
     const startButton = getByTestId("start-button");
@@ -64,7 +64,7 @@ describe("ExerciseScreen", () => {
     });
   });
 
-  it("should have the correct Info container button style", () => {
+  it("Check for correct Info container button style", () => {
     const { getByTestId } = render(<ExerciseScreen route={route} />);
 
     const infoContainer = getByTestId("info-container");

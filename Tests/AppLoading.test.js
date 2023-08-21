@@ -3,25 +3,32 @@ import { render } from "@testing-library/react-native";
 import "@testing-library/jest-native/extend-expect";
 import LoadingScreen from "../AppLoading";
 
-describe("LoadingScreen", () => {
-  it("should render the LoadingScreen component", () => {
-    const { getByText, getByTestId } = render(<LoadingScreen />);
+// Unit tests
+describe("LoadingScreen tests", () => {
+  it("Render the LoadingScreen component", () => {
+    const { getByTestId } = render(<LoadingScreen />);
+
+    const loadingIndicator = getByTestId("loading-indicator");
+
+    expect(loadingIndicator).toBeTruthy();
+  });
+
+  it("Render correct text fields", () => {
+    const { getByText } = render(<LoadingScreen />);
 
     const appName = getByText("FitBuddy");
-    const loadingIndicator = getByTestId("loading-indicator"); // Use the correct test ID here
     const loadingText = getByText("Loading the application");
 
     expect(appName).toBeTruthy();
-    expect(loadingIndicator).toBeTruthy();
     expect(loadingText).toBeTruthy();
   });
 
-  it("should have the correct styles", () => {
+  it("Check for correct styles", () => {
     const { getByTestId } = render(<LoadingScreen />);
 
-    const container = getByTestId("container"); // Use the correct test ID here
-    const loadingText = getByTestId("loadingText"); // Use the correct test ID here
-    const appName = getByTestId("appName"); // Use the correct test ID here
+    const container = getByTestId("container");
+    const loadingText = getByTestId("loadingText");
+    const appName = getByTestId("appName");
 
     expect(container).toHaveStyle({
       backgroundColor: "rgba(40, 44, 46,1)",

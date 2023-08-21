@@ -1,16 +1,25 @@
 import React from "react";
 import "@testing-library/jest-native/extend-expect";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
-import { NavigationContainer } from "@react-navigation/native"; // Import NavigationContainer
+import { NavigationContainer } from "@react-navigation/native";
 import CustomHeader from "../CustomHeader";
 
-// Wrap your components in a NavigationContainer
+// Wrap components in a NavigationContainer
 const renderWithNavigation = (children) => {
   return render(<NavigationContainer>{children}</NavigationContainer>);
 };
 
-describe("CustomHeader styles", () => {
-  it("header should have the correct styling", () => {
+// Unit tests
+describe("CustomHeader tests", () => {
+  it("Render the CustomHeader component", () => {
+    const { getByTestId } = renderWithNavigation(
+      <CustomHeader title="Header Title" />
+    );
+    const header = getByTestId("custom-header");
+    expect(header).toBeTruthy();
+  });
+
+  it("Header have correct styling", () => {
     const { getByTestId } = renderWithNavigation(
       <CustomHeader title="Header Title" />
     );
@@ -25,7 +34,7 @@ describe("CustomHeader styles", () => {
     });
   });
 
-  it("should have the correct text color for title", () => {
+  it("Correct text color for the title", () => {
     const { getByText } = renderWithNavigation(
       <CustomHeader title="Header Title" />
     );
@@ -34,7 +43,7 @@ describe("CustomHeader styles", () => {
     expect(titleText).toHaveStyle({ color: "white" });
   });
 
-  it("should have the correct icon color", () => {
+  it("Correct color for the icons", () => {
     const { getAllByTestId } = renderWithNavigation(
       <CustomHeader title="Header Title" />
     );
@@ -46,16 +55,17 @@ describe("CustomHeader styles", () => {
     });
   });
 
-  it("should have the correct overlay styles", async () => {
+  it("Correct overlay style", async () => {
     const { getByTestId } = renderWithNavigation(
       <CustomHeader title="Header Title" />
     );
-    // In this modified test, I've added fireEvent.press(infoButton) to simulate clicking the info button that opens the modal. Then I've used waitFor to wait until the overlay becomes visible, and then you can assert its styles. This ensures that the test waits for the state changes to be applied before making assertions on the DOM.
+    // fireEvent.press() was added to simulate clicking the info button that opens the modal
+    // this way it is possible to check the overlay's styling
     const infoButton = getByTestId("settings-button");
     fireEvent.press(infoButton); // Simulate opening the modal
 
     await waitFor(() => {
-      const overlay = getByTestId("overlay"); // Wait for the overlay to be visible
+      const overlay = getByTestId("overlay");
       expect(overlay).toHaveStyle({
         backgroundColor: "rgba(0, 0, 0, 0.5)",
         justifyContent: "center",
@@ -64,7 +74,7 @@ describe("CustomHeader styles", () => {
     });
   });
 
-  it("should have the correct overlay content styles", async () => {
+  it("Correct overlay content style", async () => {
     const { getByTestId } = renderWithNavigation(
       <CustomHeader title="Header Title" />
     );
@@ -81,7 +91,7 @@ describe("CustomHeader styles", () => {
     });
   });
 
-  it("should have the correct overlay text styles", async () => {
+  it("Correct overlay text style", async () => {
     const { getByTestId, getAllByTestId } = renderWithNavigation(
       <CustomHeader title="Header Title" />
     );
@@ -103,15 +113,7 @@ describe("CustomHeader styles", () => {
     });
   });
 
-  it("should render the CustomHeader component", () => {
-    const { getByTestId } = renderWithNavigation(
-      <CustomHeader title="Header Title" />
-    );
-    const header = getByTestId("custom-header");
-    expect(header).toBeTruthy();
-  });
-
-  it("should handle the settings button press and show overlay", () => {
+  it("Handle the settings button press and show overlay", () => {
     const { getByTestId, getByText } = renderWithNavigation(
       <CustomHeader title="Header Title" />
     );
@@ -124,7 +126,7 @@ describe("CustomHeader styles", () => {
     expect(overlayTitle).toBeTruthy();
   });
 
-  it("should hide the overlay when 'Hide' button is pressed", () => {
+  it("Hide the overlay when 'Hide' button is pressed", () => {
     const { getByTestId, queryByText } = renderWithNavigation(
       <CustomHeader title="Header Title" />
     );

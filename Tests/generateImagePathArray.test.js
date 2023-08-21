@@ -4,8 +4,8 @@ const path = require("path");
 jest.mock("fs");
 jest.mock("path");
 
-describe("generateImagePathArray", () => {
-  it("should check if the declared folders exist", () => {
+describe("generateImagePathArray tests", () => {
+  it("Check if the declared folders exist", () => {
     const mockFolders = [
       "HomeScreen",
       "ABSExercises",
@@ -21,7 +21,7 @@ describe("generateImagePathArray", () => {
     });
   });
 
-  it("should check if the declared folders are not empty", () => {
+  it("Check if the declared folders are not empty", () => {
     const mockFolders = [
       "HomeScreen",
       "ABSExercises",

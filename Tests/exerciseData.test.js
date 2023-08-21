@@ -1,33 +1,31 @@
-import exerciseData from "../exerciseData"; // Adjust the path to your exerciseData file
+import exerciseData from "../exerciseData";
 
-describe("Exercise Data Structure", () => {
-  it("should have defined exercise types", () => {
+describe("Exercise Data tests", () => {
+  it("Exercise types are defined correctly", () => {
     const exerciseTypes = Object.keys(exerciseData);
 
     expect(exerciseTypes).toContain("Arms");
     expect(exerciseTypes).toContain("Legs");
     expect(exerciseTypes).toContain("Yoga");
     expect(exerciseTypes).toContain("ABS");
-    // Add more exercise types as needed
   });
 
-  it("should have defined sub-categories for each exercise type", () => {
+  it("Each exercise type should have defined difficulties", () => {
     Object.keys(exerciseData).forEach((exerciseType) => {
-      const subCategories = Object.keys(exerciseData[exerciseType]);
-      expect(subCategories).toContain("Easy 1");
-      expect(subCategories).toContain("Easy 2");
-      expect(subCategories).toContain("Medium 1");
-      expect(subCategories).toContain("Medium 2");
-      expect(subCategories).toContain("Hard 1");
-      expect(subCategories).toContain("Hard 2");
-      // Add more sub-category checks as needed
+      const difficulties = Object.keys(exerciseData[exerciseType]);
+      expect(difficulties).toContain("Easy 1");
+      expect(difficulties).toContain("Easy 2");
+      expect(difficulties).toContain("Medium 1");
+      expect(difficulties).toContain("Medium 2");
+      expect(difficulties).toContain("Hard 1");
+      expect(difficulties).toContain("Hard 2");
     });
   });
 
-  it("should have at least one exercise in each sub-category", () => {
+  it("At least one exercise is declared for each difficulty", () => {
     Object.keys(exerciseData).forEach((exerciseType) => {
-      Object.keys(exerciseData[exerciseType]).forEach((subCategory) => {
-        const exercises = exerciseData[exerciseType][subCategory];
+      Object.keys(exerciseData[exerciseType]).forEach((difficulty) => {
+        const exercises = exerciseData[exerciseType][difficulty];
         expect(exercises).toBeTruthy();
       });
     });

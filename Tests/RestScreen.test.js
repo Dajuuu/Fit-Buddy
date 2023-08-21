@@ -7,34 +7,32 @@ import RestScreen from "../RestScreen";
 const navigateMock = jest.fn();
 const goBackMock = jest.fn();
 
-describe("RestScreen", () => {
+describe("RestScreen tests", () => {
+  // Mock the route parameters
   const route = {
     params: {
-      exerciseList: [{}, {}], // Add the exercises to the list
+      exerciseList: [{}, {}],
       currentIndex: 0,
     },
   };
 
-  it("should start the timer with the specified time", () => {
-    // Render the component
+  it("Start the timer with the specified time", () => {
     const { getByText } = render(<RestScreen route={route} />);
 
-    // Check that the timer starts at the specified time
     expect(getByText("00:45")).toBeTruthy();
   });
 
-  it("should toggle pause/resume when pause button is pressed", () => {
-    // Render the component
+  it("Toggle pause/resume when the appropriate button is pressed", () => {
     const { getByTestId, getByText } = render(<RestScreen route={route} />);
 
-    // Get the pause button and press it
     const pauseButton = getByTestId("pause-resume-button");
     act(() => {
+      // Press the pause button
       fireEvent.press(pauseButton);
     });
 
     // Check that the timer is paused
-    expect(getByText("00:45")).toBeTruthy(); // Adjust the timer text based on the paused state
+    expect(getByText("00:45")).toBeTruthy();
 
     // Press the pause button again
     act(() => {
@@ -42,9 +40,10 @@ describe("RestScreen", () => {
     });
 
     // Check that the timer is resumed
-    expect(getByText("00:45")).toBeTruthy(); // Adjust the timer text based on the resumed state
+    expect(getByText("00:45")).toBeTruthy();
   });
-  it("should toggle between 'pause' and 'play' icons on pause/resume button press", () => {
+
+  it("Toggle between 'pause' and 'play' icons on pause/resume button press", () => {
     const { getByTestId, queryByTestId } = render(<RestScreen route={route} />);
 
     const pauseResumeButton = getByTestId("pause-resume-button");
@@ -54,10 +53,10 @@ describe("RestScreen", () => {
     expect(queryByTestId("play-icon")).toBeNull();
 
     // Fire a press event on the pause/resume button
-
     act(() => {
       fireEvent.press(pauseResumeButton);
     });
+
     // After pressing, Icon should be 'play'
     expect(queryByTestId("pause-icon")).toBeNull();
     expect(queryByTestId("play-icon")).toBeTruthy();
@@ -71,8 +70,8 @@ describe("RestScreen", () => {
     expect(queryByTestId("pause-icon")).toBeTruthy();
     expect(queryByTestId("play-icon")).toBeNull();
   });
-  it("should trigger correct navigation action and pass appropriate props on 'Go to the next exercise' button press", () => {
-    // Render the RestScreen component with mock navigation functions and route params
+
+  it("Trigger navigation action and pass appropriate props on 'Go to the next exercise' button press", () => {
     const { getByTestId } = render(
       <RestScreen
         route={route}
@@ -86,17 +85,17 @@ describe("RestScreen", () => {
       fireEvent.press(nextExerciseButton);
     });
 
-    // Expect that the correct navigation actions were called
     expect(navigateMock).toHaveBeenCalledWith("WorkoutDetailsScreen", {
-      exercise: route.params.exerciseList[1], // Assuming currentIndex is 0
+      exercise: route.params.exerciseList[1],
       exerciseList: route.params.exerciseList,
       currentIndex: route.params.currentIndex + 1,
     });
-    // Ensure that goBackMock was not called
+
+    // Ensure that goBackMock was called
     expect(goBackMock).toHaveBeenCalled();
   });
 
-  it("should have the correct containerUpperHalf style", () => {
+  it("Check for correct containerUpperHalf style", () => {
     const { getByTestId } = render(
       <RestScreen
         route={route}
@@ -114,7 +113,7 @@ describe("RestScreen", () => {
     });
   });
 
-  it("should have the correct containerBottomHalf style", () => {
+  it("Check for correct containerBottomHalf style", () => {
     const { getByTestId } = render(
       <RestScreen
         route={route}
@@ -129,7 +128,7 @@ describe("RestScreen", () => {
       alignItems: "center",
     });
   });
-  it("should display Take a rest text", () => {
+  it("Take a rest text should be displayed", () => {
     const { getByText } = render(
       <RestScreen
         route={route}

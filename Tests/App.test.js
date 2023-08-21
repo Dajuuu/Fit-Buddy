@@ -1,6 +1,5 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import { useNavigation } from "@react-navigation/native";
 
 import HomeScreen from "../HomeScreen";
 import LoadingScreen from "../AppLoading";
@@ -34,16 +33,24 @@ jest.mock("../TimerContext", () => ({
   })),
 }));
 
-describe("App Tests", () => {
-  it("should have non-empty imageAssets", () => {
-    // Import the actual generatedImagePathArray (not mocked)
+// Unit tests
+describe("App tests", () => {
+  // Mock the route.params object
+  const mockRoute = {
+    params: {
+      type: "someType", // Replace with the actual value needed for testing
+    },
+  };
+
+  it("Non-empty imageAssets", () => {
+    // Import the actual generatedImagePathArray
     const imageAssets = require("../generatedImagePathArray").default;
 
     // Ensure that imageAssets is not empty
     expect(imageAssets.length).toBeGreaterThan(0);
   });
 
-  it("should have existing font files", () => {
+  it("Font files exist", () => {
     const regularFontPath = "../assets/fonts/JosefinSans-Regular.ttf";
     const boldFontPath = "../assets/fonts/JosefinSans-Bold.ttf";
 
@@ -51,50 +58,30 @@ describe("App Tests", () => {
     expect(() => require.resolve(regularFontPath)).not.toThrow();
     expect(() => require.resolve(boldFontPath)).not.toThrow();
   });
-  it("should render HomeScreen", () => {
-    // Render the HomeScreen component with the mocked context
+
+  it("Render HomeScreen", () => {
     const { root } = render(<HomeScreen />);
 
     // Check if the rendered component is not null or empty
     expect(root).toBeTruthy();
   });
 
-  it("should render LoadingScreen", () => {
+  it("Render LoadingScreen", () => {
     const { root } = render(<LoadingScreen />);
 
     // Check if the rendered component is not null or empty
     expect(root).toBeTruthy();
   });
-  it("should render SelectedWorkout", () => {
-    // Mock the route.params object
-    const mockRoute = {
-      params: {
-        type: "someType", // Replace with the actual value needed for testing
-      },
-    };
 
-    // Mock the navigation object
-    useNavigation.mockReturnValue({
-      navigate: jest.fn(),
-    });
+  it("Render SelectedWorkout", () => {
     // Render the SelectedWorkoutScreen component with the mocked route prop
     const { root } = render(<SelectedWorkout route={mockRoute} />);
 
     // Check if the rendered component is not null or empty
     expect(root).toBeTruthy();
   });
-  it("should render ExerciseScreen", () => {
-    // Mock the route.params object
-    const mockRoute = {
-      params: {
-        type: "someType", // Replace with the actual value needed for testing
-      },
-    };
 
-    // Mock the navigation object
-    useNavigation.mockReturnValue({
-      navigate: jest.fn(),
-    });
+  it("Render ExerciseScreen", () => {
     // Render the SelectedWorkoutScreen component with the mocked route prop
     const { root } = render(<ExerciseScreen route={mockRoute} />);
 
@@ -102,18 +89,7 @@ describe("App Tests", () => {
     expect(root).toBeTruthy();
   });
 
-  it("should render RestScreen", () => {
-    // Mock the route.params object
-    const mockRoute = {
-      params: {
-        type: "someType", // Replace with the actual value needed for testing
-      },
-    };
-
-    // Mock the navigation object
-    useNavigation.mockReturnValue({
-      navigate: jest.fn(),
-    });
+  it("Render RestScreen", () => {
     // Render the SelectedWorkoutScreen component with the mocked route prop
     const { root } = render(<RestScreen route={mockRoute} />);
 
@@ -121,18 +97,7 @@ describe("App Tests", () => {
     expect(root).toBeTruthy();
   });
 
-  it("should render WorkoutFinished", () => {
-    // Mock the route.params object
-    const mockRoute = {
-      params: {
-        type: "someType", // Replace with the actual value needed for testing
-      },
-    };
-
-    // Mock the navigation object
-    useNavigation.mockReturnValue({
-      navigate: jest.fn(),
-    });
+  it("Render WorkoutFinished", () => {
     // Render the SelectedWorkoutScreen component with the mocked route prop
     const { root } = render(<WorkoutFinished route={mockRoute} />);
 

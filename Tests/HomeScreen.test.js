@@ -3,7 +3,7 @@ import { render, fireEvent } from "@testing-library/react-native";
 import "@testing-library/jest-native/extend-expect";
 import HomeScreen from "../HomeScreen";
 
-// Mock the dependencies
+// Mock the contexts
 jest.mock("../AppContext", () => ({
   useAppContext: jest.fn(() => ({
     doneCount: 0, // Mocked value for doneCount
@@ -19,14 +19,15 @@ jest.mock("../TimerContext", () => ({
   })),
 }));
 
-describe("HomeScreen", () => {
-  it("should render the HomeScreen component", () => {
+describe("HomeScreen tests", () => {
+  it("Render the HomeScreen component", () => {
     const { getByTestId } = render(<HomeScreen />);
 
     const homeScreen = getByTestId("homescreen-container");
     expect(homeScreen).toBeTruthy();
   });
-  it("should display Exercises Done and Calories Burnt text", () => {
+
+  it("Exercises Done and Calories Burnt text fields should be displayed", () => {
     const { getByText } = render(<HomeScreen />);
 
     const estimatedTime = getByText("Exercises Done:");
@@ -36,20 +37,18 @@ describe("HomeScreen", () => {
     expect(totalKcal).toBeTruthy();
   });
 
-  it("should show overlay when trash bin icon is pressed", () => {
+  it("Show overlay when trash bin icon is pressed", () => {
     const { getByTestId } = render(<HomeScreen />);
     const trashBinButton = getByTestId("trash-bin-button");
 
     fireEvent.press(trashBinButton);
 
-    // Get the overlay element
-    const overlayElement = getByTestId("overlay"); // Make sure you have set the testID in your component
+    const overlayElement = getByTestId("overlay");
 
-    // Assert that the overlay is shown (you can check its style or visibility)
-    expect(overlayElement).toBeVisible(); // You can adjust this assertion as needed
+    expect(overlayElement).toBeVisible();
   });
 
-  it("should have the correct info Container style", () => {
+  it("Check for correct info Container style", () => {
     const { getByTestId } = render(<HomeScreen />);
 
     const startButton = getByTestId("info-container");
