@@ -91,6 +91,7 @@ const RestScreen = ({ route, navigation }) => {
           source={require("./assets/Others/heart-rest.png")}
           style={[styles.image, { transform: [{ scale: imageScale }] }]}
           resizeMode="cover"
+          testID="heart-image"
         />
       </View>
       <View style={styles.containerBottomHalf}>
@@ -108,14 +109,26 @@ const RestScreen = ({ route, navigation }) => {
           {/* Change the icon on the button, depending on the state */}
           <Text style={styles.buttonText}>
             {isPaused ? (
-              <Icon name="play" style={[styles.buttonIcon]} />
+              <Icon
+                name="play"
+                style={[styles.buttonIcon]}
+                testID="play-icon"
+              />
             ) : (
-              <Icon name="pause" style={[styles.buttonIcon]} />
+              <Icon
+                name="pause"
+                style={[styles.buttonIcon]}
+                testID="pause-icon"
+              />
             )}
           </Text>
         </TouchableOpacity>
         {/* Go to next exercise button */}
-        <TouchableOpacity style={styles.buttonNext} onPress={handleNext}>
+        <TouchableOpacity
+          style={styles.buttonNext}
+          onPress={handleNext}
+          testID="next-exercise-button"
+        >
           <Text style={styles.buttonText}>Go to the next exercise</Text>
         </TouchableOpacity>
       </View>
