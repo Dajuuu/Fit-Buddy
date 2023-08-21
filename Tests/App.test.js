@@ -16,17 +16,17 @@ jest.mock("@react-navigation/native", () => {
   };
 });
 
-// jest.mock("../AppContext");
+// Mock the AppContext
 jest.mock("../AppContext", () => ({
   useAppContext: jest.fn(() => ({
-    doneCount: 5, // Provide the values that your HomeScreen expects
+    doneCount: 5,
     totalCaloriesBurnt: 100,
     resetLoadDoneCount: jest.fn(),
     resetTotalCaloriesBurnt: jest.fn(),
   })),
 }));
 
-// Mock the useTimerContext function (if needed)
+// Mock the useTimerContext
 jest.mock("../TimerContext", () => ({
   useTimerContext: jest.fn(() => ({
     stopTimer: jest.fn(),
