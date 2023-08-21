@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react-native";
+import { render, fireEvent, act } from "@testing-library/react-native";
 import "@testing-library/jest-native/extend-expect";
 import RestScreen from "../RestScreen";
 
@@ -29,13 +29,17 @@ describe("RestScreen", () => {
 
     // Get the pause button and press it
     const pauseButton = getByTestId("pause-resume-button");
-    fireEvent.press(pauseButton);
+    act(() => {
+      fireEvent.press(pauseButton);
+    });
 
     // Check that the timer is paused
     expect(getByText("00:45")).toBeTruthy(); // Adjust the timer text based on the paused state
 
     // Press the pause button again
-    fireEvent.press(pauseButton);
+    act(() => {
+      fireEvent.press(pauseButton);
+    });
 
     // Check that the timer is resumed
     expect(getByText("00:45")).toBeTruthy(); // Adjust the timer text based on the resumed state
@@ -50,14 +54,18 @@ describe("RestScreen", () => {
     expect(queryByTestId("play-icon")).toBeNull();
 
     // Fire a press event on the pause/resume button
-    fireEvent.press(pauseResumeButton);
 
+    act(() => {
+      fireEvent.press(pauseResumeButton);
+    });
     // After pressing, Icon should be 'play'
     expect(queryByTestId("pause-icon")).toBeNull();
     expect(queryByTestId("play-icon")).toBeTruthy();
 
     // Fire a press event again
-    fireEvent.press(pauseResumeButton);
+    act(() => {
+      fireEvent.press(pauseResumeButton);
+    });
 
     // Icon should be back to 'pause'
     expect(queryByTestId("pause-icon")).toBeTruthy();
@@ -74,7 +82,9 @@ describe("RestScreen", () => {
 
     // Fire a press event on the 'Go to the next exercise' button
     const nextExerciseButton = getByTestId("next-exercise-button");
-    fireEvent.press(nextExerciseButton);
+    act(() => {
+      fireEvent.press(nextExerciseButton);
+    });
 
     // Expect that the correct navigation actions were called
     expect(navigateMock).toHaveBeenCalledWith("WorkoutDetailsScreen", {

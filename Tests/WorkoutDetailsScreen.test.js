@@ -20,9 +20,9 @@ jest.mock("../AppContext", () => ({
 
 describe("WorkoutDetailsScreen", () => {
   const mockExercise = {
-    imageSource: "mock-image-path.jpg", // Provide a valid image path
-    name: "Mock Exercise", // Provide a valid exercise name
-    repetitionsOrTime: "30 seconds", // Provide valid exercise details
+    imageSource: require("../assets/icon.png"), // Provide the actual path to a mock image
+    name: "Mock Exercise",
+    repetitionsOrTime: "30 seconds",
   };
 
   it("should render buttons = Home Button", () => {
