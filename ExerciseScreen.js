@@ -90,6 +90,7 @@ const ExerciseScreen = ({ route }) => {
             ? [styles.infoContainerYoga]
             : styles.infoContainer
         }
+        testID="info-container"
       >
         <View style={[styles.totalTimeContainer, styles.center]}>
           <Text style={styles.infoText}>Estimated Time:</Text>
@@ -106,7 +107,7 @@ const ExerciseScreen = ({ route }) => {
       </View>
       <ScrollView style={{ width: "100%" }}>
         {/* Display the list of exercises and all information associated */}
-        <View style={styles.exerciseListContainer}>
+        <View style={styles.exerciseListContainer} testID="exercise-container">
           {exerciseList.map((exercise, index) => (
             <View key={index} style={styles.exerciseItem}>
               <View style={styles.leftContainer}>
@@ -128,6 +129,7 @@ const ExerciseScreen = ({ route }) => {
       {/* Fixed position TouchableOpacity */}
       {/* Firstly stop reset the timer if there was one running in the background, then start from 0 */}
       <TouchableOpacity
+        testID="start-button"
         style={styles.startButton}
         onPress={() => {
           handleViewDetails();
@@ -135,7 +137,6 @@ const ExerciseScreen = ({ route }) => {
           resetTimer();
           startTimer();
         }}
-        testID="start-button"
       >
         <Text style={styles.startButtonText}>Start the workout</Text>
       </TouchableOpacity>
