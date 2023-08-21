@@ -91,19 +91,31 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
     <View style={styles.container}>
       <View style={styles.upperButtons}>
         {/* Go back to the home screen button */}
-        <TouchableOpacity style={styles.button} onPress={handleGoBack}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleGoBack}
+          testID="back-button"
+        >
           <Icon name="arrow-left" style={[styles.leftButton]} />
         </TouchableOpacity>
       </View>
-      <View style={styles.exerciseContainer}>
+      <View style={styles.exerciseContainer} testID="exercise-container">
         {/* Display the exercise image */}
-        <Image source={exercise.imageSource} style={styles.exerciseImage} />
+        <Image
+          source={exercise.imageSource}
+          style={styles.exerciseImage}
+          testID="exercise-image"
+        />
 
         {/* Display the exercise name */}
-        <Text style={styles.exerciseName}>{exercise.name}</Text>
+        <Text style={styles.exerciseName} testID="exercise-name">
+          {exercise.name}
+        </Text>
 
         {/* Display the exercise details (kcal and time) */}
-        <Text style={styles.exerciseDetails}>{exercise.repetitionsOrTime}</Text>
+        <Text style={styles.exerciseDetails} testID="exercise-details">
+          {exercise.repetitionsOrTime}
+        </Text>
       </View>
 
       {/* Buttons at the button */}
@@ -114,6 +126,7 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
           onPress={handlePreviousExercise}
           style={[styles.nextButton, { opacity: currentIndex === 0 ? 0.5 : 1 }]}
           disabled={currentIndex === 0}
+          testID="previous-button"
         >
           {/* Change the color of the button, depending on which exercise is the user */}
           <Icon
@@ -126,13 +139,18 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
         </TouchableOpacity>
 
         {/* Done Button */}
-        <TouchableOpacity onPress={handleDone} style={styles.doneButton}>
+        <TouchableOpacity
+          onPress={handleDone}
+          style={styles.doneButton}
+          testID="done-button"
+        >
           <Icon name="check-circle" style={styles.buttonIconCheck} />
         </TouchableOpacity>
         {/* Next button */}
         <TouchableOpacity
           onPress={handleNextExercise}
           style={styles.nextButton}
+          testID="next-button"
         >
           <Icon name="arrow-right" style={styles.buttonIconArrow} />
         </TouchableOpacity>
