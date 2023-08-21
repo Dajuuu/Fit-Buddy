@@ -100,7 +100,11 @@ const RestScreen = ({ route, navigation }) => {
         ) : (
           <Text style={styles.timer}>00:0{timer}</Text>
         )}
-        <TouchableOpacity style={styles.button} onPress={handlePauseResume}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handlePauseResume}
+          testID="pause-resume-button"
+        >
           {/* Change the icon on the button, depending on the state */}
           <Text style={styles.buttonText}>
             {isPaused ? (
