@@ -56,6 +56,7 @@ const HomeScreen = ({ navigation }) => {
   ];
 
   // When pressing any of the workout types - redirect to the difficulties screen
+  // Pass to the next screen, what is the type user has selected
   const handleWorkoutTypePress = (type) => {
     navigation.navigate("ExerciseDifficulty", {
       type,
@@ -109,7 +110,7 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </View>
       </Modal>
-      {/* Display Custom header */}
+      {/* Display Name of the application at the top */}
       <View style={styles.textContainer}>
         <Text style={styles.titleText}> FitBuddy</Text>
       </View>
