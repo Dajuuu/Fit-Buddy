@@ -96,7 +96,7 @@ const WorkoutDetailsScreen = ({ route, navigation }) => {
           onPress={handleGoBack}
           testID="back-button"
         >
-          <Icon name="arrow-left" style={[styles.leftButton]} />
+          <Icon name="arrow-left" style={styles.leftButton} />
         </TouchableOpacity>
       </View>
       <View style={styles.exerciseContainer} testID="exercise-container">

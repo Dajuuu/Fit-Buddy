@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   View,
   Text,
@@ -12,7 +12,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 const windowHeight = Dimensions.get("window").height;
 
 const RestScreen = ({ route, navigation }) => {
-  const imageScale = new Animated.Value(1);
+  const imageScale = useMemo(() => new Animated.Value(1), []);
 
   useEffect(() => {
     // Create the animation sequence (shrink and enlarge)
@@ -62,7 +62,7 @@ const RestScreen = ({ route, navigation }) => {
     if (timer === 0) {
       handleNext();
     }
-  }, [timer]);
+  });
 
   const handleNext = () => {
     if (currentIndex < exerciseList.length - 1) {
@@ -109,15 +109,11 @@ const RestScreen = ({ route, navigation }) => {
           {/* Change the icon on the button, depending on the state */}
           <Text style={styles.buttonText}>
             {isPaused ? (
-              <Icon
-                name="play"
-                style={[styles.buttonIcon]}
-                testID="play-icon"
-              />
+              <Icon name="play" style={styles.buttonIcon} testID="play-icon" />
             ) : (
               <Icon
                 name="pause"
-                style={[styles.buttonIcon]}
+                style={styles.buttonIcon}
                 testID="pause-icon"
               />
             )}

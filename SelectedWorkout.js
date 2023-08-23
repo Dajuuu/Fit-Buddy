@@ -70,7 +70,7 @@ const SelectedWorkoutScreen = ({ navigation, route }) => {
             workoutDifficulties.map((workout, index) => (
               <React.Fragment key={index}>
                 <TouchableOpacity
-                  style={[styles.difficultyBox]}
+                  style={styles.difficultyBox}
                   onPress={() =>
                     handleDifficultyPress(type, workout.difficulty)
                   }

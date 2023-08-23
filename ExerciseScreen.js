@@ -151,12 +151,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(40, 44, 46,1)",
   },
-  title: {
-    fontSize: 30,
-    fontWeight: "bold",
-    color: "white",
-    marginVertical: 20,
-  },
   exerciseListContainer: {
     alignItems: "center",
     marginBottom: 100,

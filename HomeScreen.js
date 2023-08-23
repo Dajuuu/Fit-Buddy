@@ -35,23 +35,23 @@ const HomeScreen = ({ navigation }) => {
   const workoutTypes = [
     {
       type: "Arms",
-      imageSource: require("fit-buddy/assets/HomeScreen/arms-workout.png"),
+      imageSource: require("./assets/HomeScreen/arms-workout.png"),
     },
     {
       type: "Legs",
-      imageSource: require("fit-buddy/assets/HomeScreen/legs-workout.png"),
+      imageSource: require("./assets/HomeScreen/legs-workout.png"),
     },
     {
       type: "ABS",
-      imageSource: require("fit-buddy/assets/HomeScreen/abs-workout.jpg"),
+      imageSource: require("./assets/HomeScreen/abs-workout.jpg"),
     },
     {
       type: "Yoga",
-      imageSource: require("fit-buddy/assets/HomeScreen/yoga-workout.png"),
+      imageSource: require("./assets/HomeScreen/yoga-workout.png"),
     },
     {
       type: "FBW",
-      imageSource: require("fit-buddy/assets/HomeScreen/fbw-workout.jpg"),
+      imageSource: require("./assets/HomeScreen/fbw-workout.jpg"),
     },
   ];
 
@@ -140,7 +140,7 @@ const HomeScreen = ({ navigation }) => {
           {workoutTypes.map((workout, index) => (
             <TouchableOpacity
               key={index}
-              style={[styles.difficultyBox]}
+              style={styles.difficultyBox}
               // When selecting any of the difficulties, make sure that the timer,
               // if by any chance it was running in the background, is stopped and reset
               onPress={() => {

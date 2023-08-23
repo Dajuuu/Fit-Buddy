@@ -27,7 +27,7 @@ const WorkoutFinished = ({ navigation }) => {
 
   useEffect(() => {
     stopTimer();
-  }, []);
+  });
 
   // Convert total time to mm:ss format
   const minutes = Math.floor(secondsTimer / 60);
@@ -110,17 +110,6 @@ const styles = StyleSheet.create({
   timeAndKcalContainer: {
     flexDirection: "column",
     marginTop: 20,
-  },
-  doneButton: {
-    backgroundColor: "#007AFF",
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 8,
-  },
-  doneButtonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
   },
   startButton: {
     position: "absolute",
