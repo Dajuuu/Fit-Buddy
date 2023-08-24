@@ -12,6 +12,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 const windowHeight = Dimensions.get("window").height;
 
 const RestScreen = ({ route, navigation }) => {
+  // Caching the Animated value so that it does not need to be recalculated on every frame
   const imageScale = useMemo(() => new Animated.Value(1), []);
 
   useEffect(() => {

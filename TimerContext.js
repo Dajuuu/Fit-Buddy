@@ -27,7 +27,6 @@ const useTimer = () => {
     if (isActive) {
       interval = setInterval(() => {
         setSeconds((prevSeconds) => {
-          // console.log("Seconds passed:", prevSeconds + 1);
           return prevSeconds + 1;
         });
       }, 1000);
